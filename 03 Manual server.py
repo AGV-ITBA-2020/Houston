@@ -2,6 +2,7 @@ import socket
 import select
 import parse
 import copy
+import msvcrt
 
 class networkManager():
     def __init__(self,port,n_AGVs):
@@ -22,7 +23,7 @@ class networkManager():
             if s is self.server_socket:
                 client_socket, address = self.server_socket.accept()
                 self.read_list.append(client_socket)
-                print("Connection from", address)
+                #print("Connection from", address)
             else:
                 retVal=1
                 data_recieved = repr(s.recv(1024))
@@ -48,11 +49,59 @@ class networkManager():
         self.read_list.remove(agv_socket)
         del self.agvs_sockets['key']
 
+class inputManager():
+    def __init__(self,):
+        self.msg = "";
+    def new_msg(self):
+        if msvcrt.kbhit():
+            ch = msvcrt.getch()
+            chStr = str(ch.decode('ASCII'))
+            if chStr.isprintable() or chStr == "\r":
+                msvcrt.putch(ch)
+                self.msg = self.msg + chStr;
+                if chStr == "\r":
+                    return True;
+        return False;
+    def clear_msg(self):
+        self.msg = ""
+    def get_msg(self):
+        retVal=copy.deepcopy(self.msg);
+        msvcrt_print("SERVER WILL SEND:"+ retVal)
+        self.msg = ""
+        return retVal;
+
+def is_com_valid(msg):
+    return True; #TBD
+
+class comProtocol():
+    def __init__(self,):
+        self.nm = networkManager(12345, 2)
+        self.cmd_to_send = "";
+    def new_msg(self):
+        return self.nm.check_new_msgs()
+    def get_msg(self):
+        agv_num,msg_rec=self.nm.get_msgs()
+        if self.cmd_to_send: # Al recibir un mensaje y tenía algo para enviar lo manda.
+            self.nm.send_msg(agv_num,self.cmd_to_send)
+        self.nm.delete_socket(agv_num)
+        return msg_rec;
+
+def msvcrt_print(str):
+    l=list(str)
+    msvcrt.putch(b'\n')
+    for i in range(len(l)):
+        msvcrt.putch(bytes([ord(l[i])]))
+    msvcrt.putch(b'\n')
 if __name__ == "__main__":
-    nm=networkManager(12345, 2)
+    input = inputManager()
+    com = comProtocol()
     while 1:
-        if nm.check_new_msgs():
-            msgs=nm.get_msgs()
-            msg_2_send=input()
-            nm.send_msg(msgs[0], msg_2_send)
+        if input.new_msg():
+            msg = input.get_msg();
+            if is_com_valid(msg):
+                com.cmd_to_send=msg;
+        if com.new_msg():
+             input.clear_msg()
+             msvcrt_print(com.get_msg())
+
 
