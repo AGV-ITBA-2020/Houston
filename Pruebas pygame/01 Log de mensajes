@@ -1,0 +1,65 @@
+import pygame
+from datetime import datetime
+import time
+
+gray = (108, 108, 108)
+white = (255, 255, 255)
+class log():
+    def __init__(self, display, w, h, nMsgs=10):
+        self.display=display
+        self.w=w//4
+        self.h=h//1.25
+        self.nMsgs=nMsgs;
+        self.msg_box_h = self.h//nMsgs;
+        self.font = pygame.font.Font('freesansbold.ttf', 12)
+        self.all_msgs = []
+        self.msg_rect = []
+        for i in range(nMsgs):
+            self.all_msgs.append(self.font.render('Empty msg', True, white))
+            textRect = self.all_msgs[i].get_rect()
+            textRect.center = (self.w // 2, i*self.msg_box_h+self.msg_box_h/2)
+            self.msg_rect.append(textRect)
+
+    def push_msg(self,msg):
+        now = datetime.now()
+        date_time = now.strftime("%m/%d/%Y [%H:%M:%S]:")
+        text = self.font.render(date_time + msg, True, white)
+        self.all_msgs.pop(0)
+        self.all_msgs.append(text)
+
+    def draw(self):
+        for i in range(self.nMsgs):
+            self.display.blit(self.all_msgs[i], self.msg_rect[i])
+
+class gui():
+    def __init__(self,w=1000,h=800):
+        self.w=w
+        self.h=h
+        pygame.init()
+        self.display = pygame.display.set_mode((w, h))
+        pygame.display.set_caption('AGVnet v0')
+        self.log=log(self.display,w,h)
+
+    def push_msg(self,msg):
+        self.log.push_msg(msg)
+        self.draw()
+    def draw(self):
+        self.display.fill(gray)
+        self.log.draw()
+        pygame.display.update()
+
+if __name__ == "__main__":
+    mygui=gui();
+    mygui.draw()
+    count=0
+    prev = time.time()
+    while True:
+        now = time.time()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        if(int(now-prev)>=3):
+            count=count + 1
+            mygui.push_msg("Hola mundo")
+            prev=now
