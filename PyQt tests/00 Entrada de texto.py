@@ -1,32 +1,33 @@
 import sys
-from PySide2.QtWidgets import (QLineEdit, QPushButton, QApplication,
-    QVBoxLayout, QDialog)
+from PyQt5.QtWidgets import QApplication, QWidget, QLineEdit, QFormLayout
 
-class Form(QDialog):
 
-    def __init__(self, parent=None):
-        super(Form, self).__init__(parent)
-        # Create widgets
-        self.edit = QLineEdit("Write my name here")
-        self.button = QPushButton("Show Greetings")
-        # Create layout and add widgets
-        layout = QVBoxLayout()
-        layout.addWidget(self.edit)
-        layout.addWidget(self.button)
-        # Set dialog layout
-        self.setLayout(layout)
-        # Add button signal to greetings slot
-        self.button.clicked.connect(self.greetings)
+#https://matplotlib.org/3.1.1/gallery/user_interfaces/embedding_in_qt_sgskip.html
+class myGUI:
+    def enterPress(self):
+        print(self.command.text())
+        self.command.clear()
+    def __init__(self):
+        app = QApplication(sys.argv)
 
-    # Greets the user
-    def greetings(self):
-        print ("Hello %s" % self.edit.text())
+        self.win = QWidget()
+        self.win.resize(1000, 800)
+
+        self.command = QLineEdit()
+        self.command.editingFinished.connect(self.enterPress)
+
+        self.flo = QFormLayout()
+        self.flo.addRow("Comandos", self.command)
+        self.win.setLayout(self.flo)
+        self.win.setWindowTitle('ITBAGV v0')
+        self.win.show()
+        sys.exit(app.exec_())
+
+
+def main():
+    gui=myGUI();
+
+
 
 if __name__ == '__main__':
-    # Create the Qt Application
-    app = QApplication(sys.argv)
-    # Create and show the form
-    form = Form()
-    form.show()
-    # Run the main Qt loop
-    sys.exit(app.exec_())
+    main()
