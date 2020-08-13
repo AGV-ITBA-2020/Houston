@@ -13,7 +13,8 @@ class EmulatedClient:
         self.makeRequest()
         self.socket.waitForConnected(1000)
 
-        self.socket.writeData(b'Hello') #Esto parecería no llegar ...
+        string = "hola"
+        self.socket.writeData(str.encode(string))
         self.socket.flush()
 
 
