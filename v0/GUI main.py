@@ -1,9 +1,10 @@
 import sys
 from PyQt5 import QtWidgets,QtCore,QtGui
 from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
-import matplotlib.pyplot as plt
 from parse import *
+import matplotlib.pyplot as plt
 from MapManager import MapManager
+from NetworkManager import NetworkManager
 
 
 class ApplicationWindow(QtWidgets.QMainWindow):
@@ -36,6 +37,9 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 
         self.command_mapping = {"M {:d} {:d}":self.start_mission,"SetPos {:d} {:d}":self.set_position} #Diccionario que condiciona los formatos de entrada de comandos
 
+        self.nm=NetworkManager()
+        self.nm.set_read_callback(self.parse_tcp_msg)
+        self.nm.set_new_agv_callback(self.new_agv)
     def enter_press(self):
         self.last_command = self.command.text()
         valid_command=False;
@@ -51,7 +55,18 @@ class ApplicationWindow(QtWidgets.QMainWindow):
     def start_mission(self):
         res = search("M {:d} {:d}", self.last_command)
         self.mission = self.map.get_path(res[0], res[1])
-        self.log.append(self.mission)
+        msg_to_send= "new mission \n" + self.mission
+        if not self.nm.has_msgs_pending(1):
+            self.nm.send(1,msg_to_send)
+            self.log.append("New mission:" + self.mission)
+        self.log.append("AGV 1 has a pending message to send")
+
+    def new_agv(self,AGVn):
+        self.map.update_agv_pos(AGVn, 1, 2)
+        self.canvas.draw_idle()
+    def parse_tcp_msg(self,AGVn, msg):
+        self.log.append("AGV "+ str(AGVn) +": "+msg)
+        #procesamiento
 
 if __name__ == "__main__":
     # Check whether there is already a running QApplication (e.g., if running

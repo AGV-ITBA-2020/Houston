@@ -1,9 +1,16 @@
 import networkx as nx
 import matplotlib.colors as mc
+import matplotlib.pyplot as plt
 
 class MapManager():
     def __init__(self):
         self.load_graph()
+
+        self.agv_im_w = 8
+        self.agv_im_h = 5
+        self.agv_pos_list={}
+        self.agv_im = plt.imread("AGV.png")
+
         self.draw_system()
 
     def load_graph(self):
@@ -20,6 +27,8 @@ class MapManager():
         self.G.add_edge(5, 6, length=10)
 
         self.pos = {1: (0, 0), 2: (10, 0), 3: (20, 0), 4: (30, 10), 5: (30, -10), 6: (40, -10)}
+        self.xlim = (-5,45)
+        self.ylim = (-15,15)
 
     def get_path(self,orig,dest):
         node_path=nx.shortest_path(self.G, source=orig, target=dest,weight="length")
@@ -48,6 +57,15 @@ class MapManager():
 
     def draw_system(self):
         nx.draw_networkx(self.G, with_labels=True, pos=self.pos, node_color=self.gen_color())
+        for key in self.agv_pos_list:
+            node1=self.agv_pos_list[key][0]
+            node2 = self.agv_pos_list[key][1]
+            x_center = (self.pos[node1][0] + self.pos[node2][0])/2
+            y_center = (self.pos[node1][1] + self.pos[node2][1])/2
+            implot = plt.imshow(self.agv_im, extent=[x_center-self.agv_im_w/2, x_center+self.agv_im_w/2, y_center-self.agv_im_h/2, y_center+self.agv_im_h/2])
+        plt.xlim(self.xlim)
+        plt.ylim(self.ylim)
+        self.ylim = (-15, 15)
     def gen_color(self):
         colors = []
         for n in self.G:
@@ -59,3 +77,8 @@ class MapManager():
             else:
                 colors.append(mc.to_rgba('gray'))
         return colors
+
+    def update_agv_pos(self,agv_num,location_node, next_node):
+        self.agv_pos_list[agv_num] = [location_node,next_node]
+        self.draw_system()
+
