@@ -6,6 +6,36 @@ import matplotlib.pyplot as plt
 from MapManager import MapManager
 from NetworkManager import NetworkManager
 
+class AGV_status:
+    def __init__(self,number):
+        self.n=number;
+        self.mission_sent = False;
+        self.in_mission = False;
+
+    def new_mission(self,mission_steps, mission_nodes):
+        self.mission_steps = mission_steps
+        self.mission_nodes = mission_nodes
+
+    def mission_step_reached(self):
+        self.mission_steps=self.mission_steps[2:] #Elimino 2 chars del string de los pasos
+        self.mission_nodes.pop(0) #Vuelo el nodo previo
+        if not self.mission_steps: #Si el string de los steps es nulo, se terminó la mission
+            self.in_mission = False;
+
+    def get_agv_pos_nodes(self):
+        prev=0
+        next=0
+        if len(self.mission_nodes) == 1:
+            prev = self.mission_nodes[0]
+            next = self.mission_nodes[0]
+        else:
+            prev = self.mission_nodes[0]
+            next = self.mission_nodes[1]
+        return prev, next
+
+
+
+
 
 class ApplicationWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -40,6 +70,8 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.nm=NetworkManager()
         self.nm.set_read_callback(self.parse_tcp_msg)
         self.nm.set_new_agv_callback(self.new_agv)
+
+        self.agv_status_dict = {};
     def enter_press(self):
         self.last_command = self.command.text()
         valid_command=False;
@@ -54,18 +86,38 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         res = parse("SetPos {:d} {:d}", self.last_command)
     def start_mission(self):
         res = search("M {:d} {:d}", self.last_command)
-        self.mission = self.map.get_path(res[0], res[1])
-        msg_to_send= "new mission \n" + self.mission
-        if not self.nm.has_msgs_pending(1):
+        mission,node_path = self.map.get_path(res[0], res[1])
+        msg_to_send= "Quest? \n" + mission
+        if not self.nm.has_msgs_pending(1): #Usamos 1 porque siempre nos comunicamos por default con el AGV 1
+            self.agv_status_dict[1].mission_sent=True;
+            self.agv_status_dict[1].mission_steps = mission
+            self.agv_status_dict[1].mission_nodes = node_path
             self.nm.send(1,msg_to_send)
-            self.log.append("New mission:" + self.mission)
-        self.log.append("AGV 1 has a pending message to send")
+            self.log.append("New mission:" + mission)
+        else:
+            self.log.append("AGV 1 has a pending message to send")
 
     def new_agv(self,AGVn):
         self.map.update_agv_pos(AGVn, 1, 2)
         self.canvas.draw_idle()
+        self.agv_status_dict[AGVn]=AGV_status(AGVn)
     def parse_tcp_msg(self,AGVn, msg):
-        self.log.append("AGV "+ str(AGVn) +": "+msg)
+        self.log.append("AGV " + str(AGVn) + ": " + msg)
+        if msg=="Quest step reached":
+            if self.agv_status_dict[AGVn].in_mission:
+                self.agv_status_dict[AGVn].mission_step_reached()
+                prev, next =self.agv_status_dict[AGVn].get_agv_pos_nodes()
+                self.map.update_agv_pos(AGVn, prev, next)
+                self.canvas.draw_idle()
+            else:
+                print("Error")
+        if msg=="Quest\nYes":
+            if self.agv_status_dict[AGVn].mission_sent:
+                self.agv_status_dict[AGVn].in_mission=True
+                self.agv_status_dict[AGVn].mission_sent=False
+            else:
+                print("Error")
+
         #procesamiento
 
 if __name__ == "__main__":

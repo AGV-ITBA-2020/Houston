@@ -53,9 +53,10 @@ class MapManager():
                             strOut += "Fr"
                     else:
                         strOut += "Me" #merge
-        return strOut
+        return strOut, node_path
 
     def draw_system(self):
+        plt.clf()
         nx.draw_networkx(self.G, with_labels=True, pos=self.pos, node_color=self.gen_color())
         for key in self.agv_pos_list:
             node1=self.agv_pos_list[key][0]

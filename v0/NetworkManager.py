@@ -40,4 +40,5 @@ class NetworkManager:
                 msg = self.msgs_to_send[AGV_number]
                 self.clientConnection.writeData(str.encode(msg))
                 self.clientConnection.flush()
+                del self.msgs_to_send[AGV_number] #Borro ese mensaje porque ya lo envié
         self.clientConnection.disconnectFromHost()
