@@ -69,7 +69,6 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 
         self.nm=NetworkManager()
         self.nm.set_read_callback(self.parse_tcp_msg)
-        self.nm.set_new_agv_callback(self.new_agv)
 
         self.agv_status_dict = {};
     def enter_press(self):
@@ -97,13 +96,13 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         else:
             self.log.append("AGV 1 has a pending message to send")
 
-    def new_agv(self,AGVn):
-        self.map.update_agv_pos(AGVn, 1, 2)
-        self.canvas.draw_idle()
-        self.agv_status_dict[AGVn]=AGV_status(AGVn)
     def parse_tcp_msg(self,AGVn, msg):
         self.log.append("AGV " + str(AGVn) + ": " + msg)
-        if msg=="Quest step reached":
+        if msg == "Online":
+            self.map.update_agv_pos(AGVn, 1, 2)
+            self.canvas.draw_idle()
+            self.agv_status_dict[AGVn] = AGV_status(AGVn)
+        elif msg=="Quest step reached":
             if self.agv_status_dict[AGVn].in_mission:
                 self.agv_status_dict[AGVn].mission_step_reached()
                 prev, next =self.agv_status_dict[AGVn].get_agv_pos_nodes()
@@ -111,7 +110,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
                 self.canvas.draw_idle()
             else:
                 print("Error")
-        if msg=="Quest\nYes":
+        elif msg=="Quest\nYes":
             if self.agv_status_dict[AGVn].mission_sent:
                 self.agv_status_dict[AGVn].in_mission=True
                 self.agv_status_dict[AGVn].mission_sent=False
