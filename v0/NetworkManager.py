@@ -12,7 +12,7 @@ class NetworkManager:
     def set_read_callback(self,callback):
         self.callback=callback
     def on_new_connection(self):
-        print("Connected")
+        #print("Connected")
         self.clientConnection = self.server.nextPendingConnection()
         self.clientConnection.readyRead.connect(self.read)
     def has_msgs_pending(self,agvN): ##Dice si tiene mensajes pendientes para enviar a este agv
