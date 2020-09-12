@@ -85,7 +85,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         res = parse("SetPos {:d} {:d}", self.last_command)
     def start_mission(self):
         res = search("M {:d} {:d}", self.last_command)
-        mission,node_path = self.map.get_path(res[0], res[1])
+        mission,node_path,dist_list = self.map.get_path(res[0], res[1])
         msg_to_send= "Quest?\n" + mission
         if not self.nm.has_msgs_pending(1): #Usamos 1 porque siempre nos comunicamos por default con el AGV 1
             self.agv_status_dict[1].mission_sent=True;
