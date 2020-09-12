@@ -85,16 +85,22 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         res = parse("SetPos {:d} {:d}", self.last_command)
     def start_mission(self):
         res = search("M {:d} {:d}", self.last_command)
-        mission,node_path,dist_list = self.map.get_path(res[0], res[1])
-        msg_to_send= "Quest?\n" + mission
+        steps_str,node_path,dist_list = self.map.get_path(res[0], res[1])
+        msg_to_send= "Quest?\n" + self.gen_mission_block(steps_str, dist_list)
         if not self.nm.has_msgs_pending(1): #Usamos 1 porque siempre nos comunicamos por default con el AGV 1
             self.agv_status_dict[1].mission_sent=True;
-            self.agv_status_dict[1].mission_steps = mission
+            self.agv_status_dict[1].mission_steps = steps_str
             self.agv_status_dict[1].mission_nodes = node_path
             self.nm.send(1,msg_to_send)
-            self.log.append("New mission:" + mission)
+            self.log.append("New mission:" + steps_str)
         else:
             self.log.append("AGV 1 has a pending message to send")
+    def gen_mission_block(self, steps, dists):
+        mission = "Bs" #Block start
+        for i in range(int(len(steps)/2)):
+            mission += dists[i] + steps[(i*2):(i*2+2)]; #Pone por ejemplo 11Fr14Sl1
+        mission += "Be" #Block end
+        return mission
 
     def parse_tcp_msg(self,AGVn, msg):
         self.log.append("AGV " + str(AGVn) + ": " + msg)
