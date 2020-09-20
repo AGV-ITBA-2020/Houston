@@ -65,12 +65,17 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.flo.addRow("Comandos", self.command)
         layout.addWidget(self.command,1,0,1,2)
 
-        self.command_mapping = {"M {:d} {:d}":self.start_mission,"SetPos {:d} {:d}":self.set_position} #Diccionario que condiciona los formatos de entrada de comandos
+        self.command_mapping = {"M {:d} {:d}":self.start_mission,"SetPos {:d} {:d}":self.set_position,"S {:d} {:d}":self.setVel} #Diccionario que condiciona los formatos de entrada de comandos
 
         self.nm=NetworkManager()
         self.nm.set_read_callback(self.parse_tcp_msg)
 
         self.agv_status_dict = {};
+
+    def setVel(self):
+        res = parse("S {:d} {:d}", self.last_command)
+        msg_to_send = "Fix speed\n" + str(res[0])+ " " + str(res[1]);
+        self.nm.send(1, msg_to_send)
     def enter_press(self):
         self.last_command = self.command.text()
         valid_command=False;
