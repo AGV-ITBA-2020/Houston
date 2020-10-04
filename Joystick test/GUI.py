@@ -21,7 +21,8 @@ class Joystick(QWidget):
         self.nm=NetworkManager()
         self.nm.set_read_callback(self.recvMsg)
     def recvMsg(self,AGVNum,msg):
-        print(self.lastMsg) ##Se printea lo que se le va a enviar al agv
+        ##print(self.lastMsg) ##Se printea lo que se le va a enviar al agv
+        self.msg=msg
     def paintEvent(self, event):
         painter = QPainter(self)
         bounds = QRectF(-self.__maxDistance, -self.__maxDistance, self.__maxDistance * 2, self.__maxDistance * 2).translated(self._center())
@@ -56,7 +57,9 @@ class Joystick(QWidget):
             self.linSpeed = 0;
         else:
             self.angSpeed =int((90-self.angle)/9); #Así va entre -10 y 10
-            self.linSpeed = int(self.distance*10);
+           # self.linSpeed = int(self.distance*10);
+            self.linSpeed = int(-normVector.dy()*10 / self.__maxDistance );
+        #print(self.linSpeed)
 
 
     def mousePressEvent(self, ev):
@@ -73,9 +76,9 @@ class Joystick(QWidget):
             self.movingOffset = self._boundJoystick(event.pos())
             self.update()
             self.joystickDirection()
-            if(self.nm.has_msgs_pending(1)):
+            if(not self.nm.has_msgs_pending(1)):
                 self.lastMsg="Fixed speed\n"+str(self.linSpeed)+" "+ str(self.angSpeed)
-                self.nm.send(self,1,self.lastMsg)
+                self.nm.send(1,self.lastMsg)
             #print("linSpeed" + str(self.linSpeed)+"angSpeed" +str(self.angSpeed))
 
 if __name__ == '__main__':

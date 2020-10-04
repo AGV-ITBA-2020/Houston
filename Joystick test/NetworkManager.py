@@ -9,6 +9,8 @@ class NetworkManager:
         self.server.newConnection.connect(self.on_new_connection) ##En caso de conexión, se llamará a este callback
         self.nxt_AGV_num=1 #El numero que le da al nuevo agv que se quiera unir
         self.msgs_to_send = {}
+        self.i=0
+        self.prevMsg="Fixed speed\n0 0"
     def set_read_callback(self,callback):
         self.callback=callback
     def on_new_connection(self):
@@ -22,6 +24,8 @@ class NetworkManager:
     def read(self):
         instr = self.clientConnection.readAll()
         msg=str(instr, encoding='ascii')
+        print(msg+str(self.i))
+        self.i=self.i+1
         data_recieved = msg.split('\n', 1)  # Me quedo con el header del agv
         header = data_recieved[0]
         msg = data_recieved[1]
@@ -29,7 +33,12 @@ class NetworkManager:
         self.callback(AGV_number,msg)
         if AGV_number in self.msgs_to_send: #Si tiene mensajes para ese agv
             msg = self.msgs_to_send[AGV_number]
+            self.prevMsg=msg
             self.clientConnection.writeData(str.encode(msg))
             self.clientConnection.flush()
             del self.msgs_to_send[AGV_number] #Borro ese mensaje porque ya lo envié
+        else:
+            msg=self.prevMsg
+            self.clientConnection.writeData(str.encode(msg))
+            self.clientConnection.flush()
         self.clientConnection.disconnectFromHost()
