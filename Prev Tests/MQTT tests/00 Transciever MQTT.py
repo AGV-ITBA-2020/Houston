@@ -8,7 +8,7 @@ client = mqtt.Client("Houston") #create new instance
 client.on_message=print_msg
 
 client.connect("localhost") #connect to broker
-client.subscribe("outTopic")
+client.subscribe("Houston")
 client.loop_start()
 
 while(1):
