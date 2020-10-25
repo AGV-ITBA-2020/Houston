@@ -11,6 +11,12 @@ client.connect("localhost") #connect to broker
 client.subscribe("Houston")
 client.loop_start()
 
+i=0
 while(1):
-    str2Send = input()
-    client.publish("AGV1",str2Send)
+    data = input()
+    if (data[0]=='K'):
+        client.publish("AGV1", "Set K PID\n" + data[1:])
+    else:
+        client.publish("AGV1","Fixed speed\n"+data)
+
+    i=i+1

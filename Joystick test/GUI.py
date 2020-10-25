@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import *
 import sys
 from enum import Enum
 from NetworkManager import NetworkManager
+import paho.mqtt.client as mqtt
 
 class Direction(Enum):
     Left = 0
@@ -14,6 +15,9 @@ class Direction(Enum):
 class Joystick(QWidget):
     def __init__(self, parent=None):
         super(Joystick, self).__init__(parent)
+        self.client = mqtt.Client("xd")  # create new instance
+        self.client.connect("localhost") #connect to broker
+        self.client.loop_start()
         self.setMinimumSize(400, 400)
         self.movingOffset = QPointF(0, 0)
         self.grabCenter = False
@@ -76,9 +80,7 @@ class Joystick(QWidget):
             self.movingOffset = self._boundJoystick(event.pos())
             self.update()
             self.joystickDirection()
-            if(not self.nm.has_msgs_pending(1)):
-                self.lastMsg="Fixed speed\n"+str(self.linSpeed)+" "+ str(self.angSpeed)
-                self.nm.send(1,self.lastMsg)
+            self.client.publish("AGV1", "Fixed speed\n"+str(self.linSpeed)+" "+ str(self.angSpeed))
             #print("linSpeed" + str(self.linSpeed)+"angSpeed" +str(self.angSpeed))
 
 if __name__ == '__main__':

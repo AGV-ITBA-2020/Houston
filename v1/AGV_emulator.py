@@ -1,27 +1,28 @@
-from PyQt5.QtNetwork import *
-from PyQt5.QtCore import *
+import paho.mqtt.client as mqtt
 import time
 
-def communicate(msg_to_send):
-    socket = QTcpSocket()
-    socket.connectToHost('127.0.0.1', 12345, QIODevice.ReadWrite)
-    socket.waitForConnected(100)
-    socket.writeData(str.encode(msg_to_send))
-    socket.flush()
-    socket.waitForReadyRead(1000)
-    msg_rec=str(socket.readAll())
-    return msg_rec
+def onMsg(client, userdata, message):
+    print(str(message.payload.decode("utf-8")))
+
 if __name__ == '__main__':
-    print(communicate("AGV 1\nOnline"))
-    time.sleep(10) #En este espacio se tiene que enviar una misión
-    print(communicate("AGV 1\nHB"))
-    time.sleep(3)
-    print(communicate("AGV 1\nQuest\nYes")) # El AGV "acepta" la misión
+    client = mqtt.Client("AGV1")  # create new instance
+    client.connect("localhost")  # connect to broker
+    client.on_message = onMsg
+    client.subscribe("AGV1")
+
+    client.publish("Houston", "AGV1\nOnline")  # publish
     time.sleep(5)
-    print(communicate("AGV 1\nQuest step reached"))  # El AGV avanza en la mision
+    client.publish("Houston", "AGV1\nHB")  # publish
     time.sleep(5)
-    print(communicate("AGV 1\nQuest step reached"))  # El AGV avanza en la mision
+    client.publish("Houston", "AGV1\nQuest\nYes")  # publish
     time.sleep(5)
-    print(communicate("AGV 1\nQuest step reached"))  # El AGV avanza en la mision
+    client.publish("Houston", "AGV1\nQuest step reached")  # publish
     time.sleep(5)
-    print(communicate("AGV 1\nQuest step reached"))  # El AGV avanza en la mision
+    client.publish("Houston", "AGV1\nQuest step reached")  # publish
+    time.sleep(5)
+    client.publish("Houston", "AGV1\nQuest step reached")  # publish
+    time.sleep(5)
+    client.publish("Houston", "AGV1\nQuest step reached")  # publish
+    time.sleep(5)
+    client.publish("Houston", "AGV1\nQuest step reached")  # publish
+    time.sleep(5)

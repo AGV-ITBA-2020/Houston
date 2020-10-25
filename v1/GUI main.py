@@ -65,7 +65,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.flo.addRow("Comandos", self.command)
         layout.addWidget(self.command,1,0,1,2)
 
-        self.command_mapping = {"M {:d} {:d}":self.start_mission,"SetPos {:d} {:d}":self.set_position,"S {:d} {:d}":self.setVel} #Diccionario que condiciona los formatos de entrada de comandos
+        self.command_mapping = {"M {:d} {:d}":self.start_mission,"SetPos {:d} {:d}":self.set_position,"S {:d} {:d}":self.setVel, "K {:f} {:f} {:f}":self.setPIDKs} #Diccionario que condiciona los formatos de entrada de comandos
 
         self.mqttClient = mqtt.Client("Houston")  # create new instance
         self.mqttClient.on_message = self.parse_msg
@@ -75,10 +75,13 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 
         self.agv_status_dict = {};
 
-
+    def setPIDKs(self):
+        res = parse("K {:f} {:f} {:f}", self.last_command)
+        msg_to_send = "Set K PID\n" + str(res[0])+ " " + str(res[1])+ " " + str(res[2]);
+        self.mqttClient.publish("AGV1",msg_to_send)
     def setVel(self):
         res = parse("S {:d} {:d}", self.last_command)
-        msg_to_send = "Fix speed\n" + str(res[0])+ " " + str(res[1]);
+        msg_to_send = "Fixed speed\n" + str(res[0])+ " " + str(res[1]);
         self.mqttClient.publish("AGV1",msg_to_send)
     def enter_press(self):
         self.last_command = self.command.text()
@@ -110,7 +113,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 
     def parse_msg(self,client, userdata, message):
         msg=str(message.payload.decode("utf-8"))
-        AGVn = int(parse("AGV{}", msg)[0])
+        AGVn = int((msg.split('\n', 1)[0]).split('V',1)[1])
         msg = msg.split('\n', 1)[1]  # Me quedo con el header del agv
         self.log.append("AGV " + str(AGVn) + ": " + msg)
         if msg == "Online":
