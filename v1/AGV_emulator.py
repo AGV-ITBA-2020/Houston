@@ -20,12 +20,12 @@ if __name__ == '__main__':
     time.sleep(1)
     client.publish("Houston", "AGV1\nStatus\nDistanceTravelled 1")  # publish
     time.sleep(1)
+    client.publish("Houston", "AGV1\nStatus\nDistanceTravelled 2")  # publish
+    time.sleep(1)
     client.publish("Houston", "AGV1\nStatus\nDistanceTravelled 3")  # publish
     time.sleep(1)
-    client.publish("Houston", "AGV1\nQuest step reached")  # publish
-    time.sleep(5)
-    client.publish("Houston", "AGV1\nQuest step reached")  # publish
-    time.sleep(5)
+    client.publish("Houston", "AGV1\nStatus\nDistanceTravelled 4")  # publish
+    time.sleep(1)
     client.publish("Houston", "AGV1\nQuest step reached")  # publish
     time.sleep(5)
     client.publish("Houston", "AGV1\nQuest step reached")  # publish

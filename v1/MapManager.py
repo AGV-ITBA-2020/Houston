@@ -27,8 +27,10 @@ class MapManager():
         self.G.add_edge(5, 6, length=11)
 
         self.pos = {1: (0, 0), 2: (10, 0), 3: (20, 0), 4: (30, 10), 5: (30, -10), 6: (40, -10)}
-        self.xlim = (-5,45)
-        self.ylim = (-15,15)
+        self.xlimDefault = (-5,45)
+        self.ylimDefault = (-15,15)
+        plt.xlim(self.xlimDefault )
+        plt.ylim(self.ylimDefault )
 
     def get_path(self,orig,dest):
         node_path=nx.shortest_path(self.G, source=orig, target=dest,weight="length")
@@ -58,6 +60,8 @@ class MapManager():
         return strOut, node_path, dist_list
 
     def draw_system(self):
+        self.xlim=plt.xlim()
+        self.ylim=plt.ylim()
         plt.clf()
         nx.draw_networkx(self.G, with_labels=True, pos=self.pos, node_color=self.gen_color())
         for key in self.agv_pos_list:
@@ -73,7 +77,6 @@ class MapManager():
             implot = plt.imshow(self.agv_im, extent=[x_center-self.agv_im_w/2, x_center+self.agv_im_w/2, y_center-self.agv_im_h/2, y_center+self.agv_im_h/2])
         plt.xlim(self.xlim)
         plt.ylim(self.ylim)
-        self.ylim = (-15, 15)
     def gen_color(self):
         colors = []
         for n in self.G:
