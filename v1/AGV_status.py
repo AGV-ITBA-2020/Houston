@@ -12,7 +12,7 @@ class AGV_status:
         self.mission_block_nodes = mission_blocks_nodes # Lista de listas de nodos
         self.mission_dists = mission_blocks_dist # Lista de listas de distancias
         self.mission_IBE = mission_IBE #Inter block events.
-        self.in_mission = True;
+        self.in_mission = True; #Se pone en realidad cuando el vehículo acepta la misión
         self.currBlock=0;
         self.currStep=0;
         self.paused=True;
@@ -29,6 +29,7 @@ class AGV_status:
     def mission_step_reached(self):
         self.currStep += 1;  ##Avanza step de misiones
         self.in_node=self.mission_block_nodes[self.currBlock][self.currStep]
+        self.distanceTravelled = 0;
         if self.currStep == self.curr_block_len(): #Si terminó el bloque de misión
             self.currStep=0
             self.currBlock += 1;

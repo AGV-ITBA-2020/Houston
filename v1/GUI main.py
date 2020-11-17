@@ -62,14 +62,13 @@ class ApplicationWindow(QtWidgets.QMainWindow):
     def parse_msg(self,client, userdata, message): ##Parseo de mensajes de MQTT
         msg=str(message.payload.decode("utf-8"))
         AGVn = int((msg.split('\n', 1)[0]).split('V',1)[1])
-        msg = msg.split('\n', 1)[1]  # Me quedo con el header del agv
+        msg = msg.split('\n', 1)[1]  # Me quedo con los datos del agv
         self.log.append("AGV " + str(AGVn) + ": " + msg)
         if msg == "Online":
             self.agv_status_dict[AGVn] = AGV_status(AGVn)
             prev, next, distance = self.agv_status_dict[AGVn].get_agv_pos_nodes()
             self.map.update_agv_pos(AGVn, prev, next, distance)
             self.canvas.draw_idle()
-
         elif msg=="Quest step reached":
             if self.agv_status_dict[AGVn].in_mission:
                 self.agv_status_dict[AGVn].mission_step_reached()
@@ -78,12 +77,12 @@ class ApplicationWindow(QtWidgets.QMainWindow):
                 self.canvas.draw_idle()
             else:
                 print("Error")
-        elif msg=="Quest\nYes":
-            if self.agv_status_dict[AGVn].mission_sent:
-                self.agv_status_dict[AGVn].in_mission=True
-                self.agv_status_dict[AGVn].mission_sent=False
-            else:
-                print("Error")
+        elif "Status" in msg:
+            self.agv_status_dict[AGVn].distanceTravelled = search("DistanceTravelled {:d}", msg)[0]
+            prev, next, distance = self.agv_status_dict[AGVn].get_agv_pos_nodes()
+            self.map.update_agv_pos(AGVn, prev, next, distance)
+            self.canvas.draw_idle()
+
     def clearMsgBlock(self): ##Máximo número de caracteres en el log (esto era por si se iba de memoria)
         if len(self.log.toPlainText())>100:
             self.log.clear()
