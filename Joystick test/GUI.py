@@ -6,6 +6,9 @@ from enum import Enum
 from NetworkManager import NetworkManager
 import paho.mqtt.client as mqtt
 
+
+updateVelms=250
+
 class Direction(Enum):
     Left = 0
     Right = 1
@@ -21,9 +24,18 @@ class Joystick(QWidget):
         self.setMinimumSize(400, 400)
         self.movingOffset = QPointF(0, 0)
         self.grabCenter = False
-        self.__maxDistance = 50
+        self.__maxDistance = 100
         self.nm=NetworkManager()
         self.nm.set_read_callback(self.recvMsg)
+        self.timer = QTimer(self)
+        self.timer.setInterval(updateVelms)
+        self.timer.timeout.connect(self.sendVel)
+        self.linSpeed=0
+        self.angSpeed=0
+        self.timer.start()
+    def sendVel(self):
+        #print("Hola mundo! \n")
+        self.client.publish("AGV1", "Fixed speed\n" + str(self.linSpeed) + " " + str(self.angSpeed))
     def recvMsg(self,AGVNum,msg):
         ##print(self.lastMsg) ##Se printea lo que se le va a enviar al agv
         self.msg=msg
@@ -33,6 +45,8 @@ class Joystick(QWidget):
         painter.drawEllipse(bounds)
         painter.setBrush(Qt.black)
         painter.drawEllipse(self._centerEllipse())
+        painter.drawText(300, 350, "V linear = " + str(self.linSpeed))
+        painter.drawText(300, 375, "V angular = " + str(self.angSpeed))
 
     def _centerEllipse(self):
         if self.grabCenter:
@@ -60,7 +74,8 @@ class Joystick(QWidget):
             self.angSpeed=0;
             self.linSpeed = 0;
         else:
-            self.angSpeed =int((90-self.angle)/9); #Así va entre -10 y 10
+            #self.angSpeed =int((90-self.angle)/9); #Así va entre -10 y 10
+            self.angSpeed = int(normVector.dx() * 10 / self.__maxDistance);
            # self.linSpeed = int(self.distance*10);
             self.linSpeed = int(-normVector.dy()*10 / self.__maxDistance );
         #print(self.linSpeed)
@@ -80,7 +95,7 @@ class Joystick(QWidget):
             self.movingOffset = self._boundJoystick(event.pos())
             self.update()
             self.joystickDirection()
-            self.client.publish("AGV1", "Fixed speed\n"+str(self.linSpeed)+" "+ str(self.angSpeed))
+
             #print("linSpeed" + str(self.linSpeed)+"angSpeed" +str(self.angSpeed))
 
 if __name__ == '__main__':

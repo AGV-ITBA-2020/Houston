@@ -74,7 +74,11 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.mqttClient.loop_start()
 
         self.agv_status_dict = {};
+        self.log.textChanged.connect(self.clearMsgBlock)
 
+    def clearMsgBlock(self):
+        if len(self.log.toPlainText())>100:
+            self.log.clear()
     def setPIDKs(self):
         res = parse("K {:f} {:f} {:f}", self.last_command)
         msg_to_send = "Set K PID\n" + str(res[0])+ " " + str(res[1])+ " " + str(res[2]);
