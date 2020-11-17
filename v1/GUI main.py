@@ -5,40 +5,10 @@ from parse import *
 import matplotlib.pyplot as plt
 from MapManager import MapManager
 import paho.mqtt.client as mqtt
-
-class AGV_status:
-    def __init__(self,number):
-        self.n=number;
-        self.mission_sent = False;
-        self.in_mission = False;
-
-    def new_mission(self,mission_steps, mission_nodes):
-        self.mission_steps = mission_steps
-        self.mission_nodes = mission_nodes
-
-    def mission_step_reached(self):
-        self.mission_steps=self.mission_steps[2:] #Elimino 2 chars del string de los pasos
-        self.mission_nodes.pop(0) #Vuelo el nodo previo
-        if not self.mission_steps: #Si el string de los steps es nulo, se terminó la mission
-            self.in_mission = False;
-
-    def get_agv_pos_nodes(self):
-        prev=0
-        next=0
-        if len(self.mission_nodes) == 1:
-            prev = self.mission_nodes[0]
-            next = self.mission_nodes[0]
-        else:
-            prev = self.mission_nodes[0]
-            next = self.mission_nodes[1]
-        return prev, next
-
-
-
-
+from AGV_status import AGV_status
 
 class ApplicationWindow(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self): #Crea todo lo de la GUI
         super().__init__()
         self._main = QtWidgets.QWidget()
         self.setWindowTitle('ITBAGV v0') ##Nombre de la app y su ícono
@@ -52,7 +22,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 
         self.figure = plt.figure()      #Figura donde se plotea el mapa
         self.canvas = FigureCanvas(self.figure)
-        self.map = MapManager()
+        self.map = MapManager()     #Map manager
         self.canvas.draw_idle()
 
         layout.addWidget(self.canvas,0,1)
@@ -65,70 +35,46 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.flo.addRow("Comandos", self.command)
         layout.addWidget(self.command,1,0,1,2)
 
-        self.command_mapping = {"M {:d} {:d}":self.start_mission,"SetPos {:d} {:d}":self.set_position,"S {:d} {:d}":self.setVel, "K {:f} {:f} {:f}":self.setPIDKs} #Diccionario que condiciona los formatos de entrada de comandos
+        #Comandos permitidos de entrada
+        self.command_mapping = {"M {:d} {:d}":self.start_mission,"SetPos {:d}":self.set_position,"S {:d} {:d}":self.setVel, "K {:f} {:f} {:f}":self.setPIDKs} #Diccionario que condiciona los formatos de entrada de comandos
 
+        #MQTT Mosquitto config
         self.mqttClient = mqtt.Client("Houston")  # create new instance
         self.mqttClient.on_message = self.parse_msg
         self.mqttClient.connect("localhost")  # connect to broker
         self.mqttClient.subscribe("Houston")
         self.mqttClient.loop_start()
 
-        self.agv_status_dict = {};
+        self.agv_status_dict = {};#Status de los AGVs que se conecten
         self.log.textChanged.connect(self.clearMsgBlock)
-
-    def clearMsgBlock(self):
-        if len(self.log.toPlainText())>100:
-            self.log.clear()
-    def setPIDKs(self):
-        res = parse("K {:f} {:f} {:f}", self.last_command)
-        msg_to_send = "Set K PID\n" + str(res[0])+ " " + str(res[1])+ " " + str(res[2]);
-        self.mqttClient.publish("AGV1",msg_to_send)
-    def setVel(self):
-        res = parse("S {:d} {:d}", self.last_command)
-        msg_to_send = "Fixed speed\n" + str(res[0])+ " " + str(res[1]);
-        self.mqttClient.publish("AGV1",msg_to_send)
-    def enter_press(self):
+    ############ Callbacks #####################
+    def enter_press(self):      #Enter luego de poner un comando en el text input.
         self.last_command = self.command.text()
         valid_command=False;
-        for key in self.command_mapping:
+        for key in self.command_mapping: #Me fijo todos los formatos que especifiqué de antemano
             if parse(key, self.last_command): #Si cumple el formato de alguno de los comandos, ejecuta la función que implica cada uno
                 self.command_mapping[key]()
                 valid_command = True;
-        if  valid_command == False:
+        if  valid_command == False: #Si no se reconoció ningun comando, se comunica.
             self.log.append("Invalid Command")
         self.command.clear()
-    def set_position(self):
-        res = parse("SetPos {:d} {:d}", self.last_command)
-    def start_mission(self):
-        res = search("M {:d} {:d}", self.last_command)
-        steps_str,node_path,dist_list = self.map.get_path(res[0], res[1])
-        msg_to_send= "Quest?\n" + self.gen_mission_block(steps_str, dist_list)
-        self.agv_status_dict[1].mission_sent=True;
-        self.agv_status_dict[1].mission_steps = steps_str
-        self.agv_status_dict[1].mission_nodes = node_path
-        self.mqttClient.publish("AGV1", msg_to_send)
-        self.log.append("New mission:" + steps_str)
-    def gen_mission_block(self, steps, dists):
-        mission = "Bs" #Block start
-        for i in range(int(len(steps)/2)):
-            mission += dists[i] + steps[(i*2):(i*2+2)]; #Pone por ejemplo 11Fr14Sl1
-        mission += "Be" #Block end
-        return mission
 
-    def parse_msg(self,client, userdata, message):
+    def parse_msg(self,client, userdata, message): ##Parseo de mensajes de MQTT
         msg=str(message.payload.decode("utf-8"))
         AGVn = int((msg.split('\n', 1)[0]).split('V',1)[1])
         msg = msg.split('\n', 1)[1]  # Me quedo con el header del agv
         self.log.append("AGV " + str(AGVn) + ": " + msg)
         if msg == "Online":
-            self.map.update_agv_pos(AGVn, 1, 2)
-            self.canvas.draw_idle()
             self.agv_status_dict[AGVn] = AGV_status(AGVn)
+            prev, next, distance = self.agv_status_dict[AGVn].get_agv_pos_nodes()
+            self.map.update_agv_pos(AGVn, prev, next, distance)
+            self.canvas.draw_idle()
+
         elif msg=="Quest step reached":
             if self.agv_status_dict[AGVn].in_mission:
                 self.agv_status_dict[AGVn].mission_step_reached()
-                prev, next =self.agv_status_dict[AGVn].get_agv_pos_nodes()
-                self.map.update_agv_pos(AGVn, prev, next)
+                prev, next, distance =self.agv_status_dict[AGVn].get_agv_pos_nodes()
+                self.map.update_agv_pos(AGVn, prev, next, distance)
                 self.canvas.draw_idle()
             else:
                 print("Error")
@@ -138,12 +84,37 @@ class ApplicationWindow(QtWidgets.QMainWindow):
                 self.agv_status_dict[AGVn].mission_sent=False
             else:
                 print("Error")
-
-        #procesamiento
+    def clearMsgBlock(self): ##Máximo número de caracteres en el log (esto era por si se iba de memoria)
+        if len(self.log.toPlainText())>100:
+            self.log.clear()
+    #### Funciones llamadas por comandos ###
+    def setPIDKs(self):
+        res = parse("K {:f} {:f} {:f}", self.last_command)
+        msg_to_send = "Set K PID\n" + str(res[0])+ " " + str(res[1])+ " " + str(res[2]);
+        self.mqttClient.publish("AGV1",msg_to_send)
+    def setVel(self):
+        res = parse("S {:d} {:d}", self.last_command)
+        msg_to_send = "Fixed speed\n" + str(res[0])+ " " + str(res[1]);
+        self.mqttClient.publish("AGV1",msg_to_send)
+    def set_position(self):
+        res = parse("SetPos {:d}", self.last_command)
+        self.agv_status_dict[1].set_pos(self, res[0])
+    def start_mission(self):
+        res = search("M {:d} {:d}", self.last_command)
+        steps_str,node_path,dist_list = self.map.get_path(res[0], res[1])
+        msg_to_send= "Quest?\n" + self.gen_mission_block(steps_str, dist_list)
+        self.agv_status_dict[1].new_mission([node_path],[dist_list], ["None", "None"]) #Las IBE son none por ser una misión simple
+        self.mqttClient.publish("AGV1", msg_to_send)
+        self.log.append("New mission:" + steps_str)
+    def gen_mission_block(self, steps, dists):
+        mission = "Bs" #Block start
+        for i in range(int(len(steps)/2)):
+            mission += dists[i] + steps[(i*2):(i*2+2)]; #Pone por ejemplo 11Fr14Sl1
+        mission += "Be" #Block end
+        return mission
 
 if __name__ == "__main__":
-    # Check whether there is already a running QApplication (e.g., if running
-    # from an IDE).
+    # Crea todo lo de QT
     qapp = QtWidgets.QApplication.instance()
     if not qapp:
         qapp = QtWidgets.QApplication(sys.argv)

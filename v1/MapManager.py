@@ -61,10 +61,15 @@ class MapManager():
         plt.clf()
         nx.draw_networkx(self.G, with_labels=True, pos=self.pos, node_color=self.gen_color())
         for key in self.agv_pos_list:
-            node1=self.agv_pos_list[key][0]
+            node1 = self.agv_pos_list[key][0]
             node2 = self.agv_pos_list[key][1]
-            x_center = (self.pos[node1][0] + self.pos[node2][0])/2
-            y_center = (self.pos[node1][1] + self.pos[node2][1])/2
+            if (node1 == node2):
+                x_center = self.pos[node1][0]
+                y_center = self.pos[node1][1]
+            else:
+                fracTrav = self.agv_pos_list[key][2] / self.G.edges[node1, node2]['length'] #Fracción del camino recorrido
+                x_center = self.pos[node1][0] + (self.pos[node2][0] - self.pos[node1][0]) * fracTrav
+                y_center = self.pos[node1][1] + (self.pos[node2][1] - self.pos[node1][1]) * fracTrav
             implot = plt.imshow(self.agv_im, extent=[x_center-self.agv_im_w/2, x_center+self.agv_im_w/2, y_center-self.agv_im_h/2, y_center+self.agv_im_h/2])
         plt.xlim(self.xlim)
         plt.ylim(self.ylim)
@@ -81,7 +86,7 @@ class MapManager():
                 colors.append(mc.to_rgba('gray'))
         return colors
 
-    def update_agv_pos(self,agv_num,location_node, next_node):
-        self.agv_pos_list[agv_num] = [location_node,next_node]
+    def update_agv_pos(self,agv_num,location_node, next_node,dist):
+        self.agv_pos_list[agv_num] = [location_node,next_node,dist]
         self.draw_system()
 
