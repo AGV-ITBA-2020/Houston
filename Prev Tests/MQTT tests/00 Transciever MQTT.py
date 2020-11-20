@@ -3,20 +3,18 @@ import paho.mqtt.client as mqtt
 def print_msg(client, userdata, message):
     print(str(message.payload.decode("utf-8")))
 
-client = mqtt.Client("Houston") #create new instance
+client = mqtt.Client("agvem") #create new instance
 
 client.on_message=print_msg
 
 client.connect("localhost") #connect to broker
-client.subscribe("Houston")
+client.subscribe("AGV1")
 client.loop_start()
 
 i=0
 while(1):
     data = input()
-    if (data[0]=='K'):
-        client.publish("AGV1", "Set K PID\n" + data[1:])
-    else:
-        client.publish("AGV1","Fixed speed\n"+data)
+    if (data=='QR'):
+        client.publish("Houston", "AGV1\nQuest step reached")
 
     i=i+1

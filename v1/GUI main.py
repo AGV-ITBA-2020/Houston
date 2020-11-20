@@ -38,10 +38,6 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         layout.addWidget(self.command,1,0,1,2)
 
         #Comandos permitidos de entrada
-        # self.command_mapping = {"SM {:d}":self.start_mission, #Misión simple
-        #                         "SetPos {:d}":self.set_position,  #Setea la posición en el mapa del agv
-        #                         "S {:d} {:d}":self.setVel,
-        #                         "K {:f} {:f} {:f}":self.setPIDKs} ##Se comentó la forma con parse, ya que era más complicado establecer las entradas para otros comandos. Se utiliza regex para filtar input
         self.command_mapping ={re.compile('(SM) [0-9]*$',re.I): self.start_mission,  #Misión simple
                                re.compile('(setPos) [0-9]*$',re.I): self.set_position,  # Misión simple
                                re.compile('[s] [0-9]*$',re.I): self.setVel,
@@ -58,8 +54,8 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.agv_status_dict = {};#Status de los AGVs que se conecten
         self.log.textChanged.connect(self.clearMsgBlock)
 
-        self.agv_status_dict[1] = AGV_status(1) #Para debuggear
-        self.map.update_agv_pos(1, 1, 1, 0)
+        #self.agv_status_dict[1] = AGV_status(1) #Para debuggear
+        #self.map.update_agv_pos(1, 1, 1, 0)
     ############ Callbacks #####################
     def enter_press(self):      #Enter luego de poner un comando en el text input.
         self.last_command = self.command.text()
@@ -154,7 +150,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.agv_status_dict[1].continue_mission()
 
 if __name__ == "__main__":
-    # Crea todo lo de QT
+    # Crea todo lo de QT y corre la clase de arriba
     qapp = QtWidgets.QApplication.instance()
     if not qapp:
         qapp = QtWidgets.QApplication(sys.argv)

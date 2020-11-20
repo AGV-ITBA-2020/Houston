@@ -9,7 +9,7 @@ if __name__ == '__main__':
     client.connect("localhost")  # connect to broker
     client.on_message = onMsg
     client.subscribe("AGV1")
-
+    #Emula un AGV
     client.publish("Houston", "AGV1\nOnline")  # publish
     time.sleep(5)
     client.publish("Houston", "AGV1\nHB")  # publish
