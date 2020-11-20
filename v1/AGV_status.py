@@ -30,7 +30,7 @@ class AGV_status:
         self.currStep += 1;  ##Avanza step de misiones
         self.in_node=self.mission_block_nodes[self.currBlock][self.currStep]
         self.distanceTravelled = 0;
-        if self.currStep == self.curr_block_len(): #Si terminó el bloque de misión
+        if self.currStep == self.curr_block_len()-1: #Si terminó el bloque de misión
             self.currStep=0
             self.currBlock += 1;
             if (self.n_of_blocks() == self.currBlock) and (self.mission_IBE[self.currBlock] == "None"): ##En caso de que termine la misión.

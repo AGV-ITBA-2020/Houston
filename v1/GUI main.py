@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from MapManager import MapManager
 import paho.mqtt.client as mqtt
 from AGV_status import AGV_status
+import re
 
 class ApplicationWindow(QtWidgets.QMainWindow):
     def __init__(self): #Crea todo lo de la GUI
@@ -26,7 +27,8 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.canvas.draw_idle()
 
         layout.addWidget(self.canvas,0,1)
-        self.addToolBar(NavigationToolbar(self.canvas, self))
+        self.nt=NavigationToolbar(self.canvas, self)
+        self.addToolBar(self.nt)
 
         self.command = QtWidgets.QLineEdit()
         self.command.editingFinished.connect(self.enter_press)
@@ -36,8 +38,16 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         layout.addWidget(self.command,1,0,1,2)
 
         #Comandos permitidos de entrada
-        self.command_mapping = {"M {:d} {:d}":self.start_mission,"SetPos {:d}":self.set_position,"S {:d} {:d}":self.setVel, "K {:f} {:f} {:f}":self.setPIDKs} #Diccionario que condiciona los formatos de entrada de comandos
-
+        # self.command_mapping = {"SM {:d}":self.start_mission, #Misión simple
+        #                         "SetPos {:d}":self.set_position,  #Setea la posición en el mapa del agv
+        #                         "S {:d} {:d}":self.setVel,
+        #                         "K {:f} {:f} {:f}":self.setPIDKs} ##Se comentó la forma con parse, ya que era más complicado establecer las entradas para otros comandos. Se utiliza regex para filtar input
+        self.command_mapping ={re.compile('(SM) [0-9]*$',re.I): self.start_mission,  #Misión simple
+                               re.compile('(setPos) [0-9]*$',re.I): self.set_position,  # Misión simple
+                               re.compile('[s] [0-9]*$',re.I): self.setVel,
+                               re.compile('(LM) ([HBDN] [0-9]* )*[HBDN]$', re.I): self.start_long_mission, #Misión larga: LM para indicar misión, luego serie de eventos y nodos a llegar y al final el evento final. B=button, D=delay, H=houston continue N=None
+                               re.compile('[C]$', re.I): self.continueMission
+                               }
         #MQTT Mosquitto config
         self.mqttClient = mqtt.Client("Houston")  # create new instance
         self.mqttClient.on_message = self.parse_msg
@@ -47,12 +57,16 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 
         self.agv_status_dict = {};#Status de los AGVs que se conecten
         self.log.textChanged.connect(self.clearMsgBlock)
+
+        self.agv_status_dict[1] = AGV_status(1) #Para debuggear
+        self.map.update_agv_pos(1, 1, 1, 0)
     ############ Callbacks #####################
     def enter_press(self):      #Enter luego de poner un comando en el text input.
         self.last_command = self.command.text()
         valid_command=False;
         for key in self.command_mapping: #Me fijo todos los formatos que especifiqué de antemano
-            if parse(key, self.last_command): #Si cumple el formato de alguno de los comandos, ejecuta la función que implica cada uno
+            #if parse(key, self.last_command): #formato con parse
+            if key.match(self.last_command):
                 self.command_mapping[key]()
                 valid_command = True;
         if  valid_command == False: #Si no se reconoció ningun comando, se comunica.
@@ -84,8 +98,23 @@ class ApplicationWindow(QtWidgets.QMainWindow):
             self.canvas.draw_idle()
 
     def clearMsgBlock(self): ##Máximo número de caracteres en el log (esto era por si se iba de memoria)
-        if len(self.log.toPlainText())>100:
+        aux=self.log.toPlainText()
+        if len(aux)>500:
             self.log.clear()
+            self.log.append(aux[250:])
+    #### Funciones útiles
+    def gen_mission_block(self, steps, dists): ##Dados los steps y las distancias, genera el texto que lo representa para enviar por mqtt
+        mission = "Bs" #Block start
+        for i in range(int(len(steps)/2)):
+            mission += dists[i] + steps[(i*2):(i*2+2)]; #Pone por ejemplo 11Fr14Sl1
+        mission += "Be" #Block end
+        return mission
+    def IBECharToString(self, char):
+        dict= {'B':"Button",'H':"Houston",'D':"Delay",'N':"None"}
+        return dict[char.upper()]
+    def IBECharToMQTTFormat(self, char):
+        dict= {'B':"Bu",'H':"Ho",'D':"De",'N':"No"}
+        return dict[char.upper()]
     #### Funciones llamadas por comandos ###
     def setPIDKs(self):
         res = parse("K {:f} {:f} {:f}", self.last_command)
@@ -99,18 +128,30 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         res = parse("SetPos {:d}", self.last_command)
         self.agv_status_dict[1].set_pos(self, res[0])
     def start_mission(self):
-        res = search("M {:d} {:d}", self.last_command)
-        steps_str,node_path,dist_list = self.map.get_path(res[0], res[1])
-        msg_to_send= "Quest?\n" + self.gen_mission_block(steps_str, dist_list)
+        res = search("SM {:d}", self.last_command)
+        steps_str,node_path,dist_list = self.map.get_path(self.agv_status_dict[1].in_node, res[0])
+        msg_to_send= "Quest?\n" + "No"+self.gen_mission_block(steps_str, dist_list)+"No"
         self.agv_status_dict[1].new_mission([node_path],[dist_list], ["None", "None"]) #Las IBE son none por ser una misión simple
         self.mqttClient.publish("AGV1", msg_to_send)
         self.log.append("New mission:" + steps_str)
-    def gen_mission_block(self, steps, dists):
-        mission = "Bs" #Block start
-        for i in range(int(len(steps)/2)):
-            mission += dists[i] + steps[(i*2):(i*2+2)]; #Pone por ejemplo 11Fr14Sl1
-        mission += "Be" #Block end
-        return mission
+    def start_long_mission(self):
+        IBE = re.findall("[HBND]", self.last_command)                   ##Letras que indican IBE
+        node_obj=list(map(int,re.findall(" [0-9]* ",self.last_command))) ##Lista con todos los nodos finales de bloques en formato int
+        prev_node=self.agv_status_dict[1].in_node ##Variables que voy a usar en el loop. Este nodo es donde parte el agv.
+        node_path_list =[]; path_dists_list = [];
+        msg_to_send = self.IBECharToMQTTFormat(IBE[0])
+        for n_block in range(len(node_obj)): ##Para cada bloque
+            steps_str, node_path, path_dists = self.map.get_path(prev_node, node_obj[n_block]) #Obtiene el camino más corto y guarda en las listas correspondientes
+            node_path_list.append(node_path);path_dists_list.append(path_dists)
+            msg_to_send += self.gen_mission_block(steps_str, path_dists)+self.IBECharToMQTTFormat(IBE[n_block+1]) #Pasa el camino del grafo al formato de internet, cierra el bloque y agrega el texto del IBE que va en el msg
+            prev_node=node_obj[n_block]
+        IBE_list = [self.IBECharToString(i) for i in IBE]               ##Se pasan letras que significan IBE a palabras para la lógica de misión
+        self.agv_status_dict[1].new_mission(node_path_list, path_dists_list,IBE_list)  # Las IBE son none por ser una misión simple
+        self.mqttClient.publish("AGV1", msg_to_send)
+        self.log.append("New mission: " + msg_to_send)
+    def continueMission(self):
+        self.mqttClient.publish("AGV1", "Continue")
+        self.agv_status_dict[1].continue_mission()
 
 if __name__ == "__main__":
     # Crea todo lo de QT
