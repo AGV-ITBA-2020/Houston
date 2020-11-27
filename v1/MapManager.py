@@ -15,20 +15,19 @@ class MapManager():
 
     def load_graph(self): ##Acá se genera el grafo a mano. Se podría poner en un archivo y luego cargarlo, sería más modular
         self.G = nx.DiGraph()
-        self.G.add_nodes_from([1, 4, 5, 6], description="Station") #Nodos estación
-        self.G.add_node(2, description="Slow down tag") #Nodos de "tags"
-        self.G.add_node(3, description="Bifurcation", merge_node=2, fork_left_node=4) #Bifurcación: merge_node es al que mergea, y el fork left es 4
+        self.G.add_nodes_from([1, 3], description="Station") #Nodos estación
+        self.G.add_node(2, description="Bifurcation", merge_node=1, fork_left_node=4) #Bifurcación: merge_node es al que mergea, y el fork left es 4
+        self.G.add_node(4, description="Bifurcation", merge_node=1,fork_left_node=3)  # Bifurcación: merge_node es al que mergea, y el fork left es 4
         #Vértices entre nodos con sus respectivas distancias
-        self.G.add_edge(1, 2, length=8)
-        self.G.add_edge(2, 3, length=5)
-        self.G.add_edge(3, 4, length=10)
-        self.G.add_edge(3, 5, length=9)
-        self.G.add_edge(4, 6, length=17)
-        self.G.add_edge(5, 6, length=11)
+        self.G.add_edge(1, 2, length=10)
+        self.G.add_edge(2, 3, length=20)
+        self.G.add_edge(3, 4, length=20)
+        self.G.add_edge(2, 4, length=15)
+        self.G.add_edge(4, 1, length=10)
         #Posiciones de los nodos gráficamente (hecho a manopla)
-        self.pos = {1: (0, 0), 2: (10, 0), 3: (20, 0), 4: (30, 10), 5: (30, -10), 6: (40, -10)}
-        self.xlimDefault = (-5,45) # Límites del plot por default
-        self.ylimDefault = (-15,15)
+        self.pos = {1: (0, 0), 2: (8, 6), 3: (0, 20), 4: (-8, 6)}
+        self.xlimDefault = (-12,12) # Límites del plot por default
+        self.ylimDefault = (-5,22)
         plt.xlim(self.xlimDefault )
         plt.ylim(self.ylimDefault )
 
@@ -92,4 +91,20 @@ class MapManager():
     def update_agv_pos(self,agv_num,location_node, next_node,dist):
         self.agv_pos_list[agv_num] = [location_node,next_node,dist]
         self.draw_system()
-
+#Mapa viejo
+# self.G.add_nodes_from([1, 4, 5, 6], description="Station") #Nodos estación
+# self.G.add_node(2, description="Slow down tag") #Nodos de "tags"
+# self.G.add_node(3, description="Bifurcation", merge_node=2, fork_left_node=4) #Bifurcación: merge_node es al que mergea, y el fork left es 4
+# #Vértices entre nodos con sus respectivas distancias
+# self.G.add_edge(1, 2, length=8)
+# self.G.add_edge(2, 3, length=5)
+# self.G.add_edge(3, 4, length=10)
+# self.G.add_edge(3, 5, length=9)
+# self.G.add_edge(4, 6, length=17)
+# self.G.add_edge(5, 6, length=11)
+# #Posiciones de los nodos gráficamente (hecho a manopla)
+# self.pos = {1: (0, 0), 2: (10, 0), 3: (20, 0), 4: (30, 10), 5: (30, -10), 6: (40, -10)}
+# self.xlimDefault = (-5,45) # Límites del plot por default
+# self.ylimDefault = (-15,15)
+# plt.xlim(self.xlimDefault )
+# plt.ylim(self.ylimDefault )

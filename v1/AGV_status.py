@@ -5,9 +5,11 @@ class AGV_status:
         self.in_mission = False;
         self.paused = False;
         self.in_node = 1;
+        self.going_to_node = 1;
         self.distanceTravelled = 0;
     def set_pos(self,pos): #Lo ubica en un nodo en especifico
         self.in_node=pos;
+        self.going_to_node = pos;
     def new_mission(self,mission_blocks_nodes,mission_blocks_dist, mission_IBE):
         self.mission_block_nodes = mission_blocks_nodes # Lista de listas de nodos
         self.mission_dists = mission_blocks_dist # Lista de listas de distancias
@@ -26,6 +28,7 @@ class AGV_status:
         self.paused=False;
         if self.n_of_blocks() == self.currBlock :
             self.in_mission = False;
+            self.going_to_node = self.in_node
     def mission_step_reached(self): #Si llegó un step en la misión
         self.currStep += 1;  ##Avanza step de misiones
         self.in_node=self.mission_block_nodes[self.currBlock][self.currStep]
@@ -35,6 +38,7 @@ class AGV_status:
             self.currBlock += 1;
             if (self.n_of_blocks() == self.currBlock) and (self.mission_IBE[self.currBlock] == "None"): ##En caso de que termine la misión.
                 self.in_mission=False;
+                self.going_to_node=self.in_node
             elif self.mission_IBE[self.currBlock] == "None": #En caso de que no necesite evento para arrancar con el siguiente bloque
                 self.paused = False;
             else:
@@ -43,11 +47,10 @@ class AGV_status:
 
     def get_agv_pos_nodes(self): #Obtiene los datos necesarios para plotearlo en el mapa
         prev = self.in_node
-        next = self.in_node #Por default se manda el mismo nodo cuando no hay un siguiente
         if self.in_mission == True:
             if self.currStep+1 < self.curr_block_len(): #En el caso de que queden steps en el bloque
-                next = self.mission_block_nodes[self.currBlock][self.currStep+1]
+                self.going_to_node  = self.mission_block_nodes[self.currBlock][self.currStep+1]
             elif self.curr_block_len() < self.n_of_blocks(): #Sino, es el primero del siguiente bloque
-                next = self.mission_block_nodes[self.currBlock+1][0]
-
+                self.going_to_node = self.mission_block_nodes[self.currBlock+1][0]
+        next = self.going_to_node  # Por default se manda el mismo nodo cuando no hay un siguiente
         return prev, next, self.distanceTravelled

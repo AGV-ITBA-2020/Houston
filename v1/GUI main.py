@@ -54,8 +54,8 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.agv_status_dict = {};#Status de los AGVs que se conecten
         self.log.textChanged.connect(self.clearMsgBlock)
 
-        #self.agv_status_dict[1] = AGV_status(1) #Para debuggear
-        #self.map.update_agv_pos(1, 1, 1, 0)
+        self.agv_status_dict[1] = AGV_status(1) #Para debuggear
+        self.map.update_agv_pos(1, 1, 1, 0)
     ############ Callbacks #####################
     def enter_press(self):      #Enter luego de poner un comando en el text input.
         self.last_command = self.command.text()
@@ -76,22 +76,16 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.log.append("AGV " + str(AGVn) + ": " + msg)
         if msg == "Online":
             self.agv_status_dict[AGVn] = AGV_status(AGVn)
-            prev, next, distance = self.agv_status_dict[AGVn].get_agv_pos_nodes()
-            self.map.update_agv_pos(AGVn, prev, next, distance)
-            self.canvas.draw_idle()
+            self.update_map()
         elif msg=="Quest step reached":
             if self.agv_status_dict[AGVn].in_mission:
                 self.agv_status_dict[AGVn].mission_step_reached()
-                prev, next, distance =self.agv_status_dict[AGVn].get_agv_pos_nodes()
-                self.map.update_agv_pos(AGVn, prev, next, distance)
-                self.canvas.draw_idle()
+                self.update_map()
             else:
                 print("Error")
         elif "Status" in msg:
             self.agv_status_dict[AGVn].distanceTravelled = search("DistanceTravelled {:d}", msg)[0]
-            prev, next, distance = self.agv_status_dict[AGVn].get_agv_pos_nodes()
-            self.map.update_agv_pos(AGVn, prev, next, distance)
-            self.canvas.draw_idle()
+            self.update_map()
 
     def clearMsgBlock(self): ##Máximo número de caracteres en el log (esto era por si se iba de memoria)
         aux=self.log.toPlainText()
@@ -99,6 +93,10 @@ class ApplicationWindow(QtWidgets.QMainWindow):
             self.log.clear()
             self.log.append(aux[250:])
     #### Funciones útiles
+    def update_map(self):
+        prev, next, distance = self.agv_status_dict[1].get_agv_pos_nodes()
+        self.map.update_agv_pos(1, prev, next, distance)
+        self.canvas.draw_idle()
     def gen_mission_block(self, steps, dists): ##Dados los steps y las distancias, genera el texto que lo representa para enviar por mqtt
         mission = "Bs" #Block start
         for i in range(int(len(steps)/2)):
@@ -122,7 +120,8 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.mqttClient.publish("AGV1",msg_to_send)
     def set_position(self):
         res = parse("SetPos {:d}", self.last_command)
-        self.agv_status_dict[1].set_pos(self, res[0])
+        self.agv_status_dict[1].set_pos( res[0])
+        self.update_map()
     def start_mission(self):
         res = search("SM {:d}", self.last_command)
         steps_str,node_path,dist_list = self.map.get_path(self.agv_status_dict[1].in_node, res[0])
@@ -131,7 +130,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         self.mqttClient.publish("AGV1", msg_to_send)
         self.log.append("New mission:" + steps_str)
     def start_long_mission(self):
-        IBE = re.findall("[HBND]", self.last_command)                   ##Letras que indican IBE
+        IBE = re.findall("[HhBbNnDd]", self.last_command)                   ##Letras que indican IBE
         node_obj=list(map(int,re.findall(" [0-9]* ",self.last_command))) ##Lista con todos los nodos finales de bloques en formato int
         prev_node=self.agv_status_dict[1].in_node ##Variables que voy a usar en el loop. Este nodo es donde parte el agv.
         node_path_list =[]; path_dists_list = [];
