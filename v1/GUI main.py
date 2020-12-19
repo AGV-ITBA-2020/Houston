@@ -107,7 +107,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         dict= {'B':"Button",'H':"Houston",'D':"Delay",'N':"None"}
         return dict[char.upper()]
     def IBECharToMQTTFormat(self, char):
-        dict= {'B':"Bu",'H':"Ho",'D':"De",'N':"No"}
+        dict= {'B':"Bp",'H':"Hc",'D':"De",'N':"No"}
         return dict[char.upper()]
     #### Funciones llamadas por comandos ###
     def setPIDKs(self):

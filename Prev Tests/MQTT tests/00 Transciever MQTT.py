@@ -30,6 +30,7 @@ client.loop_start()
 i=0
 while(1):
     data = input()
-    client.publish("AGV1","Quest?\n"+"NoBs10Me20Fr10Me10Fl10Me20StBeNo" )
-
+    client.publish("AGV1","Quest?\n"+"NoBs10StBeBpBs10StBeHcBs10StBeNo" )
+    #client.publish("AGV1", data)
+    #client.publish("AGV1","Quest?\n"+"NoBs10Me20Fr10Me10Fl10Me20StBeNo" )
     i=i+1
