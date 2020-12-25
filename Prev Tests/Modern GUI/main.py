@@ -43,9 +43,9 @@ class MainWindow(QMainWindow):
         ## ==> END ##
 
         ## SET ==> WINDOW TITLE
-        self.setWindowTitle('Main Window - Python Base')
-        UIFunctions.labelTitle(self, 'Main Window - Python Base')
-        UIFunctions.labelDescription(self, 'Set text')
+        self.setWindowTitle('ITBAGV')
+        UIFunctions.labelTitle(self, 'ITBAGV')
+        UIFunctions.labelDescription(self, 'Houston')
         ## ==> END ##
 
         ## WINDOW SIZE ==> DEFAULT SIZE
@@ -64,9 +64,9 @@ class MainWindow(QMainWindow):
 
         ## ==> ADD CUSTOM MENUS
         self.ui.stackedWidget.setMinimumWidth(20)
-        UIFunctions.addNewMenu(self, "HOME", "btn_home", "url(:/16x16/icons/16x16/cil-home.png)", True)
-        UIFunctions.addNewMenu(self, "Add User", "btn_new_user", "url(:/16x16/icons/16x16/cil-user-follow.png)", True)
-        UIFunctions.addNewMenu(self, "Custom Widgets", "btn_widgets", "url(:/16x16/icons/16x16/cil-equalizer.png)", False)
+        UIFunctions.addNewMenu(self, "Home", "btn_home", "url(:/16x16/icons/16x16/cil-home.png)", True) #cil-map puede servir
+        UIFunctions.addNewMenu(self, "System data", "btn_system_data", "url(:/16x16/icons/16x16/cil-chart-line.png)", True)
+        UIFunctions.addNewMenu(self, "Settings", "btn_settings", "url(:/16x16/icons/16x16/cil-settings.png)", False)
         ## ==> END ##
 
         # START MENU => SELECTION
@@ -78,7 +78,7 @@ class MainWindow(QMainWindow):
         ## ==> END ##
 
         ## USER ICON ==> SHOW HIDE
-        UIFunctions.userIcon(self, "WM", "", True)
+        UIFunctions.userIcon(self, "Ho", "", True)
         ## ==> END ##
 
 
@@ -154,17 +154,17 @@ class MainWindow(QMainWindow):
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
 
         # PAGE NEW USER
-        if btnWidget.objectName() == "btn_new_user":
+        if btnWidget.objectName() == "btn_system_data":
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-            UIFunctions.resetStyle(self, "btn_new_user")
-            UIFunctions.labelPage(self, "New User")
+            UIFunctions.resetStyle(self, "btn_system_data")
+            UIFunctions.labelPage(self, "System data")
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
 
         # PAGE WIDGETS
-        if btnWidget.objectName() == "btn_widgets":
+        if btnWidget.objectName() == "btn_settings":
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_widgets)
-            UIFunctions.resetStyle(self, "btn_widgets")
-            UIFunctions.labelPage(self, "Custom Widgets")
+            UIFunctions.resetStyle(self, "btn_settings")
+            UIFunctions.labelPage(self, "Settings")
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
 
     ## ==> END ##
@@ -182,20 +182,16 @@ class MainWindow(QMainWindow):
 
     ## EVENT ==> MOUSE CLICK
     ########################################################################
-    def mousePressEvent(self, event):
-        self.dragPos = event.globalPos()
-        if event.buttons() == Qt.LeftButton:
-            print('Mouse click: LEFT CLICK')
-        if event.buttons() == Qt.RightButton:
-            print('Mouse click: RIGHT CLICK')
-        if event.buttons() == Qt.MidButton:
-            print('Mouse click: MIDDLE BUTTON')
-    ## ==> END ##
-
-    ## EVENT ==> KEY PRESSED
-    ########################################################################
-    def keyPressEvent(self, event):
-        print('Key: ' + str(event.key()) + ' | Text Press: ' + str(event.text()))
+    # def mousePressEvent(self, event):
+    #     self.dragPos = event.globalPos()
+    #     if event.buttons() == Qt.LeftButton:
+    #         print('Mouse click: LEFT CLICK')
+    #     if event.buttons() == Qt.RightButton:
+    #         print('Mouse click: RIGHT CLICK')
+    #     if event.buttons() == Qt.MidButton:
+    #         print('Mouse click: MIDDLE BUTTON')
+    # def keyPressEvent(self, event):
+    #     print('Key: ' + str(event.key()) + ' | Text Press: ' + str(event.text()))
     ## ==> END ##
 
     ## EVENT ==> RESIZE EVENT
@@ -205,7 +201,8 @@ class MainWindow(QMainWindow):
         return super(MainWindow, self).resizeEvent(event)
 
     def resizeFunction(self):
-        print('Height: ' + str(self.height()) + ' | Width: ' + str(self.width()))
+        Height=str(self.height())
+        #print('Height: ' + str(self.height()) + ' | Width: ' + str(self.width()))
     ## ==> END ##
 
     ########################################################################
