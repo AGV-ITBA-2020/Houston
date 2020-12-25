@@ -73,18 +73,22 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         msg=str(message.payload.decode("utf-8"))
         AGVn = int((msg.split('\n', 1)[0]).split('V',1)[1])
         msg = msg.split('\n', 1)[1]  # Me quedo con los datos del agv
-        self.log.append("AGV " + str(AGVn) + ": " + msg)
+        #self.log.append("AGV " + str(AGVn) + ": " + msg)
         if msg == "Online":
             self.agv_status_dict[AGVn] = AGV_status(AGVn)
             self.update_map()
+            self.log.append("AGV " + str(AGVn) + ": " + "Online")
         elif msg=="Quest step reached":
             if self.agv_status_dict[AGVn].in_mission:
                 self.agv_status_dict[AGVn].mission_step_reached()
                 self.update_map()
+                self.log.append("AGV " + str(AGVn) + ": " + "Step reached")
             else:
                 print("Error")
         elif "Status" in msg:
-            self.agv_status_dict[AGVn].distanceTravelled = search("DistanceTravelled {:d}", msg)[0]
+            self.agv_status_dict[AGVn].distanceTravelled = search("Distance: {:d}", msg)[0]
+            batLevel= float(search("BatVolt: {:d}", msg)[0])/100.0;
+            self.log.append("AGV " + str(AGVn) + ": " + "Battery: " + str(batLevel)+"V")
             self.update_map()
 
     def clearMsgBlock(self): ##Máximo número de caracteres en el log (esto era por si se iba de memoria)
@@ -142,7 +146,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
             prev_node=node_obj[n_block]
         IBE_list = [self.IBECharToString(i) for i in IBE]               ##Se pasan letras que significan IBE a palabras para la lógica de misión
         self.agv_status_dict[1].new_mission(node_path_list, path_dists_list,IBE_list)  # Las IBE son none por ser una misión simple
-        self.mqttClient.publish("AGV1", msg_to_send)
+        self.mqttClient.publish("AGV1", "Quest?\n" +msg_to_send)
         self.log.append("New mission: " + msg_to_send)
     def continueMission(self):
         self.mqttClient.publish("AGV1", "Continue")

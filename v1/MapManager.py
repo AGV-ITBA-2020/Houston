@@ -15,17 +15,18 @@ class MapManager():
 
     def load_graph(self): ##Acá se genera el grafo a mano. Se podría poner en un archivo y luego cargarlo, sería más modular
         self.G = nx.DiGraph()
-        self.G.add_nodes_from([1, 3], description="Station") #Nodos estación
-        self.G.add_node(2, description="Bifurcation", merge_node=1, fork_left_node=4) #Bifurcación: merge_node es al que mergea, y el fork left es 4
+        self.G.add_nodes_from([1, 3, 5], description="Station") #Nodos estación
+        self.G.add_node(2, description="Bifurcation", merge_node=5, fork_left_node=4) #Bifurcación: merge_node es al que mergea, y el fork left es 4
         self.G.add_node(4, description="Bifurcation", merge_node=1,fork_left_node=3)  # Bifurcación: merge_node es al que mergea, y el fork left es 4
         #Vértices entre nodos con sus respectivas distancias
-        self.G.add_edge(1, 2, length=10)
-        self.G.add_edge(2, 3, length=20)
-        self.G.add_edge(3, 4, length=20)
-        self.G.add_edge(2, 4, length=15)
-        self.G.add_edge(4, 1, length=10)
+        self.G.add_edge(1, 5, length=140)
+        self.G.add_edge(5, 2, length=100)
+        self.G.add_edge(2, 3, length=265)
+        self.G.add_edge(3, 4, length=380)
+        self.G.add_edge(2, 4, length=250)
+        self.G.add_edge(4, 1, length=110)
         #Posiciones de los nodos gráficamente (hecho a manopla)
-        self.pos = {1: (0, 0), 2: (8, 6), 3: (0, 20), 4: (-8, 6)}
+        self.pos = {1: (-4, 0), 2: (8, 6), 3: (0, 20), 4: (-8, 6),5: (4, 0)}
         self.xlimDefault = (-12,12) # Límites del plot por default
         self.ylimDefault = (-5,22)
         plt.xlim(self.xlimDefault )
