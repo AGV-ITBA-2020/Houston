@@ -20,6 +20,8 @@ from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
+from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
+import matplotlib.pyplot as plt
 
 # GUI FILE
 from app_modules import *
@@ -29,10 +31,24 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
         ## PRINT ==> SYSTEM
         print('System: ' + platform.system())
         print('Version: ' +platform.release())
+
+        self.ui.figure = plt.figure()  # Figura donde se plotea el mapa
+        self.ui.canvas = FigureCanvas(self.ui.figure)
+        self.ui.canvas.draw_idle()
+        self.ui.verlayout_plot_panel = QVBoxLayout(self.ui.plot_frame)
+        self.ui.nt = NavigationToolbar(self.ui.canvas, self)
+        self.ui.nt.setMaximumSize(QSize(16777215, 65))
+        #self.ui.horlayout_plot_panel.addToolBar(self.ui.nt)
+        self.ui.verlayout_plot_panel.addWidget(self.ui.nt)
+        self.ui.verlayout_plot_panel.addWidget(self.ui.canvas)
+
+        plt.plot([1, 2, 3, 4])
+        plt.ylabel('some numbers')
+        self.ui.canvas.draw_idle()
+
 
         ########################################################################
         ## START - WINDOW ATTRIBUTES
@@ -182,14 +198,8 @@ class MainWindow(QMainWindow):
 
     ## EVENT ==> MOUSE CLICK
     ########################################################################
-    # def mousePressEvent(self, event):
-    #     self.dragPos = event.globalPos()
-    #     if event.buttons() == Qt.LeftButton:
-    #         print('Mouse click: LEFT CLICK')
-    #     if event.buttons() == Qt.RightButton:
-    #         print('Mouse click: RIGHT CLICK')
-    #     if event.buttons() == Qt.MidButton:
-    #         print('Mouse click: MIDDLE BUTTON')
+    def mousePressEvent(self, event):
+        self.dragPos = event.globalPos()
     # def keyPressEvent(self, event):
     #     print('Key: ' + str(event.key()) + ' | Text Press: ' + str(event.text()))
     ## ==> END ##
@@ -214,4 +224,19 @@ if __name__ == "__main__":
     QtGui.QFontDatabase.addApplicationFont('fonts/segoeui.ttf')
     QtGui.QFontDatabase.addApplicationFont('fonts/segoeuib.ttf')
     window = MainWindow()
+    # sys._excepthook = sys.excepthook
+    # def my_exception_hook(exctype, value, traceback):
+    #     # Print the error and traceback
+    #     print(exctype, value, traceback)
+    #     # Call the normal Exception hook after
+    #     sys._excepthook(exctype, value, traceback)
+    #     sys.exit(1)
+    #
+    #
+    # # Set the exception hook to our wrapping function
+    # sys.excepthook = my_exception_hook
+    # try:
+    #     sys.exit(app.exec_())
+    # except:
+    #     print("Exiting")
     sys.exit(app.exec_())

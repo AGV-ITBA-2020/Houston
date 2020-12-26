@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'GUI_BASEISgeCS.ui'
+## Form generated from reading UI file 'GUI_BASEIIuBkE.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -747,7 +747,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 364, 389))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 364, 386))
         self.verticalLayout_17 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
         self.plainTextEdit_2 = QPlainTextEdit(self.scrollAreaWidgetContents_2)
@@ -773,24 +773,24 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.frame_7)
 
-        self.frame_8 = QFrame(self.frame_4)
-        self.frame_8.setObjectName(u"frame_8")
-        self.frame_8.setMaximumSize(QSize(16777215, 16777215))
-        self.frame_8.setStyleSheet(u"background-color: rgb(41, 45, 56);\n"
+        self.navigation_panel_frame = QFrame(self.frame_4)
+        self.navigation_panel_frame.setObjectName(u"navigation_panel_frame")
+        self.navigation_panel_frame.setMaximumSize(QSize(16777215, 16777215))
+        self.navigation_panel_frame.setStyleSheet(u"background-color: rgb(41, 45, 56);\n"
 "border-radius: 5px;\n"
 "")
-        self.frame_8.setFrameShape(QFrame.StyledPanel)
-        self.frame_8.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_16 = QVBoxLayout(self.frame_8)
+        self.navigation_panel_frame.setFrameShape(QFrame.StyledPanel)
+        self.navigation_panel_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_16 = QVBoxLayout(self.navigation_panel_frame)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
-        self.frame_10 = QFrame(self.frame_8)
-        self.frame_10.setObjectName(u"frame_10")
-        self.frame_10.setMaximumSize(QSize(16777215, 40))
-        self.frame_10.setFrameShape(QFrame.StyledPanel)
-        self.frame_10.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_15 = QHBoxLayout(self.frame_10)
+        self.title_frame = QFrame(self.navigation_panel_frame)
+        self.title_frame.setObjectName(u"title_frame")
+        self.title_frame.setMaximumSize(QSize(16777215, 40))
+        self.title_frame.setFrameShape(QFrame.StyledPanel)
+        self.title_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_15 = QHBoxLayout(self.title_frame)
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
-        self.cmd_icon_3 = QFrame(self.frame_10)
+        self.cmd_icon_3 = QFrame(self.title_frame)
         self.cmd_icon_3.setObjectName(u"cmd_icon_3")
         self.cmd_icon_3.setMaximumSize(QSize(20, 20))
         self.cmd_icon_3.setStyleSheet(u"background: transparent;\n"
@@ -802,7 +802,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_15.addWidget(self.cmd_icon_3)
 
-        self.cmd_line_name_3 = QLabel(self.frame_10)
+        self.cmd_line_name_3 = QLabel(self.title_frame)
         self.cmd_line_name_3.setObjectName(u"cmd_line_name_3")
         self.cmd_line_name_3.setMaximumSize(QSize(16777215, 20))
         self.cmd_line_name_3.setFont(font1)
@@ -813,17 +813,17 @@ class Ui_MainWindow(object):
         self.horizontalLayout_15.addWidget(self.cmd_line_name_3)
 
 
-        self.verticalLayout_16.addWidget(self.frame_10)
+        self.verticalLayout_16.addWidget(self.title_frame)
 
-        self.frame_11 = QFrame(self.frame_8)
-        self.frame_11.setObjectName(u"frame_11")
-        self.frame_11.setFrameShape(QFrame.StyledPanel)
-        self.frame_11.setFrameShadow(QFrame.Raised)
+        self.plot_frame = QFrame(self.navigation_panel_frame)
+        self.plot_frame.setObjectName(u"plot_frame")
+        self.plot_frame.setFrameShape(QFrame.StyledPanel)
+        self.plot_frame.setFrameShadow(QFrame.Raised)
 
-        self.verticalLayout_16.addWidget(self.frame_11)
+        self.verticalLayout_16.addWidget(self.plot_frame)
 
 
-        self.horizontalLayout_16.addWidget(self.frame_8)
+        self.horizontalLayout_16.addWidget(self.navigation_panel_frame)
 
 
         self.verticalLayout_10.addWidget(self.frame_4)
@@ -1101,7 +1101,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 278, 222))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 222, 222))
         self.horizontalLayout_11 = QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.plainTextEdit = QPlainTextEdit(self.scrollAreaWidgetContents)

@@ -1681,7 +1681,7 @@ background-repeat: no-repeat;</string>
                                <x>0</x>
                                <y>0</y>
                                <width>364</width>
-                               <height>389</height>
+                               <height>386</height>
                               </rect>
                              </property>
                              <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1710,7 +1710,7 @@ QPlainTextEdit:focus {
                         </widget>
                        </item>
                        <item>
-                        <widget class="QFrame" name="frame_8">
+                        <widget class="QFrame" name="navigation_panel_frame">
                          <property name="maximumSize">
                           <size>
                            <width>16777215</width>
@@ -1730,7 +1730,7 @@ border-radius: 5px;
                          </property>
                          <layout class="QVBoxLayout" name="verticalLayout_16">
                           <item>
-                           <widget class="QFrame" name="frame_10">
+                           <widget class="QFrame" name="title_frame">
                             <property name="maximumSize">
                              <size>
                               <width>16777215</width>
@@ -1800,7 +1800,7 @@ background-repeat: no-repeat;</string>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QFrame" name="frame_11">
+                           <widget class="QFrame" name="plot_frame">
                             <property name="frameShape">
                              <enum>QFrame::StyledPanel</enum>
                             </property>
@@ -2288,7 +2288,7 @@ QScrollBar:horizontal {
                              <rect>
                               <x>0</x>
                               <y>0</y>
-                              <width>278</width>
+                              <width>222</width>
                               <height>222</height>
                              </rect>
                             </property>
