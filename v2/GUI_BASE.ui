@@ -1686,7 +1686,7 @@ background-repeat: no-repeat;</string>
                              </property>
                              <layout class="QVBoxLayout" name="verticalLayout_17">
                               <item>
-                               <widget class="QPlainTextEdit" name="plainTextEdit_2">
+                               <widget class="QPlainTextEdit" name="log">
                                 <property name="styleSheet">
                                  <string notr="true">QPlainTextEdit {
 	background-color: rgb(27, 29, 35);
@@ -1699,6 +1699,12 @@ QPlainTextEdit:hover {
 QPlainTextEdit:focus {
 	border: 2px solid rgb(91, 101, 124);
 }</string>
+                                </property>
+                                <property name="undoRedoEnabled">
+                                 <bool>false</bool>
+                                </property>
+                                <property name="readOnly">
+                                 <bool>true</bool>
                                 </property>
                                </widget>
                               </item>
@@ -1836,7 +1842,7 @@ border-radius: 5px;
                       </property>
                       <layout class="QGridLayout" name="gridLayout_3">
                        <item row="3" column="0">
-                        <widget class="QLineEdit" name="lineEdit_2">
+                        <widget class="QLineEdit" name="command_entry">
                          <property name="styleSheet">
                           <string notr="true">QLineEdit {
 	background-color: rgb(27, 29, 35);

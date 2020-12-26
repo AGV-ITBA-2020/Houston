@@ -13,7 +13,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
         super().__init__()
         self._main = QtWidgets.QWidget()
         self.setWindowTitle('ITBAGV v0') ##Nombre de la app y su ícono
-        self.setWindowIcon(QtGui.QIcon("AGV Icon.png"))
+        self.ui.setWindowIcon(QtGui.QIcon("AGV Icon.png"))
         self.setCentralWidget(self._main)
         layout = QtWidgets.QGridLayout(self._main) #Organización de la GUI (grilla de widgets)
 

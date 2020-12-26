@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'GUI_BASEIIuBkE.ui'
+## Form generated from reading UI file 'GUI_BASEipMyxx.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -750,9 +750,9 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 364, 386))
         self.verticalLayout_17 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
-        self.plainTextEdit_2 = QPlainTextEdit(self.scrollAreaWidgetContents_2)
-        self.plainTextEdit_2.setObjectName(u"plainTextEdit_2")
-        self.plainTextEdit_2.setStyleSheet(u"QPlainTextEdit {\n"
+        self.log = QPlainTextEdit(self.scrollAreaWidgetContents_2)
+        self.log.setObjectName(u"log")
+        self.log.setStyleSheet(u"QPlainTextEdit {\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	border-radius: 5px;\n"
 "	padding: 10px;\n"
@@ -763,8 +763,10 @@ class Ui_MainWindow(object):
 "QPlainTextEdit:focus {\n"
 "	border: 2px solid rgb(91, 101, 124);\n"
 "}")
+        self.log.setUndoRedoEnabled(False)
+        self.log.setReadOnly(True)
 
-        self.verticalLayout_17.addWidget(self.plainTextEdit_2)
+        self.verticalLayout_17.addWidget(self.log)
 
         self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
 
@@ -838,9 +840,9 @@ class Ui_MainWindow(object):
         self.frame_5.setFrameShadow(QFrame.Raised)
         self.gridLayout_3 = QGridLayout(self.frame_5)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.lineEdit_2 = QLineEdit(self.frame_5)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
-        self.lineEdit_2.setStyleSheet(u"QLineEdit {\n"
+        self.command_entry = QLineEdit(self.frame_5)
+        self.command_entry.setObjectName(u"command_entry")
+        self.command_entry.setStyleSheet(u"QLineEdit {\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
@@ -853,7 +855,7 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(91, 101, 124);\n"
 "}")
 
-        self.gridLayout_3.addWidget(self.lineEdit_2, 3, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.command_entry, 3, 0, 1, 1)
 
         self.pushButton_2 = QPushButton(self.frame_5)
         self.pushButton_2.setObjectName(u"pushButton_2")
@@ -1539,7 +1541,7 @@ class Ui_MainWindow(object):
         self.label_user_icon.setText(QCoreApplication.translate("MainWindow", u"WM", None))
         self.cmd_line_name_2.setText(QCoreApplication.translate("MainWindow", u"lLog", None))
         self.cmd_line_name_3.setText(QCoreApplication.translate("MainWindow", u"Navigation Panel", None))
-        self.lineEdit_2.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Command to send", None))
+        self.command_entry.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Command to send", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
         self.cmd_line_name.setText(QCoreApplication.translate("MainWindow", u"Command line", None))
         self.labelBoxBlenderInstalation.setText(QCoreApplication.translate("MainWindow", u"BLENDER INSTALLATION", None))
