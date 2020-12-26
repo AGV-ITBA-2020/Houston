@@ -50,14 +50,15 @@ class Backend:
         self.mqttClient.subscribe("Houston")
         self.mqttClient.loop_start()
         self.agv_status_dict = {};  # Status de los AGVs que se conecten
-
+        self.agv_status_dict[1] = AGV_status(1)  # Para debuggear ya lo dejamos creado al agv1
+        self.map.update_agv_pos(1, 1, 1, 0)
     def parse_cmd(self,cmd):
         valid_command = False;
+        self.last_command=cmd
         for key in self.command_mapping:  # Me fijo todos los formatos que especifiqué de antemano
             # if parse(key, self.last_command): #formato con parse
             if key.match(cmd):
-                self.command_mapping[key]() #tendriamos que poner que cada función tenga un parseo más intenso que devuelva valid_command.
-                valid_command = True;
+                valid_command = self.command_mapping[key]()
         return valid_command
     def parse_msg(self,client, userdata, message): ##Parseo de mensajes de MQTT
         msg=str(message.payload.decode("utf-8"))
@@ -80,12 +81,6 @@ class Backend:
             batLevel= float(search("BatVolt: {:d}", msg)[0])/100.0;
             self.log.append("AGV " + str(AGVn) + ": " + "Battery: " + str(batLevel)+"V")
             self.update_map()
-
-    def clearMsgBlock(self): ##Máximo número de caracteres en el log (esto era por si se iba de memoria)
-        aux=self.log.toPlainText()
-        if len(aux)>500:
-            self.log.clear()
-            self.log.append(aux[250:])
     #### Funciones útiles
     def update_map(self):
         prev, next, distance = self.agv_status_dict[1].get_agv_pos_nodes()
@@ -104,18 +99,16 @@ class Backend:
         dict= {'B':"Bp",'H':"Hc",'D':"De",'N':"No"}
         return dict[char.upper()]
     #### Funciones llamadas por comandos ###
-    def setPIDKs(self):
-        res = parse("K {:f} {:f} {:f}", self.last_command)
-        msg_to_send = "Set K PID\n" + str(res[0])+ " " + str(res[1])+ " " + str(res[2]);
-        self.mqttClient.publish("AGV1",msg_to_send)
     def setVel(self):
         res = parse("S {:d} {:d}", self.last_command)
         msg_to_send = "Fixed speed\n" + str(res[0])+ " " + str(res[1]);
         self.mqttClient.publish("AGV1",msg_to_send)
+        return True;
     def set_position(self):
         res = parse("SetPos {:d}", self.last_command)
         self.agv_status_dict[1].set_pos( res[0])
         self.update_map()
+        return True;
     def start_mission(self):
         res = search("SM {:d}", self.last_command)
         steps_str,node_path,dist_list = self.map.get_path(self.agv_status_dict[1].in_node, res[0])
@@ -123,6 +116,7 @@ class Backend:
         self.agv_status_dict[1].new_mission([node_path],[dist_list], ["None", "None"]) #Las IBE son none por ser una misión simple
         self.mqttClient.publish("AGV1", msg_to_send)
         self.log.append("New mission:" + steps_str)
+        return True;
     def start_long_mission(self):
         IBE = re.findall("[HhBbNnDd]", self.last_command)                   ##Letras que indican IBE
         node_obj=list(map(int,re.findall(" [0-9]* ",self.last_command))) ##Lista con todos los nodos finales de bloques en formato int
@@ -138,9 +132,11 @@ class Backend:
         self.agv_status_dict[1].new_mission(node_path_list, path_dists_list,IBE_list)  # Las IBE son none por ser una misión simple
         self.mqttClient.publish("AGV1", "Quest?\n" +msg_to_send)
         self.log.append("New mission: " + msg_to_send)
+        return True;
     def continueMission(self):
         self.mqttClient.publish("AGV1", "Continue")
         self.agv_status_dict[1].continue_mission()
+        return True;
 
 
 class MainWindow(QMainWindow):
