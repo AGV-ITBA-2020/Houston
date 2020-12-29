@@ -68,18 +68,18 @@ class Backend:
         if msg == "Online":
             self.agv_status_dict[AGVn] = AGV_status(AGVn)
             self.update_map()
-            self.log.append("AGV " + str(AGVn) + ": " + "Online")
+            self.log.appendPlainText("AGV " + str(AGVn) + ": " + "Online")
         elif msg=="Quest step reached":
             if self.agv_status_dict[AGVn].in_mission:
                 self.agv_status_dict[AGVn].mission_step_reached()
                 self.update_map()
-                self.log.append("AGV " + str(AGVn) + ": " + "Step reached")
+                self.log.appendPlainText("AGV " + str(AGVn) + ": " + "Step reached")
             else:
                 print("Error")
         elif "Status" in msg:
             self.agv_status_dict[AGVn].distanceTravelled = search("Distance: {:d}", msg)[0]
             batLevel= float(search("BatVolt: {:d}", msg)[0])/100.0;
-            self.log.append("AGV " + str(AGVn) + ": " + "Battery: " + str(batLevel)+"V")
+            #self.log.appendPlainText("AGV " + str(AGVn) + ": " + "Battery: " + str(batLevel)+"V")
             self.update_map()
     #### Funciones útiles
     def update_map(self):
@@ -115,7 +115,7 @@ class Backend:
         msg_to_send= "Quest?\n" + "No"+self.gen_mission_block(steps_str, dist_list)+"No"
         self.agv_status_dict[1].new_mission([node_path],[dist_list], ["None", "None"]) #Las IBE son none por ser una misión simple
         self.mqttClient.publish("AGV1", msg_to_send)
-        self.log.append("New mission:" + steps_str)
+        self.log.appendPlainText("New mission:" + steps_str)
         return True;
     def start_long_mission(self):
         IBE = re.findall("[HhBbNnDd]", self.last_command)                   ##Letras que indican IBE
@@ -131,7 +131,7 @@ class Backend:
         IBE_list = [self.IBECharToString(i) for i in IBE]               ##Se pasan letras que significan IBE a palabras para la lógica de misión
         self.agv_status_dict[1].new_mission(node_path_list, path_dists_list,IBE_list)  # Las IBE son none por ser una misión simple
         self.mqttClient.publish("AGV1", "Quest?\n" +msg_to_send)
-        self.log.append("New mission: " + msg_to_send)
+        self.log.appendPlainText("New mission: " + msg_to_send)
         return True;
     def continueMission(self):
         self.mqttClient.publish("AGV1", "Continue")
