@@ -159,6 +159,7 @@ class MainWindow(QMainWindow):
         self.ui.layout_plot_battery.addWidget(self.ui.battery)
         self.backend = Backend(self.ui.log,self.ui.canvas,self.ui.battery)
         self.ui.command_entry.editingFinished.connect(self.enter_command)
+        self.add_agv_data()
         ########################################################################
         ## START - WINDOW ATTRIBUTES
         ########################################################################
@@ -275,6 +276,11 @@ class MainWindow(QMainWindow):
         self.ui.verlayout_plot_panel.addWidget(self.ui.canvas)
         self.ui.canvas.draw_idle()
 
+    def add_agv_data(self):
+        # self.ui.agv_design_plot_frame.setStyleSheet(u"background-image: url(AGV.png);\n"
+        #                                          "background-position: center;\n"
+        #                                          "background-repeat: no-repeat;")
+        self.ui.aux=2
     def enter_command(self):
         retVal=self.backend.parse_cmd(self.ui.command_entry.text())
         self.ui.command_entry.clear()

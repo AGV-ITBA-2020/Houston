@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'GUI_BASEZNadLh.ui'
+## Form generated from reading UI file 'GUI_BASEOYqesQ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1398,50 +1398,75 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.label_8 = QLabel(self.page_data)
         self.label_8.setObjectName(u"label_8")
-        font6 = QFont()
-        font6.setFamily(u"Segoe UI")
-        font6.setPointSize(40)
-        self.label_8.setFont(font6)
+        self.label_8.setMaximumSize(QSize(16777215, 50))
+        self.label_8.setFont(font)
         self.label_8.setFocusPolicy(Qt.NoFocus)
         self.label_8.setStyleSheet(u"")
         self.label_8.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_13.addWidget(self.label_8)
 
-        self.label_2 = QLabel(self.page_data)
-        self.label_2.setObjectName(u"label_2")
-        font7 = QFont()
-        font7.setFamily(u"Segoe UI")
-        font7.setPointSize(14)
-        self.label_2.setFont(font7)
-        self.label_2.setAlignment(Qt.AlignCenter)
+        self.frame_8 = QFrame(self.page_data)
+        self.frame_8.setObjectName(u"frame_8")
+        self.frame_8.setFrameShape(QFrame.StyledPanel)
+        self.frame_8.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_18 = QHBoxLayout(self.frame_8)
+        self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
+        self.agv_data_frame_w_titles = QFrame(self.frame_8)
+        self.agv_data_frame_w_titles.setObjectName(u"agv_data_frame_w_titles")
+        self.agv_data_frame_w_titles.setStyleSheet(u"background-color: rgb(41, 45, 56);\n"
+"border-radius: 5px;")
+        self.agv_data_frame_w_titles.setFrameShape(QFrame.StyledPanel)
+        self.agv_data_frame_w_titles.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_12 = QVBoxLayout(self.agv_data_frame_w_titles)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.agv_data_title_frame = QFrame(self.agv_data_frame_w_titles)
+        self.agv_data_title_frame.setObjectName(u"agv_data_title_frame")
+        self.agv_data_title_frame.setMaximumSize(QSize(16777215, 40))
+        self.agv_data_title_frame.setFrameShape(QFrame.StyledPanel)
+        self.agv_data_title_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_20 = QHBoxLayout(self.agv_data_title_frame)
+        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
+        self.frame_11 = QFrame(self.agv_data_title_frame)
+        self.frame_11.setObjectName(u"frame_11")
+        self.frame_11.setMaximumSize(QSize(20, 16777215))
+        self.frame_11.setStyleSheet(u"image: url(AGV.png);\n"
+"background-position: center;\n"
+"background-repeat: no-repeat;")
+        self.frame_11.setFrameShape(QFrame.StyledPanel)
+        self.frame_11.setFrameShadow(QFrame.Raised)
 
-        self.verticalLayout_13.addWidget(self.label_2)
+        self.horizontalLayout_20.addWidget(self.frame_11)
 
-        self.label_9 = QLabel(self.page_data)
-        self.label_9.setObjectName(u"label_9")
-        font8 = QFont()
-        font8.setFamily(u"Segoe UI")
-        font8.setPointSize(15)
-        self.label_9.setFont(font8)
-        self.label_9.setAlignment(Qt.AlignCenter)
+        self.label = QLabel(self.agv_data_title_frame)
+        self.label.setObjectName(u"label")
+        self.label.setFont(font1)
 
-        self.verticalLayout_13.addWidget(self.label_9)
+        self.horizontalLayout_20.addWidget(self.label)
 
-        self.data_bottom_frame = QFrame(self.page_data)
+
+        self.verticalLayout_12.addWidget(self.agv_data_title_frame)
+
+        self.agv_data_frame = QFrame(self.agv_data_frame_w_titles)
+        self.agv_data_frame.setObjectName(u"agv_data_frame")
+        self.agv_data_frame.setFrameShape(QFrame.StyledPanel)
+        self.agv_data_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_19 = QVBoxLayout(self.agv_data_frame)
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.agv_data_flags = QFrame(self.agv_data_frame)
+        self.agv_data_flags.setObjectName(u"agv_data_flags")
+        self.agv_data_flags.setFrameShape(QFrame.StyledPanel)
+        self.agv_data_flags.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_19.addWidget(self.agv_data_flags)
+
+        self.data_bottom_frame = QFrame(self.agv_data_frame)
         self.data_bottom_frame.setObjectName(u"data_bottom_frame")
-        self.data_bottom_frame.setMaximumSize(QSize(16777215, 120))
+        self.data_bottom_frame.setMaximumSize(QSize(16777215, 100))
         self.data_bottom_frame.setFrameShape(QFrame.StyledPanel)
         self.data_bottom_frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_17 = QHBoxLayout(self.data_bottom_frame)
         self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
-        self.frame_10 = QFrame(self.data_bottom_frame)
-        self.frame_10.setObjectName(u"frame_10")
-        self.frame_10.setFrameShape(QFrame.StyledPanel)
-        self.frame_10.setFrameShadow(QFrame.Raised)
-
-        self.horizontalLayout_17.addWidget(self.frame_10)
-
         self.data_battery_frame = QFrame(self.data_bottom_frame)
         self.data_battery_frame.setObjectName(u"data_battery_frame")
         self.data_battery_frame.setMaximumSize(QSize(200, 16777215))
@@ -1453,7 +1478,30 @@ class Ui_MainWindow(object):
         self.horizontalLayout_17.addWidget(self.data_battery_frame)
 
 
-        self.verticalLayout_13.addWidget(self.data_bottom_frame)
+        self.verticalLayout_19.addWidget(self.data_bottom_frame)
+
+
+        self.verticalLayout_12.addWidget(self.agv_data_frame)
+
+
+        self.horizontalLayout_18.addWidget(self.agv_data_frame_w_titles)
+
+        self.agv_design_plot_frame = QFrame(self.frame_8)
+        self.agv_design_plot_frame.setObjectName(u"agv_design_plot_frame")
+        self.agv_design_plot_frame.setMinimumSize(QSize(400, 0))
+        self.agv_design_plot_frame.setMaximumSize(QSize(400, 16777215))
+        self.agv_design_plot_frame.setStyleSheet(u"background-color: rgb(41, 45, 56);\n"
+"border-radius: 5px;\n"
+"background-image: url(AGV.png);\n"
+"background-position: center;\n"
+"background-repeat: no-repeat;")
+        self.agv_design_plot_frame.setFrameShape(QFrame.StyledPanel)
+        self.agv_design_plot_frame.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_18.addWidget(self.agv_design_plot_frame)
+
+
+        self.verticalLayout_13.addWidget(self.frame_8)
 
         self.stackedWidget.addWidget(self.page_data)
 
@@ -1636,9 +1684,8 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"Line", None));
         self.tableWidget.setSortingEnabled(__sortingEnabled)
 
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Work in progress", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"TBD", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Data analysis", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"AGV Data (Work in progress)", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"AGV Status", None))
         self.label_credits.setText(QCoreApplication.translate("MainWindow", u"Developed by Javier Kipen, Marcos Brito Devoto, Sebasti\u00e1n Milhas and Agust\u00edn Goyt\u00eda", None))
         self.label_version.setText(QCoreApplication.translate("MainWindow", u"v1.0.1", None))
     # retranslateUi
