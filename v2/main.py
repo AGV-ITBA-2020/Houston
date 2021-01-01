@@ -27,19 +27,23 @@ from MapManager import MapManager
 import re
 import paho.mqtt.client as mqtt
 from AGV_status import AGV_status
+from Battery import Battery
+
 
 # GUI FILE
 from app_modules import *
 
 class Backend:
-    def __init__(self,log,canvas):
+    def __init__(self,log,canvas,battery):
         self.map = MapManager()
         self.log = log;
         self.canvas = canvas;
+        self.battery = battery;
         # Estructura de comandos aceptados por consola
         self.command_mapping = {re.compile('(SM) [0-9]*$', re.I): self.start_mission,  # Misión simple
                                 re.compile('(setPos) [0-9]*$', re.I): self.set_position,  # Misión simple
                                 re.compile('[s] [0-9]*$', re.I): self.setVel,
+                                re.compile('[B] [0-9]*$', re.I): self.setBat, #Pone nivel de batería
                                 re.compile('(LM) ([HBDN] [0-9]* )*[HBDN]$', re.I): self.start_long_mission,
                                 # Misión larga: LM para indicar misión, luego serie de eventos y nodos a llegar y al final el evento final. B=button, D=delay, H=houston continue N=None
                                 re.compile('[C]$', re.I): self.continueMission
@@ -99,6 +103,11 @@ class Backend:
         dict= {'B':"Bp",'H':"Hc",'D':"De",'N':"No"}
         return dict[char.upper()]
     #### Funciones llamadas por comandos ###
+    def setBat(self):
+        res = parse("B {:d}", self.last_command)
+        bvolt= res[0] / 100;
+        self.battery.setBatLevel(bvolt);
+        return True;
     def setVel(self):
         res = parse("S {:d} {:d}", self.last_command)
         msg_to_send = "Fixed speed\n" + str(res[0])+ " " + str(res[1]);
@@ -146,7 +155,9 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QtGui.QIcon("AGV.png"))
         self.ui.setupUi(self)
         self.add_map_plot()
-        self.backend = Backend(self.ui.log,self.ui.canvas)
+        self.ui.battery = Battery();
+        self.ui.layout_plot_battery.addWidget(self.ui.battery)
+        self.backend = Backend(self.ui.log,self.ui.canvas,self.ui.battery)
         self.ui.command_entry.editingFinished.connect(self.enter_command)
         ########################################################################
         ## START - WINDOW ATTRIBUTES

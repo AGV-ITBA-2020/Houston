@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'GUI_BASEipMyxx.ui'
+## Form generated from reading UI file 'GUI_BASEZNadLh.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1103,7 +1103,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 222, 222))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 278, 222))
         self.horizontalLayout_11 = QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.plainTextEdit = QPlainTextEdit(self.scrollAreaWidgetContents)
@@ -1428,6 +1428,33 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_13.addWidget(self.label_9)
 
+        self.data_bottom_frame = QFrame(self.page_data)
+        self.data_bottom_frame.setObjectName(u"data_bottom_frame")
+        self.data_bottom_frame.setMaximumSize(QSize(16777215, 120))
+        self.data_bottom_frame.setFrameShape(QFrame.StyledPanel)
+        self.data_bottom_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_17 = QHBoxLayout(self.data_bottom_frame)
+        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.frame_10 = QFrame(self.data_bottom_frame)
+        self.frame_10.setObjectName(u"frame_10")
+        self.frame_10.setFrameShape(QFrame.StyledPanel)
+        self.frame_10.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_17.addWidget(self.frame_10)
+
+        self.data_battery_frame = QFrame(self.data_bottom_frame)
+        self.data_battery_frame.setObjectName(u"data_battery_frame")
+        self.data_battery_frame.setMaximumSize(QSize(200, 16777215))
+        self.data_battery_frame.setFrameShape(QFrame.StyledPanel)
+        self.data_battery_frame.setFrameShadow(QFrame.Raised)
+        self.layout_plot_battery = QVBoxLayout(self.data_battery_frame)
+        self.layout_plot_battery.setObjectName(u"layout_plot_battery")
+
+        self.horizontalLayout_17.addWidget(self.data_battery_frame)
+
+
+        self.verticalLayout_13.addWidget(self.data_bottom_frame)
+
         self.stackedWidget.addWidget(self.page_data)
 
         self.verticalLayout_9.addWidget(self.stackedWidget)
@@ -1514,7 +1541,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1613,6 +1640,6 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"TBD", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"Data analysis", None))
         self.label_credits.setText(QCoreApplication.translate("MainWindow", u"Developed by Javier Kipen, Marcos Brito Devoto, Sebasti\u00e1n Milhas and Agust\u00edn Goyt\u00eda", None))
-        self.label_version.setText(QCoreApplication.translate("MainWindow", u"v1.0.0", None))
+        self.label_version.setText(QCoreApplication.translate("MainWindow", u"v1.0.1", None))
     # retranslateUi
 
