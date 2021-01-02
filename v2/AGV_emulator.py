@@ -16,17 +16,17 @@ if __name__ == '__main__':
     time.sleep(5)
     client.publish("Houston", "AGV1\nQuest\nYes")  # publish
     time.sleep(5)
-    client.publish("Houston", "AGV1\nStatus\nDistance: 50 BatVolt: 1230")  # publish
+    client.publish("Houston", "AGV1\nStatus\nDistance: 50 BatVolt: 1270")  # publish
     time.sleep(1)
     client.publish("Houston", "AGV1\nQuest step reached")  # publish
     time.sleep(1)
-    client.publish("Houston", "AGV1\nStatus\nDistance: 50 BatVolt: 1230")  # publish
+    client.publish("Houston", "AGV1\nStatus\nDistance: 50 BatVolt: 1250")  # publish
     time.sleep(1)
-    client.publish("Houston", "AGV1\nStatus\nDistance: 100 BatVolt: 1230")  # publish
+    client.publish("Houston", "AGV1\nStatus\nDistance: 100 BatVolt: 1210")  # publish
     time.sleep(1)
     client.publish("Houston", "AGV1\nQuest step reached ")  # publish
-    time.sleep(5)
-    client.publish("Houston", "AGV1\nStatus\nDistance: 50 BatVolt: 1230")  # publish
+    time.sleep(1)
+    client.publish("Houston", "AGV1\nStatus\nDistance: 50 BatVolt: 1170")  # publish
     time.sleep(1)
     client.publish("Houston", "AGV1\nQuest step reached")  # publish
     time.sleep(5)

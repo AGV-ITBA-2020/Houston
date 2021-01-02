@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'GUI_BASEOYqesQ.ui'
+## Form generated from reading UI file 'GUI_BASEpFzMiv.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -18,7 +18,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1000, 720)
+        MainWindow.resize(1004, 729)
         MainWindow.setMinimumSize(QSize(1000, 720))
         palette = QPalette()
         brush = QBrush(QColor(255, 255, 255, 255))
@@ -747,7 +747,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 364, 386))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 109, 109))
         self.verticalLayout_17 = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
         self.log = QPlainTextEdit(self.scrollAreaWidgetContents_2)
@@ -1103,7 +1103,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 278, 222))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 222, 222))
         self.horizontalLayout_11 = QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.plainTextEdit = QPlainTextEdit(self.scrollAreaWidgetContents)
@@ -1457,6 +1457,155 @@ class Ui_MainWindow(object):
         self.agv_data_flags.setObjectName(u"agv_data_flags")
         self.agv_data_flags.setFrameShape(QFrame.StyledPanel)
         self.agv_data_flags.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_18 = QVBoxLayout(self.agv_data_flags)
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
+        self.in_mission_frame = QFrame(self.agv_data_flags)
+        self.in_mission_frame.setObjectName(u"in_mission_frame")
+        self.in_mission_frame.setMaximumSize(QSize(16777215, 40))
+        self.in_mission_frame.setFrameShape(QFrame.StyledPanel)
+        self.in_mission_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_19 = QHBoxLayout(self.in_mission_frame)
+        self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
+        self.agv_data_flag_in_mission = QLabel(self.in_mission_frame)
+        self.agv_data_flag_in_mission.setObjectName(u"agv_data_flag_in_mission")
+        self.agv_data_flag_in_mission.setMaximumSize(QSize(20, 20))
+        self.agv_data_flag_in_mission.setPixmap(QPixmap(u"led-red-on.png"))
+        self.agv_data_flag_in_mission.setScaledContents(True)
+
+        self.horizontalLayout_19.addWidget(self.agv_data_flag_in_mission)
+
+        self.in_mission_title = QLabel(self.in_mission_frame)
+        self.in_mission_title.setObjectName(u"in_mission_title")
+        font6 = QFont()
+        font6.setBold(True)
+        font6.setWeight(75)
+        self.in_mission_title.setFont(font6)
+
+        self.horizontalLayout_19.addWidget(self.in_mission_title)
+
+
+        self.verticalLayout_18.addWidget(self.in_mission_frame)
+
+        self.mission_paused_frame = QFrame(self.agv_data_flags)
+        self.mission_paused_frame.setObjectName(u"mission_paused_frame")
+        self.mission_paused_frame.setMaximumSize(QSize(16777215, 40))
+        self.mission_paused_frame.setFrameShape(QFrame.StyledPanel)
+        self.mission_paused_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_25 = QHBoxLayout(self.mission_paused_frame)
+        self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
+        self.agv_data_flag_mission_paused = QLabel(self.mission_paused_frame)
+        self.agv_data_flag_mission_paused.setObjectName(u"agv_data_flag_mission_paused")
+        self.agv_data_flag_mission_paused.setMaximumSize(QSize(20, 20))
+        self.agv_data_flag_mission_paused.setPixmap(QPixmap(u"led-red-on.png"))
+        self.agv_data_flag_mission_paused.setScaledContents(True)
+
+        self.horizontalLayout_25.addWidget(self.agv_data_flag_mission_paused)
+
+        self.mission_paused_title = QLabel(self.mission_paused_frame)
+        self.mission_paused_title.setObjectName(u"mission_paused_title")
+        self.mission_paused_title.setFont(font6)
+
+        self.horizontalLayout_25.addWidget(self.mission_paused_title)
+
+
+        self.verticalLayout_18.addWidget(self.mission_paused_frame)
+
+        self.waiting_for_IBE_frame = QFrame(self.agv_data_flags)
+        self.waiting_for_IBE_frame.setObjectName(u"waiting_for_IBE_frame")
+        self.waiting_for_IBE_frame.setMaximumSize(QSize(16777215, 40))
+        self.waiting_for_IBE_frame.setFrameShape(QFrame.StyledPanel)
+        self.waiting_for_IBE_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_21 = QHBoxLayout(self.waiting_for_IBE_frame)
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.agv_data_flag_waiting_for_IBE = QLabel(self.waiting_for_IBE_frame)
+        self.agv_data_flag_waiting_for_IBE.setObjectName(u"agv_data_flag_waiting_for_IBE")
+        self.agv_data_flag_waiting_for_IBE.setMaximumSize(QSize(20, 20))
+        self.agv_data_flag_waiting_for_IBE.setPixmap(QPixmap(u"led-red-on.png"))
+        self.agv_data_flag_waiting_for_IBE.setScaledContents(True)
+
+        self.horizontalLayout_21.addWidget(self.agv_data_flag_waiting_for_IBE)
+
+        self.waiting_for_IBE_title = QLabel(self.waiting_for_IBE_frame)
+        self.waiting_for_IBE_title.setObjectName(u"waiting_for_IBE_title")
+        self.waiting_for_IBE_title.setFont(font6)
+
+        self.horizontalLayout_21.addWidget(self.waiting_for_IBE_title)
+
+
+        self.verticalLayout_18.addWidget(self.waiting_for_IBE_frame)
+
+        self.emergency_frame = QFrame(self.agv_data_flags)
+        self.emergency_frame.setObjectName(u"emergency_frame")
+        self.emergency_frame.setMaximumSize(QSize(16777215, 40))
+        self.emergency_frame.setFrameShape(QFrame.StyledPanel)
+        self.emergency_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_22 = QHBoxLayout(self.emergency_frame)
+        self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
+        self.agv_data_flag_emergency = QLabel(self.emergency_frame)
+        self.agv_data_flag_emergency.setObjectName(u"agv_data_flag_emergency")
+        self.agv_data_flag_emergency.setMaximumSize(QSize(20, 20))
+        self.agv_data_flag_emergency.setPixmap(QPixmap(u"led-red-on.png"))
+        self.agv_data_flag_emergency.setScaledContents(True)
+
+        self.horizontalLayout_22.addWidget(self.agv_data_flag_emergency)
+
+        self.emergency_title = QLabel(self.emergency_frame)
+        self.emergency_title.setObjectName(u"emergency_title")
+        self.emergency_title.setFont(font6)
+
+        self.horizontalLayout_22.addWidget(self.emergency_title)
+
+
+        self.verticalLayout_18.addWidget(self.emergency_frame)
+
+        self.error_frame = QFrame(self.agv_data_flags)
+        self.error_frame.setObjectName(u"error_frame")
+        self.error_frame.setMaximumSize(QSize(16777215, 40))
+        self.error_frame.setFrameShape(QFrame.StyledPanel)
+        self.error_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_23 = QHBoxLayout(self.error_frame)
+        self.horizontalLayout_23.setObjectName(u"horizontalLayout_23")
+        self.agv_data_flag_error = QLabel(self.error_frame)
+        self.agv_data_flag_error.setObjectName(u"agv_data_flag_error")
+        self.agv_data_flag_error.setMaximumSize(QSize(20, 20))
+        self.agv_data_flag_error.setPixmap(QPixmap(u"led-red-on.png"))
+        self.agv_data_flag_error.setScaledContents(True)
+
+        self.horizontalLayout_23.addWidget(self.agv_data_flag_error)
+
+        self.error_title = QLabel(self.error_frame)
+        self.error_title.setObjectName(u"error_title")
+        self.error_title.setFont(font6)
+
+        self.horizontalLayout_23.addWidget(self.error_title)
+
+
+        self.verticalLayout_18.addWidget(self.error_frame)
+
+        self.waiting_for_continue_frame = QFrame(self.agv_data_flags)
+        self.waiting_for_continue_frame.setObjectName(u"waiting_for_continue_frame")
+        self.waiting_for_continue_frame.setMaximumSize(QSize(16777215, 40))
+        self.waiting_for_continue_frame.setFrameShape(QFrame.StyledPanel)
+        self.waiting_for_continue_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_24 = QHBoxLayout(self.waiting_for_continue_frame)
+        self.horizontalLayout_24.setObjectName(u"horizontalLayout_24")
+        self.agv_data_flag_waiting_for_continue = QLabel(self.waiting_for_continue_frame)
+        self.agv_data_flag_waiting_for_continue.setObjectName(u"agv_data_flag_waiting_for_continue")
+        self.agv_data_flag_waiting_for_continue.setMaximumSize(QSize(20, 20))
+        self.agv_data_flag_waiting_for_continue.setPixmap(QPixmap(u"led-red-on.png"))
+        self.agv_data_flag_waiting_for_continue.setScaledContents(True)
+
+        self.horizontalLayout_24.addWidget(self.agv_data_flag_waiting_for_continue)
+
+        self.waiting_for_continue_title = QLabel(self.waiting_for_continue_frame)
+        self.waiting_for_continue_title.setObjectName(u"waiting_for_continue_title")
+        self.waiting_for_continue_title.setFont(font6)
+
+        self.horizontalLayout_24.addWidget(self.waiting_for_continue_title)
+
+
+        self.verticalLayout_18.addWidget(self.waiting_for_continue_frame)
+
 
         self.verticalLayout_19.addWidget(self.agv_data_flags)
 
@@ -1686,6 +1835,18 @@ class Ui_MainWindow(object):
 
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"AGV Data (Work in progress)", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"AGV Status", None))
+        self.agv_data_flag_in_mission.setText("")
+        self.in_mission_title.setText(QCoreApplication.translate("MainWindow", u"In Mission", None))
+        self.agv_data_flag_mission_paused.setText("")
+        self.mission_paused_title.setText(QCoreApplication.translate("MainWindow", u"Mission paused", None))
+        self.agv_data_flag_waiting_for_IBE.setText("")
+        self.waiting_for_IBE_title.setText(QCoreApplication.translate("MainWindow", u"Waiting for IBE", None))
+        self.agv_data_flag_emergency.setText("")
+        self.emergency_title.setText(QCoreApplication.translate("MainWindow", u"Emergency", None))
+        self.agv_data_flag_error.setText("")
+        self.error_title.setText(QCoreApplication.translate("MainWindow", u"Error", None))
+        self.agv_data_flag_waiting_for_continue.setText("")
+        self.waiting_for_continue_title.setText(QCoreApplication.translate("MainWindow", u"Waiting for continue", None))
         self.label_credits.setText(QCoreApplication.translate("MainWindow", u"Developed by Javier Kipen, Marcos Brito Devoto, Sebasti\u00e1n Milhas and Agust\u00edn Goyt\u00eda", None))
         self.label_version.setText(QCoreApplication.translate("MainWindow", u"v1.0.1", None))
     # retranslateUi

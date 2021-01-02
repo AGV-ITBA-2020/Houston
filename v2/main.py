@@ -17,7 +17,7 @@
 import sys
 import platform
 from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
+from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTimer, QUrl, Qt, QEvent)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
@@ -29,7 +29,8 @@ import paho.mqtt.client as mqtt
 from AGV_status import AGV_status
 from Battery import Battery
 
-
+ICON_RED_LED = ":/icons/led-red-on.png"
+ICON_GREEN_LED = ":/icons/green-led-on.png"
 # GUI FILE
 from app_modules import *
 
@@ -83,6 +84,7 @@ class Backend:
         elif "Status" in msg:
             self.agv_status_dict[AGVn].distanceTravelled = search("Distance: {:d}", msg)[0]
             batLevel= float(search("BatVolt: {:d}", msg)[0])/100.0;
+            self.battery.setBatLevel(batLevel)
             #self.log.appendPlainText("AGV " + str(AGVn) + ": " + "Battery: " + str(batLevel)+"V")
             self.update_map()
     #### Funciones útiles
@@ -159,7 +161,7 @@ class MainWindow(QMainWindow):
         self.ui.layout_plot_battery.addWidget(self.ui.battery)
         self.backend = Backend(self.ui.log,self.ui.canvas,self.ui.battery)
         self.ui.command_entry.editingFinished.connect(self.enter_command)
-        self.add_agv_data()
+        self.setup_data_analysis()
         ########################################################################
         ## START - WINDOW ATTRIBUTES
         ########################################################################
@@ -276,16 +278,20 @@ class MainWindow(QMainWindow):
         self.ui.verlayout_plot_panel.addWidget(self.ui.canvas)
         self.ui.canvas.draw_idle()
 
-    def add_agv_data(self):
-        # self.ui.agv_design_plot_frame.setStyleSheet(u"background-image: url(AGV.png);\n"
-        #                                          "background-position: center;\n"
-        #                                          "background-repeat: no-repeat;")
-        self.ui.aux=2
+    def setup_data_analysis(self):
+        self.flags_poll_timer = QTimer()
+        self.flags_poll_timer.timeout.connect(self.updateFlags)
+        self.flags_poll_timer.start(500)
     def enter_command(self):
         retVal=self.backend.parse_cmd(self.ui.command_entry.text())
         self.ui.command_entry.clear()
         if  retVal == False: #Si no se reconoció ningun comando, se comunica.
             self.ui.log.appendPlainText("Invalid Command")
+    def updateFlags(self):
+        if self.backend.agv_status_dict[1].in_mission:
+            self.ui.agv_data_flag_in_mission.setPixmap(QtGui.QPixmap("green-led-on.png"))
+        else:
+            self.ui.agv_data_flag_in_mission.setPixmap(QtGui.QPixmap("led-red-on.png"))
     ########################################################################
     ## MENUS ==> DYNAMIC MENUS FUNCTIONS
     ########################################################################
