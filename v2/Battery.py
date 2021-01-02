@@ -3,17 +3,7 @@ from PySide2.QtGui import QPainter,QPainterPath,QPen
 from PySide2 import QtGui, QtCore
 from PySide2.QtCore import Signal
 
-
-class Battery(QProgressBar):
-    def __init__(self, *args, **kwargs):
-        super(Battery, self).__init__(*args, **kwargs)
-        self.setTextVisible(False)
-        self.charging = False
-        self.state = "Ok"; #Puede ser warning o low
-        self.setMaximum(100)
-        self.setMinimum(0)
-        self.setValue(100)
-        self.setStyleSheet('''
+OK_STYLE='''
         QProgressBar {
             border: 4px solid white;
             background-color: rgb(41, 45, 56);
@@ -32,11 +22,33 @@ class Battery(QProgressBar):
         QProgressBar::chunk {
             background-color: white;
             margin: 4px;
-        }''')
+        }'''
+
+
+class Battery(QProgressBar):
+    def __init__(self, *args, **kwargs):
+        super(Battery, self).__init__(*args, **kwargs)
+        self.setTextVisible(False)
+        self.charging = False
+        self.state = "Ok"; #Puede ser warning o low
+        self.voltOfCharge = {100: 12.73, 90: 12.62, 80: 12.5, 70: 12.37, 60: 12.24, 50: 12.1, 40: 11.96, 30: 11.81,
+                             20: 11.66, 10: 11.51}
+        self.setMaximum(100)
+        self.setMinimum(0)
+        self.color= QtCore.Qt.white
+        self.setValue(100)
+        self.setStyleSheet(OK_STYLE)
+
+    def level_to_volt(self,level):
+        voltage=11.4;
+        for key in self.voltOfCharge:
+            if(key<=level):
+                voltage = (level%10)/10 * (self.voltOfCharge[key + 10] - self.voltOfCharge[key]) + self.voltOfCharge[key]
+        return voltage
     def volt_to_level(self,volt):
         level=0;
         res = 1 ##Si la resolución de la batería es de 10
-        self.voltOfCharge= {100:12.73, 90:12.62, 80:12.5, 70:12.37, 60:12.24,50:12.1,40:11.96,30:11.81,20:11.66,10:11.51}
+
         for key in self.voltOfCharge:
             if(self.voltOfCharge[key]<=volt):
                 if(res==10):
@@ -59,24 +71,12 @@ class Battery(QProgressBar):
         self.setValue(b_level)
         if (b_level >= 50 and not self.state == "Ok"):
             self.state="Ok"
+            self.color = QtCore.Qt.white
         if(b_level <= 30 and b_level > 15 and self.state == "Ok"):
             self.state = "Warning"
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Warning)
-            msg.setText("Battery level warning")
-            msg.setInformativeText("The battery level of the AGV has dropped down to 30%.")
-            msg.setWindowTitle("Battery level warning")
-            msg.setStandardButtons(QMessageBox.Ok )
-            retval = msg.exec_()
         if (b_level <= 15 and not self.state == "Low"):
             self.state = "Low"
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Critical)
-            msg.setText("Battery level warning")
-            msg.setInformativeText("The battery level of the AGV has dropped down to 15%. Immediate recharge is necessary")
-            msg.setWindowTitle("Battery level warning")
-            msg.setStandardButtons(QMessageBox.Ok)
-            retval = msg.exec_()
+        self.repaint()
 
     def setCharging(self, state):
         self.charging = state
@@ -86,7 +86,7 @@ class Battery(QProgressBar):
         super(Battery, self).paintEvent(event)
         qp = QPainter(self)
         qp.setPen(QtCore.Qt.NoPen);
-        qp.setBrush(QtCore.Qt.white)
+        qp.setBrush(self.color)
         w, h = self.width(), self.height()
         if self.orientation() == QtCore.Qt.Horizontal:
             qp.drawRect(w, 12 + h / 4, -12, h / 2 - 12)
@@ -104,6 +104,7 @@ class Battery(QProgressBar):
 
         if self.charging:
             qp.setBrush(self.parent().palette().window())
+            qp.setBrush(self.color)
             path = QPainterPath()
             if self.orientation() == QtCore.Qt.Horizontal:
                 qp.drawRect(0, 0, 12, h)
@@ -135,7 +136,8 @@ class Battery(QProgressBar):
             pen = QPen(qp.brush(), 12, QtCore.Qt.SolidLine, QtCore.Qt.SquareCap, QtCore.Qt.MiterJoin)
             qp.strokePath(path, pen)
             pen.setWidth(4);
-            pen.setColor(QtCore.Qt.white);
+            pen.setColor(self.color);
             qp.setPen(pen)
-            qp.setBrush(self.palette().window())
+            #qp.setBrush(self.palette().window())
+            qp.setBrush(self.color)
             qp.drawPath(path)
