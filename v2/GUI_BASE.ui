@@ -1561,7 +1561,7 @@ QPushButton:pressed {
                    <string notr="true">background: transparent;</string>
                   </property>
                   <property name="currentIndex">
-                   <number>2</number>
+                   <number>0</number>
                   </property>
                   <widget class="QWidget" name="page_home">
                    <property name="layoutDirection">
@@ -1581,7 +1581,7 @@ QPushButton:pressed {
                         <widget class="QFrame" name="frame_7">
                          <property name="maximumSize">
                           <size>
-                           <width>400</width>
+                           <width>350</width>
                            <height>16777215</height>
                           </size>
                          </property>
@@ -1670,7 +1670,7 @@ background-repeat: no-repeat;</string>
                           <item>
                            <widget class="QScrollArea" name="scrollArea_2">
                             <property name="verticalScrollBarPolicy">
-                             <enum>Qt::ScrollBarAlwaysOn</enum>
+                             <enum>Qt::ScrollBarAsNeeded</enum>
                             </property>
                             <property name="widgetResizable">
                              <bool>true</bool>
@@ -1680,8 +1680,8 @@ background-repeat: no-repeat;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>109</width>
-                               <height>109</height>
+                               <width>328</width>
+                               <height>395</height>
                               </rect>
                              </property>
                              <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1818,6 +1818,441 @@ background-repeat: no-repeat;</string>
                          </layout>
                         </widget>
                        </item>
+                       <item>
+                        <widget class="QFrame" name="agv_data_frame_w_titles">
+                         <property name="maximumSize">
+                          <size>
+                           <width>200</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(41, 45, 56);
+border-radius: 5px;</string>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QVBoxLayout" name="verticalLayout_12">
+                          <item>
+                           <widget class="QFrame" name="agv_data_title_frame">
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>40</height>
+                             </size>
+                            </property>
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <layout class="QHBoxLayout" name="horizontalLayout_20">
+                             <item>
+                              <widget class="QFrame" name="frame_11">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>20</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">image: url(AGV.png);
+background-position: center;
+background-repeat: no-repeat;</string>
+                               </property>
+                               <property name="frameShape">
+                                <enum>QFrame::StyledPanel</enum>
+                               </property>
+                               <property name="frameShadow">
+                                <enum>QFrame::Raised</enum>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QLabel" name="label">
+                               <property name="font">
+                                <font>
+                                 <family>Segoe UI</family>
+                                 <pointsize>10</pointsize>
+                                 <weight>75</weight>
+                                 <bold>true</bold>
+                                </font>
+                               </property>
+                               <property name="text">
+                                <string>AGV Status</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QFrame" name="agv_data_frame">
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <layout class="QVBoxLayout" name="verticalLayout_19">
+                             <item>
+                              <widget class="QFrame" name="agv_data_flags">
+                               <property name="frameShape">
+                                <enum>QFrame::StyledPanel</enum>
+                               </property>
+                               <property name="frameShadow">
+                                <enum>QFrame::Raised</enum>
+                               </property>
+                               <layout class="QVBoxLayout" name="verticalLayout_18">
+                                <item>
+                                 <widget class="QFrame" name="in_mission_frame">
+                                  <property name="maximumSize">
+                                   <size>
+                                    <width>16777215</width>
+                                    <height>40</height>
+                                   </size>
+                                  </property>
+                                  <property name="frameShape">
+                                   <enum>QFrame::StyledPanel</enum>
+                                  </property>
+                                  <property name="frameShadow">
+                                   <enum>QFrame::Raised</enum>
+                                  </property>
+                                  <layout class="QHBoxLayout" name="horizontalLayout_19">
+                                   <item>
+                                    <widget class="QLabel" name="agv_data_flag_in_mission">
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>16</width>
+                                       <height>16</height>
+                                      </size>
+                                     </property>
+                                     <property name="text">
+                                      <string/>
+                                     </property>
+                                     <property name="pixmap">
+                                      <pixmap>led-red-on.png</pixmap>
+                                     </property>
+                                     <property name="scaledContents">
+                                      <bool>true</bool>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item>
+                                    <widget class="QLabel" name="in_mission_title">
+                                     <property name="font">
+                                      <font>
+                                       <weight>75</weight>
+                                       <bold>true</bold>
+                                      </font>
+                                     </property>
+                                     <property name="text">
+                                      <string>In Mission</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QFrame" name="mission_paused_frame">
+                                  <property name="maximumSize">
+                                   <size>
+                                    <width>16777215</width>
+                                    <height>40</height>
+                                   </size>
+                                  </property>
+                                  <property name="frameShape">
+                                   <enum>QFrame::StyledPanel</enum>
+                                  </property>
+                                  <property name="frameShadow">
+                                   <enum>QFrame::Raised</enum>
+                                  </property>
+                                  <layout class="QHBoxLayout" name="horizontalLayout_25">
+                                   <item>
+                                    <widget class="QLabel" name="agv_data_flag_mission_paused">
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>16</width>
+                                       <height>16</height>
+                                      </size>
+                                     </property>
+                                     <property name="text">
+                                      <string/>
+                                     </property>
+                                     <property name="pixmap">
+                                      <pixmap>led-red-on.png</pixmap>
+                                     </property>
+                                     <property name="scaledContents">
+                                      <bool>true</bool>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item>
+                                    <widget class="QLabel" name="mission_paused_title">
+                                     <property name="font">
+                                      <font>
+                                       <weight>75</weight>
+                                       <bold>true</bold>
+                                      </font>
+                                     </property>
+                                     <property name="text">
+                                      <string>Mission paused</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QFrame" name="waiting_for_IBE_frame">
+                                  <property name="maximumSize">
+                                   <size>
+                                    <width>16777215</width>
+                                    <height>40</height>
+                                   </size>
+                                  </property>
+                                  <property name="frameShape">
+                                   <enum>QFrame::StyledPanel</enum>
+                                  </property>
+                                  <property name="frameShadow">
+                                   <enum>QFrame::Raised</enum>
+                                  </property>
+                                  <layout class="QHBoxLayout" name="horizontalLayout_21">
+                                   <item>
+                                    <widget class="QLabel" name="agv_data_flag_waiting_for_IBE">
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>16</width>
+                                       <height>16</height>
+                                      </size>
+                                     </property>
+                                     <property name="text">
+                                      <string/>
+                                     </property>
+                                     <property name="pixmap">
+                                      <pixmap>led-red-on.png</pixmap>
+                                     </property>
+                                     <property name="scaledContents">
+                                      <bool>true</bool>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item>
+                                    <widget class="QLabel" name="waiting_for_IBE_title">
+                                     <property name="font">
+                                      <font>
+                                       <weight>75</weight>
+                                       <bold>true</bold>
+                                      </font>
+                                     </property>
+                                     <property name="text">
+                                      <string>Waiting for IBE</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QFrame" name="emergency_frame">
+                                  <property name="maximumSize">
+                                   <size>
+                                    <width>16777215</width>
+                                    <height>40</height>
+                                   </size>
+                                  </property>
+                                  <property name="frameShape">
+                                   <enum>QFrame::StyledPanel</enum>
+                                  </property>
+                                  <property name="frameShadow">
+                                   <enum>QFrame::Raised</enum>
+                                  </property>
+                                  <layout class="QHBoxLayout" name="horizontalLayout_22">
+                                   <item>
+                                    <widget class="QLabel" name="agv_data_flag_emergency">
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>16</width>
+                                       <height>16</height>
+                                      </size>
+                                     </property>
+                                     <property name="text">
+                                      <string/>
+                                     </property>
+                                     <property name="pixmap">
+                                      <pixmap>led-red-on.png</pixmap>
+                                     </property>
+                                     <property name="scaledContents">
+                                      <bool>true</bool>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item>
+                                    <widget class="QLabel" name="emergency_title">
+                                     <property name="font">
+                                      <font>
+                                       <weight>75</weight>
+                                       <bold>true</bold>
+                                      </font>
+                                     </property>
+                                     <property name="text">
+                                      <string>Emergency</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QFrame" name="error_frame">
+                                  <property name="maximumSize">
+                                   <size>
+                                    <width>16777215</width>
+                                    <height>40</height>
+                                   </size>
+                                  </property>
+                                  <property name="frameShape">
+                                   <enum>QFrame::StyledPanel</enum>
+                                  </property>
+                                  <property name="frameShadow">
+                                   <enum>QFrame::Raised</enum>
+                                  </property>
+                                  <layout class="QHBoxLayout" name="horizontalLayout_23">
+                                   <item>
+                                    <widget class="QLabel" name="agv_data_flag_error">
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>16</width>
+                                       <height>16</height>
+                                      </size>
+                                     </property>
+                                     <property name="text">
+                                      <string/>
+                                     </property>
+                                     <property name="pixmap">
+                                      <pixmap>led-red-on.png</pixmap>
+                                     </property>
+                                     <property name="scaledContents">
+                                      <bool>true</bool>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item>
+                                    <widget class="QLabel" name="error_title">
+                                     <property name="font">
+                                      <font>
+                                       <weight>75</weight>
+                                       <bold>true</bold>
+                                      </font>
+                                     </property>
+                                     <property name="text">
+                                      <string>Error</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QFrame" name="waiting_for_continue_frame">
+                                  <property name="maximumSize">
+                                   <size>
+                                    <width>16777215</width>
+                                    <height>40</height>
+                                   </size>
+                                  </property>
+                                  <property name="frameShape">
+                                   <enum>QFrame::StyledPanel</enum>
+                                  </property>
+                                  <property name="frameShadow">
+                                   <enum>QFrame::Raised</enum>
+                                  </property>
+                                  <layout class="QHBoxLayout" name="horizontalLayout_24">
+                                   <item>
+                                    <widget class="QLabel" name="agv_data_flag_waiting_for_continue">
+                                     <property name="maximumSize">
+                                      <size>
+                                       <width>16</width>
+                                       <height>16</height>
+                                      </size>
+                                     </property>
+                                     <property name="text">
+                                      <string/>
+                                     </property>
+                                     <property name="pixmap">
+                                      <pixmap>led-red-on.png</pixmap>
+                                     </property>
+                                     <property name="scaledContents">
+                                      <bool>true</bool>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                   <item>
+                                    <widget class="QLabel" name="waiting_for_continue_title">
+                                     <property name="font">
+                                      <font>
+                                       <weight>75</weight>
+                                       <bold>true</bold>
+                                      </font>
+                                     </property>
+                                     <property name="text">
+                                      <string>Wait for continue</string>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QFrame" name="data_bottom_frame">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>100</height>
+                                </size>
+                               </property>
+                               <property name="frameShape">
+                                <enum>QFrame::StyledPanel</enum>
+                               </property>
+                               <property name="frameShadow">
+                                <enum>QFrame::Raised</enum>
+                               </property>
+                               <layout class="QHBoxLayout" name="horizontalLayout_17">
+                                <item>
+                                 <widget class="QFrame" name="data_battery_frame">
+                                  <property name="maximumSize">
+                                   <size>
+                                    <width>200</width>
+                                    <height>16777215</height>
+                                   </size>
+                                  </property>
+                                  <property name="frameShape">
+                                   <enum>QFrame::StyledPanel</enum>
+                                  </property>
+                                  <property name="frameShadow">
+                                   <enum>QFrame::Raised</enum>
+                                  </property>
+                                  <layout class="QVBoxLayout" name="layout_plot_battery"/>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
                       </layout>
                      </widget>
                     </item>
@@ -1866,7 +2301,7 @@ QLineEdit:focus {
                         <widget class="QPushButton" name="pushButton_2">
                          <property name="maximumSize">
                           <size>
-                           <width>50</width>
+                           <width>60</width>
                            <height>16777215</height>
                           </size>
                          </property>
@@ -2969,435 +3404,6 @@ QHeaderView::section:vertical
                        <enum>QFrame::Raised</enum>
                       </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_18">
-                       <item>
-                        <widget class="QFrame" name="agv_data_frame_w_titles">
-                         <property name="styleSheet">
-                          <string notr="true">background-color: rgb(41, 45, 56);
-border-radius: 5px;</string>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Raised</enum>
-                         </property>
-                         <layout class="QVBoxLayout" name="verticalLayout_12">
-                          <item>
-                           <widget class="QFrame" name="agv_data_title_frame">
-                            <property name="maximumSize">
-                             <size>
-                              <width>16777215</width>
-                              <height>40</height>
-                             </size>
-                            </property>
-                            <property name="frameShape">
-                             <enum>QFrame::StyledPanel</enum>
-                            </property>
-                            <property name="frameShadow">
-                             <enum>QFrame::Raised</enum>
-                            </property>
-                            <layout class="QHBoxLayout" name="horizontalLayout_20">
-                             <item>
-                              <widget class="QFrame" name="frame_11">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>20</width>
-                                 <height>16777215</height>
-                                </size>
-                               </property>
-                               <property name="styleSheet">
-                                <string notr="true">image: url(AGV.png);
-background-position: center;
-background-repeat: no-repeat;</string>
-                               </property>
-                               <property name="frameShape">
-                                <enum>QFrame::StyledPanel</enum>
-                               </property>
-                               <property name="frameShadow">
-                                <enum>QFrame::Raised</enum>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QLabel" name="label">
-                               <property name="font">
-                                <font>
-                                 <family>Segoe UI</family>
-                                 <pointsize>10</pointsize>
-                                 <weight>75</weight>
-                                 <bold>true</bold>
-                                </font>
-                               </property>
-                               <property name="text">
-                                <string>AGV Status</string>
-                               </property>
-                              </widget>
-                             </item>
-                            </layout>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QFrame" name="agv_data_frame">
-                            <property name="frameShape">
-                             <enum>QFrame::StyledPanel</enum>
-                            </property>
-                            <property name="frameShadow">
-                             <enum>QFrame::Raised</enum>
-                            </property>
-                            <layout class="QVBoxLayout" name="verticalLayout_19">
-                             <item>
-                              <widget class="QFrame" name="agv_data_flags">
-                               <property name="frameShape">
-                                <enum>QFrame::StyledPanel</enum>
-                               </property>
-                               <property name="frameShadow">
-                                <enum>QFrame::Raised</enum>
-                               </property>
-                               <layout class="QVBoxLayout" name="verticalLayout_18">
-                                <item>
-                                 <widget class="QFrame" name="in_mission_frame">
-                                  <property name="maximumSize">
-                                   <size>
-                                    <width>16777215</width>
-                                    <height>40</height>
-                                   </size>
-                                  </property>
-                                  <property name="frameShape">
-                                   <enum>QFrame::StyledPanel</enum>
-                                  </property>
-                                  <property name="frameShadow">
-                                   <enum>QFrame::Raised</enum>
-                                  </property>
-                                  <layout class="QHBoxLayout" name="horizontalLayout_19">
-                                   <item>
-                                    <widget class="QLabel" name="agv_data_flag_in_mission">
-                                     <property name="maximumSize">
-                                      <size>
-                                       <width>20</width>
-                                       <height>20</height>
-                                      </size>
-                                     </property>
-                                     <property name="text">
-                                      <string/>
-                                     </property>
-                                     <property name="pixmap">
-                                      <pixmap>led-red-on.png</pixmap>
-                                     </property>
-                                     <property name="scaledContents">
-                                      <bool>true</bool>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item>
-                                    <widget class="QLabel" name="in_mission_title">
-                                     <property name="font">
-                                      <font>
-                                       <weight>75</weight>
-                                       <bold>true</bold>
-                                      </font>
-                                     </property>
-                                     <property name="text">
-                                      <string>In Mission</string>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                  </layout>
-                                 </widget>
-                                </item>
-                                <item>
-                                 <widget class="QFrame" name="mission_paused_frame">
-                                  <property name="maximumSize">
-                                   <size>
-                                    <width>16777215</width>
-                                    <height>40</height>
-                                   </size>
-                                  </property>
-                                  <property name="frameShape">
-                                   <enum>QFrame::StyledPanel</enum>
-                                  </property>
-                                  <property name="frameShadow">
-                                   <enum>QFrame::Raised</enum>
-                                  </property>
-                                  <layout class="QHBoxLayout" name="horizontalLayout_25">
-                                   <item>
-                                    <widget class="QLabel" name="agv_data_flag_mission_paused">
-                                     <property name="maximumSize">
-                                      <size>
-                                       <width>20</width>
-                                       <height>20</height>
-                                      </size>
-                                     </property>
-                                     <property name="text">
-                                      <string/>
-                                     </property>
-                                     <property name="pixmap">
-                                      <pixmap>led-red-on.png</pixmap>
-                                     </property>
-                                     <property name="scaledContents">
-                                      <bool>true</bool>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item>
-                                    <widget class="QLabel" name="mission_paused_title">
-                                     <property name="font">
-                                      <font>
-                                       <weight>75</weight>
-                                       <bold>true</bold>
-                                      </font>
-                                     </property>
-                                     <property name="text">
-                                      <string>Mission paused</string>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                  </layout>
-                                 </widget>
-                                </item>
-                                <item>
-                                 <widget class="QFrame" name="waiting_for_IBE_frame">
-                                  <property name="maximumSize">
-                                   <size>
-                                    <width>16777215</width>
-                                    <height>40</height>
-                                   </size>
-                                  </property>
-                                  <property name="frameShape">
-                                   <enum>QFrame::StyledPanel</enum>
-                                  </property>
-                                  <property name="frameShadow">
-                                   <enum>QFrame::Raised</enum>
-                                  </property>
-                                  <layout class="QHBoxLayout" name="horizontalLayout_21">
-                                   <item>
-                                    <widget class="QLabel" name="agv_data_flag_waiting_for_IBE">
-                                     <property name="maximumSize">
-                                      <size>
-                                       <width>20</width>
-                                       <height>20</height>
-                                      </size>
-                                     </property>
-                                     <property name="text">
-                                      <string/>
-                                     </property>
-                                     <property name="pixmap">
-                                      <pixmap>led-red-on.png</pixmap>
-                                     </property>
-                                     <property name="scaledContents">
-                                      <bool>true</bool>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item>
-                                    <widget class="QLabel" name="waiting_for_IBE_title">
-                                     <property name="font">
-                                      <font>
-                                       <weight>75</weight>
-                                       <bold>true</bold>
-                                      </font>
-                                     </property>
-                                     <property name="text">
-                                      <string>Waiting for IBE</string>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                  </layout>
-                                 </widget>
-                                </item>
-                                <item>
-                                 <widget class="QFrame" name="emergency_frame">
-                                  <property name="maximumSize">
-                                   <size>
-                                    <width>16777215</width>
-                                    <height>40</height>
-                                   </size>
-                                  </property>
-                                  <property name="frameShape">
-                                   <enum>QFrame::StyledPanel</enum>
-                                  </property>
-                                  <property name="frameShadow">
-                                   <enum>QFrame::Raised</enum>
-                                  </property>
-                                  <layout class="QHBoxLayout" name="horizontalLayout_22">
-                                   <item>
-                                    <widget class="QLabel" name="agv_data_flag_emergency">
-                                     <property name="maximumSize">
-                                      <size>
-                                       <width>20</width>
-                                       <height>20</height>
-                                      </size>
-                                     </property>
-                                     <property name="text">
-                                      <string/>
-                                     </property>
-                                     <property name="pixmap">
-                                      <pixmap>led-red-on.png</pixmap>
-                                     </property>
-                                     <property name="scaledContents">
-                                      <bool>true</bool>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item>
-                                    <widget class="QLabel" name="emergency_title">
-                                     <property name="font">
-                                      <font>
-                                       <weight>75</weight>
-                                       <bold>true</bold>
-                                      </font>
-                                     </property>
-                                     <property name="text">
-                                      <string>Emergency</string>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                  </layout>
-                                 </widget>
-                                </item>
-                                <item>
-                                 <widget class="QFrame" name="error_frame">
-                                  <property name="maximumSize">
-                                   <size>
-                                    <width>16777215</width>
-                                    <height>40</height>
-                                   </size>
-                                  </property>
-                                  <property name="frameShape">
-                                   <enum>QFrame::StyledPanel</enum>
-                                  </property>
-                                  <property name="frameShadow">
-                                   <enum>QFrame::Raised</enum>
-                                  </property>
-                                  <layout class="QHBoxLayout" name="horizontalLayout_23">
-                                   <item>
-                                    <widget class="QLabel" name="agv_data_flag_error">
-                                     <property name="maximumSize">
-                                      <size>
-                                       <width>20</width>
-                                       <height>20</height>
-                                      </size>
-                                     </property>
-                                     <property name="text">
-                                      <string/>
-                                     </property>
-                                     <property name="pixmap">
-                                      <pixmap>led-red-on.png</pixmap>
-                                     </property>
-                                     <property name="scaledContents">
-                                      <bool>true</bool>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item>
-                                    <widget class="QLabel" name="error_title">
-                                     <property name="font">
-                                      <font>
-                                       <weight>75</weight>
-                                       <bold>true</bold>
-                                      </font>
-                                     </property>
-                                     <property name="text">
-                                      <string>Error</string>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                  </layout>
-                                 </widget>
-                                </item>
-                                <item>
-                                 <widget class="QFrame" name="waiting_for_continue_frame">
-                                  <property name="maximumSize">
-                                   <size>
-                                    <width>16777215</width>
-                                    <height>40</height>
-                                   </size>
-                                  </property>
-                                  <property name="frameShape">
-                                   <enum>QFrame::StyledPanel</enum>
-                                  </property>
-                                  <property name="frameShadow">
-                                   <enum>QFrame::Raised</enum>
-                                  </property>
-                                  <layout class="QHBoxLayout" name="horizontalLayout_24">
-                                   <item>
-                                    <widget class="QLabel" name="agv_data_flag_waiting_for_continue">
-                                     <property name="maximumSize">
-                                      <size>
-                                       <width>20</width>
-                                       <height>20</height>
-                                      </size>
-                                     </property>
-                                     <property name="text">
-                                      <string/>
-                                     </property>
-                                     <property name="pixmap">
-                                      <pixmap>led-red-on.png</pixmap>
-                                     </property>
-                                     <property name="scaledContents">
-                                      <bool>true</bool>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                   <item>
-                                    <widget class="QLabel" name="waiting_for_continue_title">
-                                     <property name="font">
-                                      <font>
-                                       <weight>75</weight>
-                                       <bold>true</bold>
-                                      </font>
-                                     </property>
-                                     <property name="text">
-                                      <string>Waiting for continue</string>
-                                     </property>
-                                    </widget>
-                                   </item>
-                                  </layout>
-                                 </widget>
-                                </item>
-                               </layout>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QFrame" name="data_bottom_frame">
-                               <property name="maximumSize">
-                                <size>
-                                 <width>16777215</width>
-                                 <height>100</height>
-                                </size>
-                               </property>
-                               <property name="frameShape">
-                                <enum>QFrame::StyledPanel</enum>
-                               </property>
-                               <property name="frameShadow">
-                                <enum>QFrame::Raised</enum>
-                               </property>
-                               <layout class="QHBoxLayout" name="horizontalLayout_17">
-                                <item>
-                                 <widget class="QFrame" name="data_battery_frame">
-                                  <property name="maximumSize">
-                                   <size>
-                                    <width>200</width>
-                                    <height>16777215</height>
-                                   </size>
-                                  </property>
-                                  <property name="frameShape">
-                                   <enum>QFrame::StyledPanel</enum>
-                                  </property>
-                                  <property name="frameShadow">
-                                   <enum>QFrame::Raised</enum>
-                                  </property>
-                                  <layout class="QVBoxLayout" name="layout_plot_battery"/>
-                                 </widget>
-                                </item>
-                               </layout>
-                              </widget>
-                             </item>
-                            </layout>
-                           </widget>
-                          </item>
-                         </layout>
-                        </widget>
-                       </item>
                        <item>
                         <widget class="QFrame" name="agv_design_plot_frame">
                          <property name="minimumSize">

@@ -162,14 +162,15 @@ class MainWindow(QMainWindow):
 
     def setup_data_analysis(self):
         self.flags_poll_timer = QTimer()
-        self.flags_poll_timer.timeout.connect(self.updateFlags)
+        self.flags_poll_timer.timeout.connect(self.update_interface)
         self.flags_poll_timer.start(500)
     def enter_command(self):
         retVal=self.backend.parse_cmd(self.ui.command_entry.text())
         self.ui.command_entry.clear()
         if  retVal == False: #Si no se reconoció ningun comando, se comunica.
             self.ui.log.appendPlainText("Invalid Command")
-    def updateFlags(self):
+    def update_interface(self):
+        self.backend.update_map()
         if self.backend.agv_status_dict[1].in_mission:
             self.ui.agv_data_flag_in_mission.setPixmap(QtGui.QPixmap("green-led-on.png"))
         else:

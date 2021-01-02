@@ -22,7 +22,7 @@ class Backend:
                                 re.compile('[C]$', re.I): self.continueMission
                                 }
         self.mqttClient = mqtt.Client("Houston")  # create new instance
-        self.mqttClient.on_message = self.parse_msg
+        self.mqttClient.on_message = self.parse_mqtt_msg
         self.mqttClient.connect("localhost")  # connect to broker
         self.mqttClient.subscribe("Houston")
         self.mqttClient.loop_start()
@@ -37,28 +37,27 @@ class Backend:
             if key.match(cmd):
                 valid_command = self.command_mapping[key]()
         return valid_command
-    def parse_msg(self,client, userdata, message): ##Parseo de mensajes de MQTT
+    def parse_mqtt_msg(self,client, userdata, message): ##Parseo de mensajes de MQTT
         msg=str(message.payload.decode("utf-8"))
-        AGVn = int((msg.split('\n', 1)[0]).split('V',1)[1])
-        msg = msg.split('\n', 1)[1]  # Me quedo con los datos del agv
-        #self.log.append("AGV " + str(AGVn) + ": " + msg)
-        if msg == "Online":
-            self.agv_status_dict[AGVn] = AGV_status(AGVn)
-            self.update_map()
-            self.log.appendPlainText("AGV " + str(AGVn) + ": " + "Online")
-        elif msg=="Quest step reached":
-            if self.agv_status_dict[AGVn].in_mission:
-                self.agv_status_dict[AGVn].mission_step_reached()
-                self.update_map()
-                self.log.appendPlainText("AGV " + str(AGVn) + ": " + "Step reached")
-            else:
-                print("Error")
-        elif "Status" in msg:
-            self.agv_status_dict[AGVn].distanceTravelled = search("Distance: {:d}", msg)[0]
-            batLevel= float(search("BatVolt: {:d}", msg)[0])/100.0;
-            self.battery.setBatLevel(batLevel)
-            #self.log.appendPlainText("AGV " + str(AGVn) + ": " + "Battery: " + str(batLevel)+"V")
-            self.update_map()
+        self.header_to_parse_func = {"Online": self.mqtt_rec_online,"Quest step reached":self.mqtt_rec_step_reached,"Status":self.mqtt_rec_status,
+                                     "Quest?" : self.mqtt_rec_quest_answer,
+                                     } #Mapa de headers con su respectiva función de parseo
+        try: ##Para que no estalle en caso de ser un mensaje fuera del protocolo
+            header_known=False;
+            print(msg)
+            self.AGVn_rec = int((msg.split('\n', 1)[0]).split('V',1)[1])
+            self.msg_rec = msg.split('\n', 1)[1]  # Me quedo con los datos del agv
+            for key in self.header_to_parse_func:  # Me fijo si es alguno de los headers esperados, lo parsea con su respectiva función
+                if self.msg_rec.startswith(key):
+                    msg_error = self.header_to_parse_func[key]()
+                    header_known=True;
+            if not header_known:
+                self.log.appendPlainText("Recieved a msg with an unknown header" + self.msg_rec);
+            if msg_error:
+                self.log.appendPlainText(msg_error)
+        except Exception as e:
+            print(e)
+
     #### Funciones útiles
     def update_map(self):
         prev, next, distance = self.agv_status_dict[1].get_agv_pos_nodes()
@@ -76,6 +75,34 @@ class Backend:
     def IBECharToMQTTFormat(self, char):
         dict= {'B':"Bp",'H':"Hc",'D':"De",'N':"No"}
         return dict[char.upper()]
+    #### Funciones de parseo de comandos ###
+    def mqtt_rec_online(self):
+        self.agv_status_dict[self.AGVn_rec] = AGV_status(self.AGVn_rec)
+        self.log.appendPlainText("AGV " + str(self.AGVn_rec) + ": " + "Online")
+    def mqtt_rec_step_reached(self):
+        if self.agv_status_dict[self.AGVn_rec].in_mission:
+            self.agv_status_dict[self.AGVn_rec].mission_step_reached()
+            self.log.appendPlainText("AGV " + str(self.AGVn_rec) + ": " + "Step reached")
+        else:
+            print("Error")
+    def mqtt_rec_status(self):
+        dist_trav=search("Distance: {:d}", self.msg_rec)
+        if dist_trav: #Si se recibió una distancia
+            self.agv_status_dict[self.AGVn_rec].distanceTravelled = dist_trav[0]
+        bat_lev_rec=search("BatVolt: {:d}", self.msg_rec)
+        if bat_lev_rec: #Si se recibió una tensión
+            batLevel = float(bat_lev_rec[0]) / 100.0;
+            self.battery.setBatLevel(batLevel)
+        self.log.appendPlainText("AGV " + str(self.AGVn_rec) + ": " + "Status update")
+    def mqtt_rec_quest_answer(self):
+        if "Yes" in self.msg_rec:
+            self.agv_status_dict[self.AGVn_rec].in_mission = True;
+            self.log.appendPlainText("AGV " + str(self.AGVn_rec) + ": " + "Mission accepted")
+        elif "No" in self.msg_rec:
+            self.agv_status_dict[self.AGVn_rec].in_mission = False;
+            self.log.appendPlainText("AGV " + str(self.AGVn_rec) + ": " + "Mission denied")
+        else:
+            return "Expected Yes or No after the header"
     #### Funciones llamadas por comandos ###
     def setBat(self):
         res = parse("B {:d}", self.last_command)
