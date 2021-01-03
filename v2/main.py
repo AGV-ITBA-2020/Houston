@@ -54,7 +54,7 @@ class MainWindow(QMainWindow):#QMainWindow
         self.ui = Ui_MainWindow()
         self.setWindowIcon(QtGui.QIcon("AGV.png"))
         self.ui.setupUi(self)
-        self.add_map_plot()
+        # self.add_map_plot()
         self.ui.battery = Battery();
         self.ui.layout_plot_battery.addWidget(self.ui.battery)
         self.backend = Backend(self.ui.log,self.ui.battery)
@@ -75,9 +75,9 @@ class MainWindow(QMainWindow):#QMainWindow
         ## ==> END ##
 
         ## WINDOW SIZE ==> DEFAULT SIZE
-        startSize = QSize(1000, 720)
-        self.resize(startSize)
-        self.setMinimumSize(startSize)
+        # startSize = QSize(1500, 1100)
+        # self.resize(startSize)
+        # self.setMinimumSize(startSize)
         # UIFunctions.enableMaximumSize(self, 500, 720)
         ## ==> END ##
 
@@ -164,22 +164,11 @@ class MainWindow(QMainWindow):#QMainWindow
         ########################################################################
         self.show()
         ## ==> END ##
-    def add_map_plot(self):
+    # def add_map_plot(self):
         ##Agrego el canvas de matplotlib que no se puede poner desde qt
-        # self.ui.figure = Figure()
-        # self.ui.canvas = FigureCanvas(self.ui.figure)
+        #self.m=MatplotlibWidget();
         # self.ui.verlayout_plot_panel = QVBoxLayout(self.ui.plot_frame)
-        # # self.ui.nt = NavigationToolbar(self.ui.canvas, self.ui)
-        # # self.ui.nt.setMaximumSize(QSize(16777215, 65))
-        # #self.ui.verlayout_plot_panel.addWidget(self.ui.nt)
-        # self.ui.verlayout_plot_panel.addWidget(self.ui.canvas)
-
-        # self.fig = Figure(figsize=(5, 3))
-        # self.canvas = FigureCanvas(self.fig)
-
-        self.m=MatplotlibWidget();
-        self.ui.verlayout_plot_panel = QVBoxLayout(self.ui.plot_frame)
-        self.ui.verlayout_plot_panel.addWidget(self.m)
+        # self.ui.verlayout_plot_panel.addWidget(self.m)
 
     def setup_data_analysis(self):
         self.flags_poll_timer = QTimer()
@@ -188,12 +177,12 @@ class MainWindow(QMainWindow):#QMainWindow
     def enter_command(self):
         retVal=self.backend.parse_cmd(self.ui.command_entry.text())
         self.ui.command_entry.clear()
-        if  retVal == False: #Si no se reconoció ningun comando, se comunica.
+        if  retVal == False: #Si no se reconocio ningun comando, se comunica.
             self.ui.log.appendPlainText("Invalid Command")
     def update_interface(self):
 
-        if self.backend.check_for_map_updates():
-            self.m.update_plot()
+        # if self.backend.check_for_map_updates():
+        #     self.m.update_plot()
         if self.backend.agv_status_dict[1].in_mission:
             self.ui.agv_data_flag_in_mission.setPixmap(QtGui.QPixmap("green-led-on.png"))
         else:
@@ -267,19 +256,4 @@ if __name__ == "__main__":
     QtGui.QFontDatabase.addApplicationFont('fonts/segoeui.ttf')
     QtGui.QFontDatabase.addApplicationFont('fonts/segoeuib.ttf')
     window = MainWindow()
-    # sys._excepthook = sys.excepthook
-    # def my_exception_hook(exctype, value, traceback):
-    #     # Print the error and traceback
-    #     print(exctype, value, traceback)
-    #     # Call the normal Exception hook after
-    #     sys._excepthook(exctype, value, traceback)
-    #     sys.exit(1)
-    #
-    #
-    # # Set the exception hook to our wrapping function
-    # sys.excepthook = my_exception_hook
-    # try:
-    #     sys.exit(app.exec_())
-    # except:
-    #     print("Exiting")
     sys.exit(app.exec_())

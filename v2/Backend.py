@@ -44,7 +44,7 @@ class Backend:
                                      } #Mapa de headers con su respectiva función de parseo
         try: ##Para que no estalle en caso de ser un mensaje fuera del protocolo
             header_known=False;
-            print(msg)
+            #print(msg)
             self.AGVn_rec = int((msg.split('\n', 1)[0]).split('V',1)[1])
             self.msg_rec = msg.split('\n', 1)[1]  # Me quedo con los datos del agv
             for key in self.header_to_parse_func:  # Me fijo si es alguno de los headers esperados, lo parsea con su respectiva función
@@ -68,8 +68,8 @@ class Backend:
 
     def update_map(self):
         prev, next, distance = self.agv_status_dict[1].get_agv_pos_nodes()
-        self.map_changed = 1;
         self.map.update_agv_pos(1, prev, next, distance)
+        self.map_changed = 1;
     def gen_mission_block(self, steps, dists): ##Dados los steps y las distancias, genera el texto que lo representa para enviar por mqtt
         mission = "Bs" #Block start
         for i in range(int(len(steps)/2)):
@@ -96,9 +96,9 @@ class Backend:
             print("Error")
     def mqtt_rec_status(self):
         dist_trav=search("Distance: {:d}", self.msg_rec)
-        self.update_map();
         if dist_trav: #Si se recibió una distancia
             self.agv_status_dict[self.AGVn_rec].distanceTravelled = dist_trav[0]
+            self.update_map();
         bat_lev_rec=search("BatVolt: {:d}", self.msg_rec)
         if bat_lev_rec: #Si se recibió una tensión
             batLevel = float(bat_lev_rec[0]) / 100.0;
