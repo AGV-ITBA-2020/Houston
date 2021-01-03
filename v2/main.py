@@ -13,26 +13,42 @@
 ## https://doc.qt.io/qtforpython/licenses.html
 ##
 ################################################################################
-
 import sys
 import platform
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTimer, QUrl, Qt, QEvent)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
-from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
+from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 
-from Battery import Battery
+from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
+
 
 ICON_RED_LED = ":/icons/led-red-on.png"
 ICON_GREEN_LED = ":/icons/green-led-on.png"
 # GUI FILE
 from app_modules import *
 from Backend import Backend
+from Battery import Battery
+
+class MatplotlibWidget(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        self.fig = plt.figure(figsize=(7, 5), dpi=65, facecolor=(1, 1, 1), edgecolor=(0, 0, 0))
+
+        self.canvas = FigureCanvas(self.fig)
+        self.toolbar = NavigationToolbar(self.canvas, self)
+        lay = QVBoxLayout(self)
+        lay.addWidget(self.toolbar)
+        lay.addWidget(self.canvas)
+
+    def update_plot(self):
+        self.canvas.draw()
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow):#QMainWindow
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
@@ -41,7 +57,7 @@ class MainWindow(QMainWindow):
         self.add_map_plot()
         self.ui.battery = Battery();
         self.ui.layout_plot_battery.addWidget(self.ui.battery)
-        self.backend = Backend(self.ui.log,self.ui.canvas,self.ui.battery)
+        self.backend = Backend(self.ui.log,self.ui.battery)
         self.ui.command_entry.editingFinished.connect(self.enter_command)
         self.setup_data_analysis()
         ########################################################################
@@ -150,15 +166,20 @@ class MainWindow(QMainWindow):
         ## ==> END ##
     def add_map_plot(self):
         ##Agrego el canvas de matplotlib que no se puede poner desde qt
-        self.ui.figure = plt.figure()
-        self.ui.canvas = FigureCanvas(self.ui.figure)
-        self.ui.canvas.draw_idle()
+        # self.ui.figure = Figure()
+        # self.ui.canvas = FigureCanvas(self.ui.figure)
+        # self.ui.verlayout_plot_panel = QVBoxLayout(self.ui.plot_frame)
+        # # self.ui.nt = NavigationToolbar(self.ui.canvas, self.ui)
+        # # self.ui.nt.setMaximumSize(QSize(16777215, 65))
+        # #self.ui.verlayout_plot_panel.addWidget(self.ui.nt)
+        # self.ui.verlayout_plot_panel.addWidget(self.ui.canvas)
+
+        # self.fig = Figure(figsize=(5, 3))
+        # self.canvas = FigureCanvas(self.fig)
+
+        self.m=MatplotlibWidget();
         self.ui.verlayout_plot_panel = QVBoxLayout(self.ui.plot_frame)
-        self.ui.nt = NavigationToolbar(self.ui.canvas, self)
-        self.ui.nt.setMaximumSize(QSize(16777215, 65))
-        self.ui.verlayout_plot_panel.addWidget(self.ui.nt)
-        self.ui.verlayout_plot_panel.addWidget(self.ui.canvas)
-        self.ui.canvas.draw_idle()
+        self.ui.verlayout_plot_panel.addWidget(self.m)
 
     def setup_data_analysis(self):
         self.flags_poll_timer = QTimer()
@@ -170,7 +191,9 @@ class MainWindow(QMainWindow):
         if  retVal == False: #Si no se reconoció ningun comando, se comunica.
             self.ui.log.appendPlainText("Invalid Command")
     def update_interface(self):
-        self.backend.update_map()
+
+        if self.backend.check_for_map_updates():
+            self.m.update_plot()
         if self.backend.agv_status_dict[1].in_mission:
             self.ui.agv_data_flag_in_mission.setPixmap(QtGui.QPixmap("green-led-on.png"))
         else:

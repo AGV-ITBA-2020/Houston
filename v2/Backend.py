@@ -7,10 +7,10 @@ from parse import *
 
 
 class Backend:
-    def __init__(self,log,canvas,battery):
+    def __init__(self,log,battery):
         self.map = MapManager()
         self.log = log;
-        self.canvas = canvas;
+        self.map_changed= 0;
         self.battery = battery;
         # Estructura de comandos aceptados por consola
         self.command_mapping = {re.compile('(SM) [0-9]*$', re.I): self.start_mission,  # Misión simple
@@ -59,10 +59,17 @@ class Backend:
             print(e)
 
     #### Funciones útiles
+    def check_for_map_updates(self):
+        retVal=False
+        if self.map_changed==1:
+            self.map_changed = 0
+            retVal=True;
+        return retVal;
+
     def update_map(self):
         prev, next, distance = self.agv_status_dict[1].get_agv_pos_nodes()
+        self.map_changed = 1;
         self.map.update_agv_pos(1, prev, next, distance)
-        self.canvas.draw_idle()
     def gen_mission_block(self, steps, dists): ##Dados los steps y las distancias, genera el texto que lo representa para enviar por mqtt
         mission = "Bs" #Block start
         for i in range(int(len(steps)/2)):
@@ -79,14 +86,17 @@ class Backend:
     def mqtt_rec_online(self):
         self.agv_status_dict[self.AGVn_rec] = AGV_status(self.AGVn_rec)
         self.log.appendPlainText("AGV " + str(self.AGVn_rec) + ": " + "Online")
+        self.update_map();
     def mqtt_rec_step_reached(self):
         if self.agv_status_dict[self.AGVn_rec].in_mission:
             self.agv_status_dict[self.AGVn_rec].mission_step_reached()
+            self.update_map();
             self.log.appendPlainText("AGV " + str(self.AGVn_rec) + ": " + "Step reached")
         else:
             print("Error")
     def mqtt_rec_status(self):
         dist_trav=search("Distance: {:d}", self.msg_rec)
+        self.update_map();
         if dist_trav: #Si se recibió una distancia
             self.agv_status_dict[self.AGVn_rec].distanceTravelled = dist_trav[0]
         bat_lev_rec=search("BatVolt: {:d}", self.msg_rec)
