@@ -11,7 +11,11 @@ class MapManager():
         self.agv_pos_list={}
         self.agv_im = plt.imread("AGV.png")
 
-        # self.draw_system()
+        # nx.draw_networkx(self.G, with_labels=True, pos=self.pos, node_color=self.gen_color())
+        # plt.savefig('map.png')
+        # plt.close()
+        self.map_im=plt.imread('map.png')
+        self.draw_system()
 
     def load_graph(self): ##Acá se genera el grafo a mano. Se podría poner en un archivo y luego cargarlo, sería más modular
         self.G = nx.DiGraph()
@@ -27,10 +31,10 @@ class MapManager():
         self.G.add_edge(4, 1, length=110)
         #Posiciones de los nodos gráficamente (hecho a manopla)
         self.pos = {1: (-4, 0), 2: (8, 6), 3: (0, 20), 4: (-8, 6),5: (4, 0)}
-        # self.xlimDefault = (-12,12) # Límites del plot por default
-        # self.ylimDefault = (-5,22)
-        # plt.xlim(self.xlimDefault )
-        # plt.ylim(self.ylimDefault )
+        self.xlimDefault = (-12,12) # Límites del plot por default
+        self.ylimDefault = (-5,22)
+        plt.xlim(self.xlimDefault )
+        plt.ylim(self.ylimDefault )
 
     def get_path(self,orig,dest): #Dado un origen y destino obtiene el mensaje en código que representa el camino, la lista de nodos por la que pasa y las distancias que recorre.
         node_path=nx.shortest_path(self.G, source=orig, target=dest,weight="length")
@@ -59,24 +63,25 @@ class MapManager():
                         strOut += "Me" #merge
         return strOut, node_path, dist_list
 
-    # def draw_system(self):
-        # self.xlim=plt.xlim()
-        # self.ylim=plt.ylim()
-        # plt.clf()
-        # #nx.draw_networkx(self.G, with_labels=True, pos=self.pos, node_color=self.gen_color())
-        # for key in self.agv_pos_list:
-        #     node1 = self.agv_pos_list[key][0]
-        #     node2 = self.agv_pos_list[key][1]
-        #     if (node1 == node2):
-        #         x_center = self.pos[node1][0]
-        #         y_center = self.pos[node1][1]
-        #     else:
-        #         fracTrav = self.agv_pos_list[key][2] / self.G.edges[node1, node2]['length'] #Fracción del camino recorrido
-        #         x_center = self.pos[node1][0] + (self.pos[node2][0] - self.pos[node1][0]) * fracTrav
-        #         y_center = self.pos[node1][1] + (self.pos[node2][1] - self.pos[node1][1]) * fracTrav
-        #     implot = plt.imshow(self.agv_im, extent=[x_center-self.agv_im_w/2, x_center+self.agv_im_w/2, y_center-self.agv_im_h/2, y_center+self.agv_im_h/2])
-        # plt.xlim(self.xlim)
-        # plt.ylim(self.ylim)
+    def draw_system(self):
+        self.xlim=plt.xlim()
+        self.ylim=plt.ylim()
+        plt.clf()
+        #nx.draw_networkx(self.G, with_labels=True, pos=self.pos, node_color=self.gen_color())
+        plt.imshow(self.map_im, extent=[self.xlimDefault[0], self.xlimDefault[1],self.ylimDefault[0], self.ylimDefault[1]])
+        for key in self.agv_pos_list:
+            node1 = self.agv_pos_list[key][0]
+            node2 = self.agv_pos_list[key][1]
+            if (node1 == node2):
+                x_center = self.pos[node1][0]
+                y_center = self.pos[node1][1]
+            else:
+                fracTrav = self.agv_pos_list[key][2] / self.G.edges[node1, node2]['length'] #Fracción del camino recorrido
+                x_center = self.pos[node1][0] + (self.pos[node2][0] - self.pos[node1][0]) * fracTrav
+                y_center = self.pos[node1][1] + (self.pos[node2][1] - self.pos[node1][1]) * fracTrav
+            plt.imshow(self.agv_im, extent=[x_center-self.agv_im_w/2, x_center+self.agv_im_w/2, y_center-self.agv_im_h/2, y_center+self.agv_im_h/2])
+        plt.xlim(self.xlim)
+        plt.ylim(self.ylim)
     def gen_color(self):
         colors = []
         for n in self.G:

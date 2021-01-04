@@ -4,6 +4,7 @@ class AGV_status:
         self.mission_sent = False;
         self.in_mission = False;
         self.paused = False;
+        self.emergency = False;
         self.in_node = 1;
         self.going_to_node = 1;
         self.distanceTravelled = 0;

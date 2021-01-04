@@ -4,6 +4,8 @@ class AGV_status:
         self.mission_sent = False;
         self.in_mission = False;
         self.paused = False;
+        self.emergency = False;
+        self.waiting_for_IBE=False;
         self.in_node = 1;
         self.going_to_node = 1;
         self.distanceTravelled = 0;
@@ -17,15 +19,23 @@ class AGV_status:
         self.in_mission = False; #Se pone en realidad cuando el vehículo acepta la misión
         self.currBlock=0;
         self.currStep=0;
-        self.paused=True;
+        self.waiting_for_IBE=True;
         if self.mission_IBE[self.currBlock] == "None": #En el caso que no necesite evento para arrancar misión
-            self.paused = False;
+            self.waiting_for_IBE = False;
+    def is_waiting_for_houston_continue(self):
+        return self.waiting_for_IBE and self.mission_IBE[self.currBlock] == "Houston"
     def curr_block_len(self):
         return len(self.mission_block_nodes[self.currBlock]) #Longitud del bloque de ahora
     def n_of_blocks(self):
         return len(self.mission_block_nodes) #Número de bloques
-    def continue_mission(self): #Para comunicarle que sucedió un IBE en caso de que esperaba
+    def abort_mission(self):
+        self.paused = False;
+        self.in_mission = False;
+        self.waiting_for_IBE = False;
+    def resume_mission(self): #En caso de estar en pausa, esta funcion resume la mision
         self.paused=False;
+    def continue_mission(self): #Para comunicarle que sucedió un IBE en caso de que esperaba
+        self.waiting_for_IBE=False;
         if self.n_of_blocks() == self.currBlock :
             self.in_mission = False;
             self.going_to_node = self.in_node
@@ -40,15 +50,17 @@ class AGV_status:
                 self.in_mission=False;
                 self.going_to_node=self.in_node
             elif self.mission_IBE[self.currBlock] == "None": #En caso de que no necesite evento para arrancar con el siguiente bloque
-                self.paused = False;
+                self.waiting_for_IBE = False;
             else:
-                self.paused = True;
+                self.waiting_for_IBE = True;
 
 
     def get_agv_pos_nodes(self): #Obtiene los datos necesarios para plotearlo en el mapa
         prev = self.in_node
         if self.in_mission == True:
-            if self.currStep+1 < self.curr_block_len(): #En el caso de que queden steps en el bloque
+            if self.currBlock == len(self.mission_block_nodes): #En el caso en el que ya hice todos los bloques de misiones pero me quedo esperando por un evento para terminar
+                self.going_to_node =prev;
+            elif self.currStep+1 < self.curr_block_len(): #En el caso de que queden steps en el bloque
                 self.going_to_node  = self.mission_block_nodes[self.currBlock][self.currStep+1]
             elif self.curr_block_len() < self.n_of_blocks(): #Sino, es el primero del siguiente bloque
                 self.going_to_node = self.mission_block_nodes[self.currBlock+1][0]

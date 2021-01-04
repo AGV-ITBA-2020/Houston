@@ -10,7 +10,6 @@ class Backend:
     def __init__(self,log,battery):
         self.map = MapManager()
         self.log = log;
-        self.map_changed= 0;
         self.battery = battery;
         # Estructura de comandos aceptados por consola
         self.command_mapping = {re.compile('(SM) [0-9]*$', re.I): self.start_mission,  # Misión simple
@@ -19,7 +18,8 @@ class Backend:
                                 re.compile('[B] [0-9]*$', re.I): self.setBat, #Pone nivel de batería
                                 re.compile('(LM) ([HBDN] [0-9]* )*[HBDN]$', re.I): self.start_long_mission,
                                 # Misión larga: LM para indicar misión, luego serie de eventos y nodos a llegar y al final el evento final. B=button, D=delay, H=houston continue N=None
-                                re.compile('[C]$', re.I): self.continueMission
+                                re.compile('[C]$', re.I): self.continueMission,
+                                re.compile('[r]$', re.I): self.restart
                                 }
         self.mqttClient = mqtt.Client("Houston")  # create new instance
         self.mqttClient.on_message = self.parse_mqtt_msg
@@ -29,6 +29,8 @@ class Backend:
         self.agv_status_dict = {};  # Status de los AGVs que se conecten
         self.agv_status_dict[1] = AGV_status(1)  # Para debuggear ya lo dejamos creado al agv1
         self.map.update_agv_pos(1, 1, 1, 0)
+
+        self.map_changed= 1;
     def parse_cmd(self,cmd):
         valid_command = False;
         self.last_command=cmd
@@ -114,6 +116,12 @@ class Backend:
         else:
             return "Expected Yes or No after the header"
     #### Funciones llamadas por comandos ###
+    def restart(self):
+        self.agv_status_dict[1] = AGV_status(1)  # Para debuggear ya lo dejamos creado al agv1
+        self.map.update_agv_pos(1, 1, 1, 0)
+        self.battery.setBatLevel(1000) #Pa que tenga 100%
+        self.map_changed = 1;
+        return True;
     def setBat(self):
         res = parse("B {:d}", self.last_command)
         bvolt= res[0] / 100;

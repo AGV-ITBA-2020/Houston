@@ -39,7 +39,7 @@ pos = {1:(0,0),2:(10,0),3:(20,0),4:(30,10),5:(30,-10), 6:(40,-10)}
 im = plt.imread("AGV.png")
 
 nx.draw_networkx(G, with_labels=True, pos =pos,node_color=gen_color(G))
-implot = plt.imshow(im, extent=[1,9,-5,5])
+#implot = plt.imshow(im, extent=[1,9,-5,5])
 #plt.plot([0,25],[0,15])
 plt.xlim((-5,45))
 plt.ylim((-15,15))

@@ -11,6 +11,10 @@ class MapManager():
         self.agv_pos_list={}
         self.agv_im = plt.imread("AGV.png")
 
+        # nx.draw_networkx(self.G, with_labels=True, pos=self.pos, node_color=self.gen_color())
+        # plt.savefig('map.png')
+        # plt.close()
+        self.map_im=plt.imread('map.png')
         self.draw_system()
 
     def load_graph(self): ##Acá se genera el grafo a mano. Se podría poner en un archivo y luego cargarlo, sería más modular
@@ -31,7 +35,13 @@ class MapManager():
         self.ylimDefault = (-5,22)
         plt.xlim(self.xlimDefault )
         plt.ylim(self.ylimDefault )
-
+    def is_node_station(self,node_number):
+        d=nx.get_node_attributes(self.G, 'description');
+        retVal=False;
+        if node_number < len(d)+1:
+            if d[node_number] == "Station":
+                retVal=True;
+        return retVal
     def get_path(self,orig,dest): #Dado un origen y destino obtiene el mensaje en código que representa el camino, la lista de nodos por la que pasa y las distancias que recorre.
         node_path=nx.shortest_path(self.G, source=orig, target=dest,weight="length")
         dist_list = [] ##Vector donde se guardan las distancias como lista de strings
@@ -63,7 +73,8 @@ class MapManager():
         self.xlim=plt.xlim()
         self.ylim=plt.ylim()
         plt.clf()
-        nx.draw_networkx(self.G, with_labels=True, pos=self.pos, node_color=self.gen_color())
+        #nx.draw_networkx(self.G, with_labels=True, pos=self.pos, node_color=self.gen_color())
+        plt.imshow(self.map_im, extent=[self.xlimDefault[0], self.xlimDefault[1],self.ylimDefault[0], self.ylimDefault[1]])
         for key in self.agv_pos_list:
             node1 = self.agv_pos_list[key][0]
             node2 = self.agv_pos_list[key][1]
@@ -74,7 +85,8 @@ class MapManager():
                 fracTrav = self.agv_pos_list[key][2] / self.G.edges[node1, node2]['length'] #Fracción del camino recorrido
                 x_center = self.pos[node1][0] + (self.pos[node2][0] - self.pos[node1][0]) * fracTrav
                 y_center = self.pos[node1][1] + (self.pos[node2][1] - self.pos[node1][1]) * fracTrav
-            implot = plt.imshow(self.agv_im, extent=[x_center-self.agv_im_w/2, x_center+self.agv_im_w/2, y_center-self.agv_im_h/2, y_center+self.agv_im_h/2])
+            plt.imshow(self.agv_im, extent=[x_center-self.agv_im_w/2, x_center+self.agv_im_w/2, y_center-self.agv_im_h/2, y_center+self.agv_im_h/2])
+
         plt.xlim(self.xlim)
         plt.ylim(self.ylim)
     def gen_color(self):
@@ -91,7 +103,7 @@ class MapManager():
 
     def update_agv_pos(self,agv_num,location_node, next_node,dist):
         self.agv_pos_list[agv_num] = [location_node,next_node,dist]
-        self.draw_system()
+        #self.draw_system()
 #Mapa viejo
 # self.G.add_nodes_from([1, 4, 5, 6], description="Station") #Nodos estación
 # self.G.add_node(2, description="Slow down tag") #Nodos de "tags"

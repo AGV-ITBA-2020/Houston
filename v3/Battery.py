@@ -23,6 +23,46 @@ OK_STYLE='''
             background-color: white;
             margin: 4px;
         }'''
+WARNING_STYLE='''
+        QProgressBar {
+            border: 4px solid yellow;
+            background-color: rgb(41, 45, 56);
+            margin-top: 12px;
+        }
+        QProgressBar:horizontal {
+            height: 60px;
+            width: 120px;
+            margin-right: 12px;
+        }
+        QProgressBar:vertical {
+            height: 120px;
+            width: 60px;
+            margin-left: 12px;
+        }
+        QProgressBar::chunk {
+            background-color: yellow;
+            margin: 4px;
+        }'''
+LOW_STYLE='''
+        QProgressBar {
+            border: 4px solid red;
+            background-color: rgb(41, 45, 56);
+            margin-top: 12px;
+        }
+        QProgressBar:horizontal {
+            height: 60px;
+            width: 120px;
+            margin-right: 12px;
+        }
+        QProgressBar:vertical {
+            height: 120px;
+            width: 60px;
+            margin-left: 12px;
+        }
+        QProgressBar::chunk {
+            background-color: red;
+            margin: 4px;
+        }'''
 
 
 class Battery(QProgressBar):
@@ -71,11 +111,16 @@ class Battery(QProgressBar):
         self.setValue(b_level)
         if (b_level >= 50 and not self.state == "Ok"):
             self.state="Ok"
-            self.color = QtCore.Qt.white
+            # self.color = QtCore.Qt.white
+            # self.setStyleSheet(OK_STYLE)
         if(b_level <= 30 and b_level > 15 and self.state == "Ok"):
             self.state = "Warning"
+            # self.color = QtCore.Qt.yellow
+            # self.setStyleSheet(WARNING_STYLE)
         if (b_level <= 15 and not self.state == "Low"):
             self.state = "Low"
+            # self.color = QtCore.Qt.red
+            # self.setStyleSheet(LOW_STYLE)
         self.repaint()
 
     def setCharging(self, state):

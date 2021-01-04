@@ -36,7 +36,7 @@ class MatplotlibWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.fig = plt.figure(figsize=(7, 5), dpi=65, facecolor=(1, 1, 1), edgecolor=(0, 0, 0))
+        self.fig = plt.figure(figsize=(10, 10), dpi=25, facecolor=(1, 1, 1), edgecolor=(0, 0, 0))
 
         self.canvas = FigureCanvas(self.fig)
         self.toolbar = NavigationToolbar(self.canvas, self)
@@ -44,8 +44,6 @@ class MatplotlibWidget(QWidget):
         lay.addWidget(self.toolbar)
         lay.addWidget(self.canvas)
 
-    def update_plot(self):
-        self.canvas.draw()
 
 
 class MainWindow(QMainWindow):#QMainWindow
@@ -54,7 +52,7 @@ class MainWindow(QMainWindow):#QMainWindow
         self.ui = Ui_MainWindow()
         self.setWindowIcon(QtGui.QIcon("AGV.png"))
         self.ui.setupUi(self)
-        # self.add_map_plot()
+        self.add_map_plot()
         self.ui.battery = Battery();
         self.ui.layout_plot_battery.addWidget(self.ui.battery)
         self.backend = Backend(self.ui.log,self.ui.battery)
@@ -164,16 +162,16 @@ class MainWindow(QMainWindow):#QMainWindow
         ########################################################################
         self.show()
         ## ==> END ##
-    # def add_map_plot(self):
-        ##Agrego el canvas de matplotlib que no se puede poner desde qt
-        #self.m=MatplotlibWidget();
-        # self.ui.verlayout_plot_panel = QVBoxLayout(self.ui.plot_frame)
-        # self.ui.verlayout_plot_panel.addWidget(self.m)
+    def add_map_plot(self):
+        #Agrego el canvas de matplotlib que no se puede poner desde qt
+        self.m=MatplotlibWidget();
+        self.ui.verlayout_plot_panel = QVBoxLayout(self.ui.plot_frame)
+        self.ui.verlayout_plot_panel.addWidget(self.m)
 
     def setup_data_analysis(self):
         self.flags_poll_timer = QTimer()
         self.flags_poll_timer.timeout.connect(self.update_interface)
-        self.flags_poll_timer.start(500)
+        self.flags_poll_timer.start(2000)
     def enter_command(self):
         retVal=self.backend.parse_cmd(self.ui.command_entry.text())
         self.ui.command_entry.clear()
@@ -181,8 +179,9 @@ class MainWindow(QMainWindow):#QMainWindow
             self.ui.log.appendPlainText("Invalid Command")
     def update_interface(self):
 
-        # if self.backend.check_for_map_updates():
-        #     self.m.update_plot()
+        if self.backend.check_for_map_updates():
+            self.backend.map.draw_system()
+            self.m.canvas.draw()
         if self.backend.agv_status_dict[1].in_mission:
             self.ui.agv_data_flag_in_mission.setPixmap(QtGui.QPixmap("green-led-on.png"))
         else:
