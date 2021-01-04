@@ -43,7 +43,6 @@ class MainWindow(QMainWindow):#Si crashea cambiar el tiempo de refresco
                               4: self.ui.agv_data_flag_error,
                               5: self.ui.agv_data_flag_waiting_for_continue
                               }
-        ## SET ==> WINDOW TITLE
         self.setWindowTitle('ITBAGV')
         startSize = QSize(1280, 800)
         self.resize(startSize)
