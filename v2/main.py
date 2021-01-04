@@ -13,141 +13,51 @@
 ## https://doc.qt.io/qtforpython/licenses.html
 ##
 ################################################################################
-
 import sys
 import platform
 from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
+from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTimer, QUrl, Qt, QEvent)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
-from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
+from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
-from parse import *
-from MapManager import MapManager
-import re
-import paho.mqtt.client as mqtt
-from AGV_status import AGV_status
 
+from matplotlib.backends.backend_qt5agg import (FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
+
+
+ICON_RED_LED = ":/icons/led-red-on.png"
+ICON_GREEN_LED = ":/icons/green-led-on.png"
 # GUI FILE
 from app_modules import *
+from Backend import Backend
+from Battery import Battery
 
-class Backend:
-    def __init__(self,log,canvas):
-        self.map = MapManager()
-        self.log = log;
-        self.canvas = canvas;
-        # Estructura de comandos aceptados por consola
-        self.command_mapping = {re.compile('(SM) [0-9]*$', re.I): self.start_mission,  # Misión simple
-                                re.compile('(setPos) [0-9]*$', re.I): self.set_position,  # Misión simple
-                                re.compile('[s] [0-9]*$', re.I): self.setVel,
-                                re.compile('(LM) ([HBDN] [0-9]* )*[HBDN]$', re.I): self.start_long_mission,
-                                # Misión larga: LM para indicar misión, luego serie de eventos y nodos a llegar y al final el evento final. B=button, D=delay, H=houston continue N=None
-                                re.compile('[C]$', re.I): self.continueMission
-                                }
-        self.mqttClient = mqtt.Client("Houston")  # create new instance
-        self.mqttClient.on_message = self.parse_msg
-        self.mqttClient.connect("localhost")  # connect to broker
-        self.mqttClient.subscribe("Houston")
-        self.mqttClient.loop_start()
-        self.agv_status_dict = {};  # Status de los AGVs que se conecten
-        self.agv_status_dict[1] = AGV_status(1)  # Para debuggear ya lo dejamos creado al agv1
-        self.map.update_agv_pos(1, 1, 1, 0)
-    def parse_cmd(self,cmd):
-        valid_command = False;
-        self.last_command=cmd
-        for key in self.command_mapping:  # Me fijo todos los formatos que especifiqué de antemano
-            # if parse(key, self.last_command): #formato con parse
-            if key.match(cmd):
-                valid_command = self.command_mapping[key]()
-        return valid_command
-    def parse_msg(self,client, userdata, message): ##Parseo de mensajes de MQTT
-        msg=str(message.payload.decode("utf-8"))
-        AGVn = int((msg.split('\n', 1)[0]).split('V',1)[1])
-        msg = msg.split('\n', 1)[1]  # Me quedo con los datos del agv
-        #self.log.append("AGV " + str(AGVn) + ": " + msg)
-        if msg == "Online":
-            self.agv_status_dict[AGVn] = AGV_status(AGVn)
-            self.update_map()
-            self.log.appendPlainText("AGV " + str(AGVn) + ": " + "Online")
-        elif msg=="Quest step reached":
-            if self.agv_status_dict[AGVn].in_mission:
-                self.agv_status_dict[AGVn].mission_step_reached()
-                self.update_map()
-                self.log.appendPlainText("AGV " + str(AGVn) + ": " + "Step reached")
-            else:
-                print("Error")
-        elif "Status" in msg:
-            self.agv_status_dict[AGVn].distanceTravelled = search("Distance: {:d}", msg)[0]
-            batLevel= float(search("BatVolt: {:d}", msg)[0])/100.0;
-            #self.log.appendPlainText("AGV " + str(AGVn) + ": " + "Battery: " + str(batLevel)+"V")
-            self.update_map()
-    #### Funciones útiles
-    def update_map(self):
-        prev, next, distance = self.agv_status_dict[1].get_agv_pos_nodes()
-        self.map.update_agv_pos(1, prev, next, distance)
-        self.canvas.draw_idle()
-    def gen_mission_block(self, steps, dists): ##Dados los steps y las distancias, genera el texto que lo representa para enviar por mqtt
-        mission = "Bs" #Block start
-        for i in range(int(len(steps)/2)):
-            mission += dists[i] + steps[(i*2):(i*2+2)]; #Pone por ejemplo 11Fr14Sl1
-        mission += "Be" #Block end
-        return mission
-    def IBECharToString(self, char):
-        dict= {'B':"Button",'H':"Houston",'D':"Delay",'N':"None"}
-        return dict[char.upper()]
-    def IBECharToMQTTFormat(self, char):
-        dict= {'B':"Bp",'H':"Hc",'D':"De",'N':"No"}
-        return dict[char.upper()]
-    #### Funciones llamadas por comandos ###
-    def setVel(self):
-        res = parse("S {:d} {:d}", self.last_command)
-        msg_to_send = "Fixed speed\n" + str(res[0])+ " " + str(res[1]);
-        self.mqttClient.publish("AGV1",msg_to_send)
-        return True;
-    def set_position(self):
-        res = parse("SetPos {:d}", self.last_command)
-        self.agv_status_dict[1].set_pos( res[0])
-        self.update_map()
-        return True;
-    def start_mission(self):
-        res = search("SM {:d}", self.last_command)
-        steps_str,node_path,dist_list = self.map.get_path(self.agv_status_dict[1].in_node, res[0])
-        msg_to_send= "Quest?\n" + "No"+self.gen_mission_block(steps_str, dist_list)+"No"
-        self.agv_status_dict[1].new_mission([node_path],[dist_list], ["None", "None"]) #Las IBE son none por ser una misión simple
-        self.mqttClient.publish("AGV1", msg_to_send)
-        self.log.appendPlainText("New mission:" + steps_str)
-        return True;
-    def start_long_mission(self):
-        IBE = re.findall("[HhBbNnDd]", self.last_command)                   ##Letras que indican IBE
-        node_obj=list(map(int,re.findall(" [0-9]* ",self.last_command))) ##Lista con todos los nodos finales de bloques en formato int
-        prev_node=self.agv_status_dict[1].in_node ##Variables que voy a usar en el loop. Este nodo es donde parte el agv.
-        node_path_list =[]; path_dists_list = [];
-        msg_to_send = self.IBECharToMQTTFormat(IBE[0])
-        for n_block in range(len(node_obj)): ##Para cada bloque
-            steps_str, node_path, path_dists = self.map.get_path(prev_node, node_obj[n_block]) #Obtiene el camino más corto y guarda en las listas correspondientes
-            node_path_list.append(node_path);path_dists_list.append(path_dists)
-            msg_to_send += self.gen_mission_block(steps_str, path_dists)+self.IBECharToMQTTFormat(IBE[n_block+1]) #Pasa el camino del grafo al formato de internet, cierra el bloque y agrega el texto del IBE que va en el msg
-            prev_node=node_obj[n_block]
-        IBE_list = [self.IBECharToString(i) for i in IBE]               ##Se pasan letras que significan IBE a palabras para la lógica de misión
-        self.agv_status_dict[1].new_mission(node_path_list, path_dists_list,IBE_list)  # Las IBE son none por ser una misión simple
-        self.mqttClient.publish("AGV1", "Quest?\n" +msg_to_send)
-        self.log.appendPlainText("New mission: " + msg_to_send)
-        return True;
-    def continueMission(self):
-        self.mqttClient.publish("AGV1", "Continue")
-        self.agv_status_dict[1].continue_mission()
-        return True;
+class MatplotlibWidget(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        self.fig = plt.figure(figsize=(10, 10), dpi=25, facecolor=(1, 1, 1), edgecolor=(0, 0, 0))
+
+        self.canvas = FigureCanvas(self.fig)
+        self.toolbar = NavigationToolbar(self.canvas, self)
+        lay = QVBoxLayout(self)
+        lay.addWidget(self.toolbar)
+        lay.addWidget(self.canvas)
 
 
-class MainWindow(QMainWindow):
+
+class MainWindow(QMainWindow):#QMainWindow
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.setWindowIcon(QtGui.QIcon("AGV.png"))
         self.ui.setupUi(self)
         self.add_map_plot()
-        self.backend = Backend(self.ui.log,self.ui.canvas)
+        self.ui.battery = Battery();
+        self.ui.layout_plot_battery.addWidget(self.ui.battery)
+        self.backend = Backend(self.ui.log,self.ui.battery)
         self.ui.command_entry.editingFinished.connect(self.enter_command)
+        self.setup_data_analysis()
         ########################################################################
         ## START - WINDOW ATTRIBUTES
         ########################################################################
@@ -163,9 +73,9 @@ class MainWindow(QMainWindow):
         ## ==> END ##
 
         ## WINDOW SIZE ==> DEFAULT SIZE
-        startSize = QSize(1000, 720)
-        self.resize(startSize)
-        self.setMinimumSize(startSize)
+        # startSize = QSize(1500, 1100)
+        # self.resize(startSize)
+        # self.setMinimumSize(startSize)
         # UIFunctions.enableMaximumSize(self, 500, 720)
         ## ==> END ##
 
@@ -253,22 +163,29 @@ class MainWindow(QMainWindow):
         self.show()
         ## ==> END ##
     def add_map_plot(self):
-        ##Agrego el canvas de matplotlib que no se puede poner desde qt
-        self.ui.figure = plt.figure()
-        self.ui.canvas = FigureCanvas(self.ui.figure)
-        self.ui.canvas.draw_idle()
+        #Agrego el canvas de matplotlib que no se puede poner desde qt
+        self.m=MatplotlibWidget();
         self.ui.verlayout_plot_panel = QVBoxLayout(self.ui.plot_frame)
-        self.ui.nt = NavigationToolbar(self.ui.canvas, self)
-        self.ui.nt.setMaximumSize(QSize(16777215, 65))
-        self.ui.verlayout_plot_panel.addWidget(self.ui.nt)
-        self.ui.verlayout_plot_panel.addWidget(self.ui.canvas)
-        self.ui.canvas.draw_idle()
+        self.ui.verlayout_plot_panel.addWidget(self.m)
 
+    def setup_data_analysis(self):
+        self.flags_poll_timer = QTimer()
+        self.flags_poll_timer.timeout.connect(self.update_interface)
+        self.flags_poll_timer.start(2000)
     def enter_command(self):
         retVal=self.backend.parse_cmd(self.ui.command_entry.text())
         self.ui.command_entry.clear()
-        if  retVal == False: #Si no se reconoció ningun comando, se comunica.
+        if  retVal == False: #Si no se reconocio ningun comando, se comunica.
             self.ui.log.appendPlainText("Invalid Command")
+    def update_interface(self):
+
+        if self.backend.check_for_map_updates():
+            self.backend.map.draw_system()
+            self.m.canvas.draw()
+        if self.backend.agv_status_dict[1].in_mission:
+            self.ui.agv_data_flag_in_mission.setPixmap(QtGui.QPixmap("green-led-on.png"))
+        else:
+            self.ui.agv_data_flag_in_mission.setPixmap(QtGui.QPixmap("led-red-on.png"))
     ########################################################################
     ## MENUS ==> DYNAMIC MENUS FUNCTIONS
     ########################################################################
@@ -338,19 +255,4 @@ if __name__ == "__main__":
     QtGui.QFontDatabase.addApplicationFont('fonts/segoeui.ttf')
     QtGui.QFontDatabase.addApplicationFont('fonts/segoeuib.ttf')
     window = MainWindow()
-    # sys._excepthook = sys.excepthook
-    # def my_exception_hook(exctype, value, traceback):
-    #     # Print the error and traceback
-    #     print(exctype, value, traceback)
-    #     # Call the normal Exception hook after
-    #     sys._excepthook(exctype, value, traceback)
-    #     sys.exit(1)
-    #
-    #
-    # # Set the exception hook to our wrapping function
-    # sys.excepthook = my_exception_hook
-    # try:
-    #     sys.exit(app.exec_())
-    # except:
-    #     print("Exiting")
     sys.exit(app.exec_())

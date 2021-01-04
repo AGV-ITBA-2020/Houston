@@ -423,4 +423,9 @@
     <file>icons/20x20/cil-zoom-in.png</file>
     <file>icons/20x20/cil-zoom-out.png</file>
   </qresource>
+  <qresource prefix="Others">
+    <file>icons/Others/AGV.png</file>
+    <file>icons/green-led-on.png</file>
+    <file>icons/led-red-on.png</file>
+  </qresource>
 </RCC>

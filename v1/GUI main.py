@@ -8,6 +8,7 @@ import paho.mqtt.client as mqtt
 from AGV_status import AGV_status
 import re
 
+
 class ApplicationWindow(QtWidgets.QMainWindow):
     def __init__(self): #Crea todo lo de la GUI
         super().__init__()
