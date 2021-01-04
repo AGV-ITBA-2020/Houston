@@ -99,7 +99,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap>icons/led-red-on.png</pixmap>
+                 <pixmap>icons/16x16/cil-comment-bubble.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -178,7 +178,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap>icons/led-red-on.png</pixmap>
+                 <pixmap>icons/16x16/cil-map.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -260,7 +260,7 @@
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap>icons/led-red-on.png</pixmap>
+                 <pixmap>icons/Others/AGV.png</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -694,7 +694,7 @@
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap>icons/led-red-on.png</pixmap>
+              <pixmap>icons/16x16/cil-terminal.png</pixmap>
              </property>
              <property name="scaledContents">
               <bool>true</bool>

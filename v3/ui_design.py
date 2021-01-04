@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'designYlXMkk.ui'
+## Form generated from reading UI file 'designrWxSEP.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
         self.icon_log = QLabel(self.frame_9)
         self.icon_log.setObjectName(u"icon_log")
         self.icon_log.setMaximumSize(QSize(12, 12))
-        self.icon_log.setPixmap(QPixmap(u"icons/led-red-on.png"))
+        self.icon_log.setPixmap(QPixmap(u"icons/16x16/cil-comment-bubble.png"))
         self.icon_log.setScaledContents(True)
 
         self.horizontalLayout_2.addWidget(self.icon_log)
@@ -99,7 +99,7 @@ class Ui_MainWindow(object):
         self.icon_log_4 = QLabel(self.frame_13)
         self.icon_log_4.setObjectName(u"icon_log_4")
         self.icon_log_4.setMaximumSize(QSize(12, 12))
-        self.icon_log_4.setPixmap(QPixmap(u"icons/led-red-on.png"))
+        self.icon_log_4.setPixmap(QPixmap(u"icons/16x16/cil-map.png"))
         self.icon_log_4.setScaledContents(True)
 
         self.horizontalLayout_5.addWidget(self.icon_log_4)
@@ -141,7 +141,7 @@ class Ui_MainWindow(object):
         self.icon_log_3 = QLabel(self.frame_12)
         self.icon_log_3.setObjectName(u"icon_log_3")
         self.icon_log_3.setMaximumSize(QSize(12, 12))
-        self.icon_log_3.setPixmap(QPixmap(u"icons/led-red-on.png"))
+        self.icon_log_3.setPixmap(QPixmap(u"icons/Others/AGV.png"))
         self.icon_log_3.setScaledContents(True)
 
         self.horizontalLayout_4.addWidget(self.icon_log_3)
@@ -353,7 +353,7 @@ class Ui_MainWindow(object):
         self.icon_log_2 = QLabel(self.frame_11)
         self.icon_log_2.setObjectName(u"icon_log_2")
         self.icon_log_2.setMaximumSize(QSize(12, 12))
-        self.icon_log_2.setPixmap(QPixmap(u"icons/led-red-on.png"))
+        self.icon_log_2.setPixmap(QPixmap(u"icons/16x16/cil-terminal.png"))
         self.icon_log_2.setScaledContents(True)
 
         self.horizontalLayout_3.addWidget(self.icon_log_2)
