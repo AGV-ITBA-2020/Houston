@@ -73,64 +73,1947 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QFrame" name="frame_9">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>40</height>
-              </size>
+            <widget class="QStackedWidget" name="stackedWidget">
+             <property name="currentIndex">
+              <number>1</number>
              </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
-              <item>
-               <widget class="QLabel" name="icon_log">
-                <property name="maximumSize">
-                 <size>
-                  <width>12</width>
-                  <height>12</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap>icons/16x16/cil-comment-bubble.png</pixmap>
-                </property>
-                <property name="scaledContents">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="title_log">
-                <property name="font">
-                 <font>
-                  <pointsize>10</pointsize>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color: rgb(255, 255, 255);</string>
-                </property>
-                <property name="text">
-                 <string>Log</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QTextEdit" name="log">
-             <property name="readOnly">
-              <bool>true</bool>
-             </property>
+             <widget class="QWidget" name="log_page">
+              <widget class="QFrame" name="frame_2">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>-10</y>
+                 <width>280</width>
+                 <height>391</height>
+                </rect>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_2">
+                <item>
+                 <widget class="QFrame" name="frame_9">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_2">
+                   <item>
+                    <widget class="QLabel" name="icon_log">
+                     <property name="maximumSize">
+                      <size>
+                       <width>12</width>
+                       <height>12</height>
+                      </size>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="pixmap">
+                      <pixmap>icons/16x16/cil-comment-bubble.png</pixmap>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="title_log">
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                     <property name="text">
+                      <string>Log</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="but_back_to_missions">
+                     <property name="maximumSize">
+                      <size>
+                       <width>25</width>
+                       <height>25</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset>
+                       <normaloff>icons/16x16/cil-screen-desktop.png</normaloff>icons/16x16/cil-screen-desktop.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTextEdit" name="log">
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+             <widget class="QWidget" name="main_buttons_page">
+              <widget class="QFrame" name="frame_3">
+               <property name="geometry">
+                <rect>
+                 <x>-10</x>
+                 <y>-10</y>
+                 <width>291</width>
+                 <height>741</height>
+                </rect>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_7">
+                <item>
+                 <widget class="QFrame" name="frame_20">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_12">
+                   <item>
+                    <widget class="QLabel" name="icon_log_5">
+                     <property name="maximumSize">
+                      <size>
+                       <width>12</width>
+                       <height>12</height>
+                      </size>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="pixmap">
+                      <pixmap>icons/16x16/cil-screen-desktop.png</pixmap>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="title_log_11">
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                     <property name="text">
+                      <string>Houston actions</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="but_select_log">
+                     <property name="maximumSize">
+                      <size>
+                       <width>25</width>
+                       <height>25</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset>
+                       <normaloff>icons/16x16/cil-chat-bubble.png</normaloff>icons/16x16/cil-chat-bubble.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_4">
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <widget class="QPushButton" name="but_reset">
+                   <property name="geometry">
+                    <rect>
+                     <x>90</x>
+                     <y>610</y>
+                     <width>60</width>
+                     <height>24</height>
+                    </rect>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>60</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Reset</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>icons/16x16/cil-power-standby.png</normaloff>icons/16x16/cil-power-standby.png</iconset>
+                   </property>
+                  </widget>
+                  <widget class="QPushButton" name="but_pause_or_continue">
+                   <property name="geometry">
+                    <rect>
+                     <x>60</x>
+                     <y>110</y>
+                     <width>121</width>
+                     <height>24</height>
+                    </rect>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}
+QPushButton:disabled {
+	background-color: rgb(179, 179, 179);
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Pause mission</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>icons/16x16/cil-media-pause.png</normaloff>icons/16x16/cil-media-pause.png</iconset>
+                   </property>
+                  </widget>
+                  <widget class="QPushButton" name="but_new_mission">
+                   <property name="geometry">
+                    <rect>
+                     <x>50</x>
+                     <y>40</y>
+                     <width>141</width>
+                     <height>21</height>
+                    </rect>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Start new mission</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>icons/16x16/cil-media-play.png</normaloff>icons/16x16/cil-media-play.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>20</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </widget>
+                  <widget class="QPushButton" name="but_abort_mission">
+                   <property name="geometry">
+                    <rect>
+                     <x>60</x>
+                     <y>180</y>
+                     <width>121</width>
+                     <height>24</height>
+                    </rect>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Abort mission</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>icons/16x16/cil-media-stop.png</normaloff>icons/16x16/cil-media-stop.png</iconset>
+                   </property>
+                  </widget>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+             <widget class="QWidget" name="mission_page">
+              <widget class="QFrame" name="frame_5">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>-10</y>
+                 <width>274</width>
+                 <height>736</height>
+                </rect>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_8">
+                <item>
+                 <widget class="QFrame" name="frame_21">
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>50</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_13">
+                   <item>
+                    <widget class="QLabel" name="icon_log_6">
+                     <property name="maximumSize">
+                      <size>
+                       <width>12</width>
+                       <height>12</height>
+                      </size>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="pixmap">
+                      <pixmap>icons/16x16/cil-screen-desktop.png</pixmap>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="title_log_12">
+                     <property name="font">
+                      <font>
+                       <pointsize>10</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(255, 255, 255);</string>
+                     </property>
+                     <property name="text">
+                      <string>New mission</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_7">
+                  <property name="minimumSize">
+                   <size>
+                    <width>250</width>
+                    <height>660</height>
+                   </size>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_9">
+                   <item>
+                    <widget class="QFrame" name="frame_10">
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_10">
+                      <item>
+                       <widget class="QFrame" name="frame_11">
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>50</height>
+                         </size>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_3">
+                         <item>
+                          <widget class="QLabel" name="label">
+                           <property name="text">
+                            <string>Initial IBE</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QComboBox" name="IBE_1">
+                           <property name="font">
+                            <font>
+                             <strikeout>false</strikeout>
+                            </font>
+                           </property>
+                           <property name="mouseTracking">
+                            <bool>false</bool>
+                           </property>
+                           <property name="autoFillBackground">
+                            <bool>true</bool>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                           </property>
+                           <property name="currentText">
+                            <string>None</string>
+                           </property>
+                           <property name="currentIndex">
+                            <number>0</number>
+                           </property>
+                           <property name="maxVisibleItems">
+                            <number>4</number>
+                           </property>
+                           <property name="frame">
+                            <bool>true</bool>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>None</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Button</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Houston</string>
+                            </property>
+                           </item>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QFrame" name="frame_22">
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QVBoxLayout" name="verticalLayout_11">
+                         <item>
+                          <widget class="QFrame" name="frame_24">
+                           <property name="minimumSize">
+                            <size>
+                             <width>0</width>
+                             <height>50</height>
+                            </size>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::StyledPanel</enum>
+                           </property>
+                           <property name="frameShadow">
+                            <enum>QFrame::Raised</enum>
+                           </property>
+                           <widget class="QLabel" name="label_3">
+                            <property name="geometry">
+                             <rect>
+                              <x>10</x>
+                              <y>20</y>
+                              <width>55</width>
+                              <height>16</height>
+                             </rect>
+                            </property>
+                            <property name="text">
+                             <string>Blocks</string>
+                            </property>
+                           </widget>
+                           <widget class="QPushButton" name="but_new_mission_steps">
+                            <property name="geometry">
+                             <rect>
+                              <x>110</x>
+                              <y>10</y>
+                              <width>25</width>
+                              <height>24</height>
+                             </rect>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="icon">
+                             <iconset>
+                              <normaloff>icons/16x16/cil-plus.png</normaloff>icons/16x16/cil-plus.png</iconset>
+                            </property>
+                           </widget>
+                           <widget class="QPushButton" name="but_rmv_mission_block">
+                            <property name="geometry">
+                             <rect>
+                              <x>140</x>
+                              <y>10</y>
+                              <width>25</width>
+                              <height>24</height>
+                             </rect>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="icon">
+                             <iconset>
+                              <normaloff>icons/16x16/cil-minus.png</normaloff>icons/16x16/cil-minus.png</iconset>
+                            </property>
+                           </widget>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QFrame" name="frame_23">
+                           <property name="frameShape">
+                            <enum>QFrame::StyledPanel</enum>
+                           </property>
+                           <property name="frameShadow">
+                            <enum>QFrame::Raised</enum>
+                           </property>
+                           <layout class="QFormLayout" name="formLayout">
+                            <item row="0" column="0">
+                             <widget class="QLabel" name="label_4">
+                              <property name="text">
+                               <string>To node:</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="0" column="1">
+                             <widget class="QLabel" name="label_5">
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>20</height>
+                               </size>
+                              </property>
+                              <property name="text">
+                               <string>IBE:</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="1" column="0">
+                             <widget class="QComboBox" name="dest_1">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string/>
+                              </property>
+                              <property name="currentIndex">
+                               <number>-1</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="1" column="1">
+                             <widget class="QComboBox" name="IBE_2">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string>None</string>
+                              </property>
+                              <property name="currentIndex">
+                               <number>0</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>None</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Button</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Houston</string>
+                               </property>
+                              </item>
+                             </widget>
+                            </item>
+                            <item row="2" column="0">
+                             <widget class="QComboBox" name="dest_2">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string/>
+                              </property>
+                              <property name="currentIndex">
+                               <number>-1</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="2" column="1">
+                             <widget class="QComboBox" name="IBE_3">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string>None</string>
+                              </property>
+                              <property name="currentIndex">
+                               <number>0</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>None</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Button</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Houston</string>
+                               </property>
+                              </item>
+                             </widget>
+                            </item>
+                            <item row="3" column="0">
+                             <widget class="QComboBox" name="dest_3">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string/>
+                              </property>
+                              <property name="currentIndex">
+                               <number>-1</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="3" column="1">
+                             <widget class="QComboBox" name="IBE_4">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string>None</string>
+                              </property>
+                              <property name="currentIndex">
+                               <number>0</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>None</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Button</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Houston</string>
+                               </property>
+                              </item>
+                             </widget>
+                            </item>
+                            <item row="4" column="0">
+                             <widget class="QComboBox" name="dest_4">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string/>
+                              </property>
+                              <property name="currentIndex">
+                               <number>-1</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="4" column="1">
+                             <widget class="QComboBox" name="IBE_5">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string>None</string>
+                              </property>
+                              <property name="currentIndex">
+                               <number>0</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>None</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Button</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Houston</string>
+                               </property>
+                              </item>
+                             </widget>
+                            </item>
+                            <item row="5" column="0">
+                             <widget class="QComboBox" name="dest_5">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string/>
+                              </property>
+                              <property name="currentIndex">
+                               <number>-1</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="5" column="1">
+                             <widget class="QComboBox" name="IBE_6">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string>None</string>
+                              </property>
+                              <property name="currentIndex">
+                               <number>0</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>None</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Button</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Houston</string>
+                               </property>
+                              </item>
+                             </widget>
+                            </item>
+                            <item row="6" column="0">
+                             <widget class="QComboBox" name="dest_6">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string/>
+                              </property>
+                              <property name="currentIndex">
+                               <number>-1</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="6" column="1">
+                             <widget class="QComboBox" name="IBE_7">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string>None</string>
+                              </property>
+                              <property name="currentIndex">
+                               <number>0</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>None</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Button</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Houston</string>
+                               </property>
+                              </item>
+                             </widget>
+                            </item>
+                            <item row="7" column="0">
+                             <widget class="QComboBox" name="dest_7">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string/>
+                              </property>
+                              <property name="currentIndex">
+                               <number>-1</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="7" column="1">
+                             <widget class="QComboBox" name="IBE_8">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string>None</string>
+                              </property>
+                              <property name="currentIndex">
+                               <number>0</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>None</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Button</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Houston</string>
+                               </property>
+                              </item>
+                             </widget>
+                            </item>
+                            <item row="8" column="0">
+                             <widget class="QComboBox" name="dest_8">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string/>
+                              </property>
+                              <property name="currentIndex">
+                               <number>-1</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="8" column="1">
+                             <widget class="QComboBox" name="IBE_9">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string>None</string>
+                              </property>
+                              <property name="currentIndex">
+                               <number>0</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>None</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Button</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Houston</string>
+                               </property>
+                              </item>
+                             </widget>
+                            </item>
+                            <item row="9" column="0">
+                             <widget class="QComboBox" name="dest_9">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string/>
+                              </property>
+                              <property name="currentIndex">
+                               <number>-1</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="9" column="1">
+                             <widget class="QComboBox" name="IBE_10">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string>None</string>
+                              </property>
+                              <property name="currentIndex">
+                               <number>0</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>None</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Button</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Houston</string>
+                               </property>
+                              </item>
+                             </widget>
+                            </item>
+                            <item row="10" column="0">
+                             <widget class="QComboBox" name="dest_10">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string/>
+                              </property>
+                              <property name="currentIndex">
+                               <number>-1</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="10" column="1">
+                             <widget class="QComboBox" name="IBE_11">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string>None</string>
+                              </property>
+                              <property name="currentIndex">
+                               <number>0</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>None</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Button</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Houston</string>
+                               </property>
+                              </item>
+                             </widget>
+                            </item>
+                            <item row="11" column="0">
+                             <widget class="QComboBox" name="dest_11">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string/>
+                              </property>
+                              <property name="currentIndex">
+                               <number>-1</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="11" column="1">
+                             <widget class="QComboBox" name="IBE_12">
+                              <property name="font">
+                               <font>
+                                <strikeout>false</strikeout>
+                               </font>
+                              </property>
+                              <property name="mouseTracking">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox QAbstractItemView {
+	color: rgb(85, 170, 255);	
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}</string>
+                              </property>
+                              <property name="currentText">
+                               <string>None</string>
+                              </property>
+                              <property name="currentIndex">
+                               <number>0</number>
+                              </property>
+                              <property name="maxVisibleItems">
+                               <number>4</number>
+                              </property>
+                              <property name="frame">
+                               <bool>true</bool>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>None</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Button</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>Houston</string>
+                               </property>
+                              </item>
+                             </widget>
+                            </item>
+                           </layout>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="new_mission_button_frame">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>100</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>100</height>
+                      </size>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <widget class="QPushButton" name="but_send_mission">
+                      <property name="geometry">
+                       <rect>
+                        <x>40</x>
+                        <y>30</y>
+                        <width>141</width>
+                        <height>21</height>
+                       </rect>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}</string>
+                      </property>
+                      <property name="text">
+                       <string>Send Mission</string>
+                      </property>
+                      <property name="icon">
+                       <iconset>
+                        <normaloff>icons/16x16/cil-media-play.png</normaloff>icons/16x16/cil-media-play.png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </widget>
+                     <widget class="QPushButton" name="but_cancel_new_mission">
+                      <property name="geometry">
+                       <rect>
+                        <x>80</x>
+                        <y>60</y>
+                        <width>60</width>
+                        <height>24</height>
+                       </rect>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>60</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}</string>
+                      </property>
+                      <property name="text">
+                       <string>Cancel</string>
+                      </property>
+                      <property name="icon">
+                       <iconset>
+                        <normaloff>icons/16x16/cil-x.png</normaloff>icons/16x16/cil-x.png</iconset>
+                      </property>
+                     </widget>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
             </widget>
            </item>
           </layout>
@@ -156,7 +2039,7 @@
              <property name="maximumSize">
               <size>
                <width>16777215</width>
-               <height>40</height>
+               <height>50</height>
               </size>
              </property>
              <property name="frameShape">
@@ -235,10 +2118,16 @@
           <layout class="QVBoxLayout" name="verticalLayout_5">
            <item>
             <widget class="QFrame" name="frame_12">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
              <property name="maximumSize">
               <size>
                <width>16777215</width>
-               <height>40</height>
+               <height>50</height>
               </size>
              </property>
              <property name="frameShape">
@@ -620,11 +2509,30 @@
                 </layout>
                </widget>
               </item>
+              <item>
+               <spacer name="verticalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
              </layout>
             </widget>
            </item>
            <item>
             <widget class="QFrame" name="frame_8">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>120</height>
+              </size>
+             </property>
              <property name="maximumSize">
               <size>
                <width>16777215</width>
@@ -641,91 +2549,6 @@
             </widget>
            </item>
           </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QFrame" name="frame_command">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>100</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QFrame" name="frame_11">
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>40</height>
-           </size>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <item>
-            <widget class="QLabel" name="icon_log_2">
-             <property name="maximumSize">
-              <size>
-               <width>12</width>
-               <height>12</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="pixmap">
-              <pixmap>icons/16x16/cil-terminal.png</pixmap>
-             </property>
-             <property name="scaledContents">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="title_command">
-             <property name="font">
-              <font>
-               <pointsize>10</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);</string>
-             </property>
-             <property name="text">
-              <string>Command Line</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="command_entry">
-          <property name="placeholderText">
-           <string>Command to send...</string>
-          </property>
          </widget>
         </item>
        </layout>
