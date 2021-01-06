@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'designFHPlKr.ui'
+## Form generated from reading UI file 'designrRtyKo.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1280, 800)
+        MainWindow.resize(1284, 809)
         MainWindow.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -32,6 +32,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.frame_info = QFrame(self.frame)
         self.frame_info.setObjectName(u"frame_info")
+        self.frame_info.setEnabled(True)
         self.frame_info.setFrameShape(QFrame.StyledPanel)
         self.frame_info.setFrameShadow(QFrame.Raised)
         self.horizontalLayout = QHBoxLayout(self.frame_info)
@@ -217,6 +218,7 @@ class Ui_MainWindow(object):
 "}\n"
 "QPushButton:disabled {\n"
 "	background-color: rgb(179, 179, 179);\n"
+"	border: 2px solid rgb(179, 179, 179);\n"
 "}")
         icon3 = QIcon()
         icon3.addFile(u"icons/16x16/cil-media-pause.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -238,6 +240,10 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgb(35, 40, 49);\n"
 "	border: 2px solid rgb(43, 50, 61);\n"
+"}\n"
+"QPushButton:disabled {\n"
+"	background-color: rgb(179, 179, 179);\n"
+"	border: 2px solid rgb(179, 179, 179);\n"
 "}")
         icon4 = QIcon()
         icon4.addFile(u"icons/16x16/cil-media-play.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -260,6 +266,10 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgb(35, 40, 49);\n"
 "	border: 2px solid rgb(43, 50, 61);\n"
+"}\n"
+"QPushButton:disabled {\n"
+"	background-color: rgb(179, 179, 179);\n"
+"	border: 2px solid rgb(179, 179, 179);\n"
 "}")
         icon5 = QIcon()
         icon5.addFile(u"icons/16x16/cil-media-stop.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -272,7 +282,7 @@ class Ui_MainWindow(object):
         self.mission_page.setObjectName(u"mission_page")
         self.frame_5 = QFrame(self.mission_page)
         self.frame_5.setObjectName(u"frame_5")
-        self.frame_5.setGeometry(QRect(0, -10, 274, 736))
+        self.frame_5.setGeometry(QRect(0, -10, 274, 731))
         self.frame_5.setFrameShape(QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QFrame.Raised)
         self.verticalLayout_8 = QVBoxLayout(self.frame_5)
@@ -392,6 +402,10 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgb(35, 40, 49);\n"
 "	border: 2px solid rgb(43, 50, 61);\n"
+"}\n"
+"QPushButton:disabled {\n"
+"	background-color: rgb(179, 179, 179);\n"
+"	border: 2px solid rgb(179, 179, 179);\n"
 "}")
         icon6 = QIcon()
         icon6.addFile(u"icons/16x16/cil-plus.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -413,32 +427,29 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgb(35, 40, 49);\n"
 "	border: 2px solid rgb(43, 50, 61);\n"
+"}\n"
+"QPushButton:disabled {\n"
+"	background-color: rgb(179, 179, 179);\n"
+"	border: 2px solid rgb(179, 179, 179);\n"
 "}")
         icon7 = QIcon()
         icon7.addFile(u"icons/16x16/cil-minus.png", QSize(), QIcon.Normal, QIcon.Off)
         self.but_rmv_mission_block.setIcon(icon7)
-
-        self.verticalLayout_11.addWidget(self.frame_24)
-
-        self.frame_23 = QFrame(self.frame_22)
-        self.frame_23.setObjectName(u"frame_23")
-        self.frame_23.setFrameShape(QFrame.StyledPanel)
-        self.frame_23.setFrameShadow(QFrame.Raised)
-        self.formLayout = QFormLayout(self.frame_23)
-        self.formLayout.setObjectName(u"formLayout")
-        self.label_4 = QLabel(self.frame_23)
-        self.label_4.setObjectName(u"label_4")
-
-        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_4)
-
-        self.label_5 = QLabel(self.frame_23)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setMaximumSize(QSize(16777215, 20))
-
-        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.label_5)
-
-        self.dest_1 = QComboBox(self.frame_23)
+        self.frame_26 = QFrame(self.frame_24)
+        self.frame_26.setObjectName(u"frame_26")
+        self.frame_26.setGeometry(QRect(0, 50, 171, 371))
+        self.frame_26.setFrameShape(QFrame.StyledPanel)
+        self.frame_26.setFrameShadow(QFrame.Raised)
+        self.label_8 = QLabel(self.frame_26)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setGeometry(QRect(12, 12, 52, 16))
+        self.label_9 = QLabel(self.frame_26)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setGeometry(QRect(71, 12, 23, 16))
+        self.label_9.setMaximumSize(QSize(16777215, 20))
+        self.dest_1 = QComboBox(self.frame_26)
         self.dest_1.setObjectName(u"dest_1")
+        self.dest_1.setGeometry(QRect(12, 35, 52, 23))
         self.dest_1.setFont(font1)
         self.dest_1.setMouseTracking(False)
         self.dest_1.setStyleSheet(u"QComboBox{\n"
@@ -459,14 +470,12 @@ class Ui_MainWindow(object):
 "}")
         self.dest_1.setMaxVisibleItems(4)
         self.dest_1.setFrame(True)
-
-        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.dest_1)
-
-        self.IBE_2 = QComboBox(self.frame_23)
+        self.IBE_2 = QComboBox(self.frame_26)
         self.IBE_2.addItem("")
         self.IBE_2.addItem("")
         self.IBE_2.addItem("")
         self.IBE_2.setObjectName(u"IBE_2")
+        self.IBE_2.setGeometry(QRect(71, 35, 95, 23))
         self.IBE_2.setFont(font1)
         self.IBE_2.setMouseTracking(False)
         self.IBE_2.setStyleSheet(u"QComboBox{\n"
@@ -487,11 +496,9 @@ class Ui_MainWindow(object):
 "}")
         self.IBE_2.setMaxVisibleItems(4)
         self.IBE_2.setFrame(True)
-
-        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.IBE_2)
-
-        self.dest_2 = QComboBox(self.frame_23)
+        self.dest_2 = QComboBox(self.frame_26)
         self.dest_2.setObjectName(u"dest_2")
+        self.dest_2.setGeometry(QRect(12, 65, 52, 22))
         self.dest_2.setFont(font1)
         self.dest_2.setMouseTracking(False)
         self.dest_2.setStyleSheet(u"QComboBox{\n"
@@ -512,14 +519,12 @@ class Ui_MainWindow(object):
 "}")
         self.dest_2.setMaxVisibleItems(4)
         self.dest_2.setFrame(True)
-
-        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.dest_2)
-
-        self.IBE_3 = QComboBox(self.frame_23)
+        self.IBE_3 = QComboBox(self.frame_26)
         self.IBE_3.addItem("")
         self.IBE_3.addItem("")
         self.IBE_3.addItem("")
         self.IBE_3.setObjectName(u"IBE_3")
+        self.IBE_3.setGeometry(QRect(71, 65, 95, 22))
         self.IBE_3.setFont(font1)
         self.IBE_3.setMouseTracking(False)
         self.IBE_3.setStyleSheet(u"QComboBox{\n"
@@ -540,11 +545,9 @@ class Ui_MainWindow(object):
 "}")
         self.IBE_3.setMaxVisibleItems(4)
         self.IBE_3.setFrame(True)
-
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.IBE_3)
-
-        self.dest_3 = QComboBox(self.frame_23)
+        self.dest_3 = QComboBox(self.frame_26)
         self.dest_3.setObjectName(u"dest_3")
+        self.dest_3.setGeometry(QRect(12, 94, 52, 23))
         self.dest_3.setFont(font1)
         self.dest_3.setMouseTracking(False)
         self.dest_3.setStyleSheet(u"QComboBox{\n"
@@ -565,14 +568,12 @@ class Ui_MainWindow(object):
 "}")
         self.dest_3.setMaxVisibleItems(4)
         self.dest_3.setFrame(True)
-
-        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.dest_3)
-
-        self.IBE_4 = QComboBox(self.frame_23)
+        self.IBE_4 = QComboBox(self.frame_26)
         self.IBE_4.addItem("")
         self.IBE_4.addItem("")
         self.IBE_4.addItem("")
         self.IBE_4.setObjectName(u"IBE_4")
+        self.IBE_4.setGeometry(QRect(71, 94, 95, 23))
         self.IBE_4.setFont(font1)
         self.IBE_4.setMouseTracking(False)
         self.IBE_4.setStyleSheet(u"QComboBox{\n"
@@ -593,11 +594,9 @@ class Ui_MainWindow(object):
 "}")
         self.IBE_4.setMaxVisibleItems(4)
         self.IBE_4.setFrame(True)
-
-        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.IBE_4)
-
-        self.dest_4 = QComboBox(self.frame_23)
+        self.dest_4 = QComboBox(self.frame_26)
         self.dest_4.setObjectName(u"dest_4")
+        self.dest_4.setGeometry(QRect(12, 124, 52, 23))
         self.dest_4.setFont(font1)
         self.dest_4.setMouseTracking(False)
         self.dest_4.setStyleSheet(u"QComboBox{\n"
@@ -618,14 +617,12 @@ class Ui_MainWindow(object):
 "}")
         self.dest_4.setMaxVisibleItems(4)
         self.dest_4.setFrame(True)
-
-        self.formLayout.setWidget(4, QFormLayout.LabelRole, self.dest_4)
-
-        self.IBE_5 = QComboBox(self.frame_23)
+        self.IBE_5 = QComboBox(self.frame_26)
         self.IBE_5.addItem("")
         self.IBE_5.addItem("")
         self.IBE_5.addItem("")
         self.IBE_5.setObjectName(u"IBE_5")
+        self.IBE_5.setGeometry(QRect(71, 124, 95, 23))
         self.IBE_5.setFont(font1)
         self.IBE_5.setMouseTracking(False)
         self.IBE_5.setStyleSheet(u"QComboBox{\n"
@@ -646,11 +643,9 @@ class Ui_MainWindow(object):
 "}")
         self.IBE_5.setMaxVisibleItems(4)
         self.IBE_5.setFrame(True)
-
-        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.IBE_5)
-
-        self.dest_5 = QComboBox(self.frame_23)
+        self.dest_5 = QComboBox(self.frame_26)
         self.dest_5.setObjectName(u"dest_5")
+        self.dest_5.setGeometry(QRect(12, 154, 52, 23))
         self.dest_5.setFont(font1)
         self.dest_5.setMouseTracking(False)
         self.dest_5.setStyleSheet(u"QComboBox{\n"
@@ -671,14 +666,12 @@ class Ui_MainWindow(object):
 "}")
         self.dest_5.setMaxVisibleItems(4)
         self.dest_5.setFrame(True)
-
-        self.formLayout.setWidget(5, QFormLayout.LabelRole, self.dest_5)
-
-        self.IBE_6 = QComboBox(self.frame_23)
+        self.IBE_6 = QComboBox(self.frame_26)
         self.IBE_6.addItem("")
         self.IBE_6.addItem("")
         self.IBE_6.addItem("")
         self.IBE_6.setObjectName(u"IBE_6")
+        self.IBE_6.setGeometry(QRect(71, 154, 95, 23))
         self.IBE_6.setFont(font1)
         self.IBE_6.setMouseTracking(False)
         self.IBE_6.setStyleSheet(u"QComboBox{\n"
@@ -699,11 +692,9 @@ class Ui_MainWindow(object):
 "}")
         self.IBE_6.setMaxVisibleItems(4)
         self.IBE_6.setFrame(True)
-
-        self.formLayout.setWidget(5, QFormLayout.FieldRole, self.IBE_6)
-
-        self.dest_6 = QComboBox(self.frame_23)
+        self.dest_6 = QComboBox(self.frame_26)
         self.dest_6.setObjectName(u"dest_6")
+        self.dest_6.setGeometry(QRect(12, 184, 52, 22))
         self.dest_6.setFont(font1)
         self.dest_6.setMouseTracking(False)
         self.dest_6.setStyleSheet(u"QComboBox{\n"
@@ -724,14 +715,12 @@ class Ui_MainWindow(object):
 "}")
         self.dest_6.setMaxVisibleItems(4)
         self.dest_6.setFrame(True)
-
-        self.formLayout.setWidget(6, QFormLayout.LabelRole, self.dest_6)
-
-        self.IBE_7 = QComboBox(self.frame_23)
+        self.IBE_7 = QComboBox(self.frame_26)
         self.IBE_7.addItem("")
         self.IBE_7.addItem("")
         self.IBE_7.addItem("")
         self.IBE_7.setObjectName(u"IBE_7")
+        self.IBE_7.setGeometry(QRect(71, 184, 95, 22))
         self.IBE_7.setFont(font1)
         self.IBE_7.setMouseTracking(False)
         self.IBE_7.setStyleSheet(u"QComboBox{\n"
@@ -752,11 +741,9 @@ class Ui_MainWindow(object):
 "}")
         self.IBE_7.setMaxVisibleItems(4)
         self.IBE_7.setFrame(True)
-
-        self.formLayout.setWidget(6, QFormLayout.FieldRole, self.IBE_7)
-
-        self.dest_7 = QComboBox(self.frame_23)
+        self.dest_7 = QComboBox(self.frame_26)
         self.dest_7.setObjectName(u"dest_7")
+        self.dest_7.setGeometry(QRect(12, 213, 52, 23))
         self.dest_7.setFont(font1)
         self.dest_7.setMouseTracking(False)
         self.dest_7.setStyleSheet(u"QComboBox{\n"
@@ -777,14 +764,12 @@ class Ui_MainWindow(object):
 "}")
         self.dest_7.setMaxVisibleItems(4)
         self.dest_7.setFrame(True)
-
-        self.formLayout.setWidget(7, QFormLayout.LabelRole, self.dest_7)
-
-        self.IBE_8 = QComboBox(self.frame_23)
+        self.IBE_8 = QComboBox(self.frame_26)
         self.IBE_8.addItem("")
         self.IBE_8.addItem("")
         self.IBE_8.addItem("")
         self.IBE_8.setObjectName(u"IBE_8")
+        self.IBE_8.setGeometry(QRect(71, 213, 95, 23))
         self.IBE_8.setFont(font1)
         self.IBE_8.setMouseTracking(False)
         self.IBE_8.setStyleSheet(u"QComboBox{\n"
@@ -805,11 +790,9 @@ class Ui_MainWindow(object):
 "}")
         self.IBE_8.setMaxVisibleItems(4)
         self.IBE_8.setFrame(True)
-
-        self.formLayout.setWidget(7, QFormLayout.FieldRole, self.IBE_8)
-
-        self.dest_8 = QComboBox(self.frame_23)
+        self.dest_8 = QComboBox(self.frame_26)
         self.dest_8.setObjectName(u"dest_8")
+        self.dest_8.setGeometry(QRect(12, 243, 52, 23))
         self.dest_8.setFont(font1)
         self.dest_8.setMouseTracking(False)
         self.dest_8.setStyleSheet(u"QComboBox{\n"
@@ -830,14 +813,12 @@ class Ui_MainWindow(object):
 "}")
         self.dest_8.setMaxVisibleItems(4)
         self.dest_8.setFrame(True)
-
-        self.formLayout.setWidget(8, QFormLayout.LabelRole, self.dest_8)
-
-        self.IBE_9 = QComboBox(self.frame_23)
+        self.IBE_9 = QComboBox(self.frame_26)
         self.IBE_9.addItem("")
         self.IBE_9.addItem("")
         self.IBE_9.addItem("")
         self.IBE_9.setObjectName(u"IBE_9")
+        self.IBE_9.setGeometry(QRect(71, 243, 95, 23))
         self.IBE_9.setFont(font1)
         self.IBE_9.setMouseTracking(False)
         self.IBE_9.setStyleSheet(u"QComboBox{\n"
@@ -858,11 +839,9 @@ class Ui_MainWindow(object):
 "}")
         self.IBE_9.setMaxVisibleItems(4)
         self.IBE_9.setFrame(True)
-
-        self.formLayout.setWidget(8, QFormLayout.FieldRole, self.IBE_9)
-
-        self.dest_9 = QComboBox(self.frame_23)
+        self.dest_9 = QComboBox(self.frame_26)
         self.dest_9.setObjectName(u"dest_9")
+        self.dest_9.setGeometry(QRect(12, 273, 52, 22))
         self.dest_9.setFont(font1)
         self.dest_9.setMouseTracking(False)
         self.dest_9.setStyleSheet(u"QComboBox{\n"
@@ -883,14 +862,12 @@ class Ui_MainWindow(object):
 "}")
         self.dest_9.setMaxVisibleItems(4)
         self.dest_9.setFrame(True)
-
-        self.formLayout.setWidget(9, QFormLayout.LabelRole, self.dest_9)
-
-        self.IBE_10 = QComboBox(self.frame_23)
+        self.IBE_10 = QComboBox(self.frame_26)
         self.IBE_10.addItem("")
         self.IBE_10.addItem("")
         self.IBE_10.addItem("")
         self.IBE_10.setObjectName(u"IBE_10")
+        self.IBE_10.setGeometry(QRect(71, 273, 95, 22))
         self.IBE_10.setFont(font1)
         self.IBE_10.setMouseTracking(False)
         self.IBE_10.setStyleSheet(u"QComboBox{\n"
@@ -911,11 +888,9 @@ class Ui_MainWindow(object):
 "}")
         self.IBE_10.setMaxVisibleItems(4)
         self.IBE_10.setFrame(True)
-
-        self.formLayout.setWidget(9, QFormLayout.FieldRole, self.IBE_10)
-
-        self.dest_10 = QComboBox(self.frame_23)
+        self.dest_10 = QComboBox(self.frame_26)
         self.dest_10.setObjectName(u"dest_10")
+        self.dest_10.setGeometry(QRect(12, 302, 52, 23))
         self.dest_10.setFont(font1)
         self.dest_10.setMouseTracking(False)
         self.dest_10.setStyleSheet(u"QComboBox{\n"
@@ -936,14 +911,12 @@ class Ui_MainWindow(object):
 "}")
         self.dest_10.setMaxVisibleItems(4)
         self.dest_10.setFrame(True)
-
-        self.formLayout.setWidget(10, QFormLayout.LabelRole, self.dest_10)
-
-        self.IBE_11 = QComboBox(self.frame_23)
+        self.IBE_11 = QComboBox(self.frame_26)
         self.IBE_11.addItem("")
         self.IBE_11.addItem("")
         self.IBE_11.addItem("")
         self.IBE_11.setObjectName(u"IBE_11")
+        self.IBE_11.setGeometry(QRect(71, 302, 95, 23))
         self.IBE_11.setFont(font1)
         self.IBE_11.setMouseTracking(False)
         self.IBE_11.setStyleSheet(u"QComboBox{\n"
@@ -964,11 +937,9 @@ class Ui_MainWindow(object):
 "}")
         self.IBE_11.setMaxVisibleItems(4)
         self.IBE_11.setFrame(True)
-
-        self.formLayout.setWidget(10, QFormLayout.FieldRole, self.IBE_11)
-
-        self.dest_11 = QComboBox(self.frame_23)
+        self.dest_11 = QComboBox(self.frame_26)
         self.dest_11.setObjectName(u"dest_11")
+        self.dest_11.setGeometry(QRect(12, 332, 52, 23))
         self.dest_11.setFont(font1)
         self.dest_11.setMouseTracking(False)
         self.dest_11.setStyleSheet(u"QComboBox{\n"
@@ -989,14 +960,12 @@ class Ui_MainWindow(object):
 "}")
         self.dest_11.setMaxVisibleItems(4)
         self.dest_11.setFrame(True)
-
-        self.formLayout.setWidget(11, QFormLayout.LabelRole, self.dest_11)
-
-        self.IBE_12 = QComboBox(self.frame_23)
+        self.IBE_12 = QComboBox(self.frame_26)
         self.IBE_12.addItem("")
         self.IBE_12.addItem("")
         self.IBE_12.addItem("")
         self.IBE_12.setObjectName(u"IBE_12")
+        self.IBE_12.setGeometry(QRect(71, 332, 95, 23))
         self.IBE_12.setFont(font1)
         self.IBE_12.setMouseTracking(False)
         self.IBE_12.setStyleSheet(u"QComboBox{\n"
@@ -1018,26 +987,21 @@ class Ui_MainWindow(object):
         self.IBE_12.setMaxVisibleItems(4)
         self.IBE_12.setFrame(True)
 
-        self.formLayout.setWidget(11, QFormLayout.FieldRole, self.IBE_12)
-
-
-        self.verticalLayout_11.addWidget(self.frame_23)
+        self.verticalLayout_11.addWidget(self.frame_24)
 
 
         self.verticalLayout_10.addWidget(self.frame_22)
 
-
-        self.verticalLayout_9.addWidget(self.frame_10)
-
-        self.new_mission_button_frame = QFrame(self.frame_7)
+        self.new_mission_button_frame = QFrame(self.frame_10)
         self.new_mission_button_frame.setObjectName(u"new_mission_button_frame")
-        self.new_mission_button_frame.setMinimumSize(QSize(0, 100))
-        self.new_mission_button_frame.setMaximumSize(QSize(16777215, 100))
+        self.new_mission_button_frame.setMinimumSize(QSize(0, 60))
+        self.new_mission_button_frame.setMaximumSize(QSize(16777215, 80))
         self.new_mission_button_frame.setFrameShape(QFrame.StyledPanel)
         self.new_mission_button_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_12 = QVBoxLayout(self.new_mission_button_frame)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.but_send_mission = QPushButton(self.new_mission_button_frame)
         self.but_send_mission.setObjectName(u"but_send_mission")
-        self.but_send_mission.setGeometry(QRect(40, 30, 141, 21))
         self.but_send_mission.setMaximumSize(QSize(16777215, 16777215))
         self.but_send_mission.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
@@ -1052,13 +1016,19 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgb(35, 40, 49);\n"
 "	border: 2px solid rgb(43, 50, 61);\n"
+"}\n"
+"QPushButton:disabled {\n"
+"	background-color: rgb(179, 179, 179);\n"
+"	border: 2px solid rgb(179, 179, 179);\n"
 "}")
         self.but_send_mission.setIcon(icon4)
         self.but_send_mission.setIconSize(QSize(20, 20))
+
+        self.verticalLayout_12.addWidget(self.but_send_mission)
+
         self.but_cancel_new_mission = QPushButton(self.new_mission_button_frame)
         self.but_cancel_new_mission.setObjectName(u"but_cancel_new_mission")
-        self.but_cancel_new_mission.setGeometry(QRect(80, 60, 60, 24))
-        self.but_cancel_new_mission.setMaximumSize(QSize(60, 16777215))
+        self.but_cancel_new_mission.setMaximumSize(QSize(16777215, 16777215))
         self.but_cancel_new_mission.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
@@ -1077,7 +1047,13 @@ class Ui_MainWindow(object):
         icon8.addFile(u"icons/16x16/cil-x.png", QSize(), QIcon.Normal, QIcon.Off)
         self.but_cancel_new_mission.setIcon(icon8)
 
-        self.verticalLayout_9.addWidget(self.new_mission_button_frame)
+        self.verticalLayout_12.addWidget(self.but_cancel_new_mission)
+
+
+        self.verticalLayout_10.addWidget(self.new_mission_button_frame)
+
+
+        self.verticalLayout_9.addWidget(self.frame_10)
 
 
         self.verticalLayout_8.addWidget(self.frame_7)
@@ -1352,7 +1328,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(2)
         self.IBE_1.setCurrentIndex(0)
         self.dest_1.setCurrentIndex(-1)
         self.IBE_2.setCurrentIndex(0)
@@ -1404,8 +1380,8 @@ class Ui_MainWindow(object):
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Blocks", None))
         self.but_new_mission_steps.setText("")
         self.but_rmv_mission_block.setText("")
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"To node:", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"IBE:", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"To node:", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"IBE:", None))
         self.dest_1.setCurrentText("")
         self.IBE_2.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
         self.IBE_2.setItemText(1, QCoreApplication.translate("MainWindow", u"Button", None))

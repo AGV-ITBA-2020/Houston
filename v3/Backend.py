@@ -19,7 +19,9 @@ class Backend:
                                 re.compile('[B] [0-9]*$', re.I): self.setBat, #Pone nivel de batería
                                 re.compile('(LM) ([HBDN] [0-9]* )*[HBDN]$', re.I): self.start_long_mission,
                                 # Misión larga: LM para indicar misión, luego serie de eventos y nodos a llegar y al final el evento final. B=button, D=delay, H=houston continue N=None
-                                re.compile('[C]$', re.I): self.continueMission
+                                re.compile('[C]$', re.I): self.continueMission,
+                                re.compile('[P]$', re.I): self.pauseMission,
+                                re.compile('[A]$', re.I): self.abortMission
                                 }
         self.mqttClient = mqtt.Client("Houston")  # create new instance
         self.mqttClient.on_message = self.parse_mqtt_msg
@@ -91,9 +93,21 @@ class Backend:
     def IBECharToString(self, char):
         dict= {'B':"Button",'H':"Houston",'D':"Delay",'N':"None"}
         return dict[char.upper()]
+    def IBEStringToChar(self, string):
+        dict= {"Button":'B',"Houston":'H',"Delay":'D',"None":'N'}
+        return dict[string]
     def IBECharToMQTTFormat(self, char):
         dict= {'B':"Bp",'H':"Hc",'D':"De",'N':"No"}
         return dict[char.upper()]
+    def is_mission_cmd_valid(self,cmd):
+        retVal= True;
+        node_obj = list(map(int, re.findall(" [0-9]* ", cmd)))
+        prev_node = self.agv_status_dict[1].in_node
+        for i in range(len(node_obj)): ##Para cada bloque
+            if (not self.map.is_node_station(node_obj[i])) or (prev_node == node_obj[i]): ##Si el nodo no es una estación o es igual al nodo anterior, hay un error en el comando
+                retVal=False
+            prev_node=node_obj[i]
+        return retVal
     #### Funciones de parseo de comandos ###
     def mqtt_rec_online(self):
         self.agv_status_dict[self.AGVn_rec] = AGV_status(self.AGVn_rec)
@@ -228,3 +242,22 @@ class Backend:
             return "Continue ignored: there was not anything to continue";
         self.mqttClient.publish("AGV1", "Continue")
         self.log.append("Houston Continue")
+
+    def pauseMission(self):
+        if self.agv_status_dict[self.AGVn_rec].in_mission:
+            if not self.agv_status_dict[self.AGVn_rec].paused:
+                self.agv_status_dict[self.AGVn_rec].paused = 1
+            else:
+                return "Recieved pause mission, but AGV was already in pause"
+        else:
+            return "Recieved pause mission, but AGV was not in a mission"
+        self.mqttClient.publish("AGV1", "Pause")
+        self.log.append("Houston Pause")
+
+    def abortMission(self):
+        if self.agv_status_dict[self.AGVn_rec].in_mission:
+            self.agv_status_dict[self.AGVn_rec].abort_mission()
+        else:
+            return "Recieved abort when AGV was not in mission"
+        self.mqttClient.publish("AGV1", "QuestAbort")
+        self.log.append("Houston Abort")

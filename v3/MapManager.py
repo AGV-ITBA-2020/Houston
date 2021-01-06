@@ -16,7 +16,13 @@ class MapManager():
         # plt.close()
         self.map_im=plt.imread('map.png')
         self.draw_system()
-
+    def get_station_nodes(self):
+        all_nodes = nx.get_node_attributes(self.G, 'description');
+        retVal = [];
+        for i in all_nodes:
+            if all_nodes[i] == "Station":
+                retVal.append(i);
+        return retVal
     def load_graph(self): ##Acá se genera el grafo a mano. Se podría poner en un archivo y luego cargarlo, sería más modular
         self.G = nx.DiGraph()
         self.G.add_nodes_from([1, 3, 5], description="Station") #Nodos estación

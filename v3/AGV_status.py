@@ -23,7 +23,7 @@ class AGV_status:
         if self.mission_IBE[self.currBlock] == "None": #En el caso que no necesite evento para arrancar misión
             self.waiting_for_IBE = False;
     def is_waiting_for_houston_continue(self):
-        return self.waiting_for_IBE and self.mission_IBE[self.currBlock] == "Houston"
+        return (self.waiting_for_IBE and self.mission_IBE[self.currBlock] == "Houston") or self.paused or (self.emergency ) #En lo de emergencia estaría bueno meter que sea solo cuando liberaron el boton de emergencia
     def curr_block_len(self):
         return len(self.mission_block_nodes[self.currBlock]) #Longitud del bloque de ahora
     def n_of_blocks(self):
