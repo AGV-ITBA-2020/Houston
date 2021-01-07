@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1284</width>
-    <height>809</height>
+    <width>1280</width>
+    <height>799</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -68,6 +68,10 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(80, 80, 80);
+border-radius: 10px;	</string>
+          </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
           </property>
@@ -87,8 +91,12 @@
                  <x>0</x>
                  <y>-10</y>
                  <width>280</width>
-                 <height>391</height>
+                 <height>751</height>
                 </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(80, 80, 80);
+border-radius: 10px;	</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
@@ -110,6 +118,10 @@
                     <width>16777215</width>
                     <height>50</height>
                    </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(70, 70, 70);
+border-radius: 10px;	</string>
                   </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
@@ -166,7 +178,7 @@
                       <string notr="true">QPushButton {
 	border: 2px solid rgb(52, 59, 72);
 	border-radius: 5px;	
-	background-color: rgb(52, 59, 72);
+	background-color: rgb(0, 0, 98);
 	color: rgb(255, 255, 255);
 }
 QPushButton:hover {
@@ -192,6 +204,12 @@ QPushButton:pressed {
                 </item>
                 <item>
                  <widget class="QTextEdit" name="log">
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+border: 2px solid rgb(127, 127, 127);
+border-radius: 5px;	</string>
+                  </property>
                   <property name="readOnly">
                    <bool>true</bool>
                   </property>
@@ -210,6 +228,10 @@ QPushButton:pressed {
                  <height>741</height>
                 </rect>
                </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(80, 80, 80);
+border-radius: 10px;	</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -224,6 +246,10 @@ QPushButton:pressed {
                     <width>16777215</width>
                     <height>50</height>
                    </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(70, 70, 70);
+border-radius: 10px;	</string>
                   </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
@@ -280,7 +306,7 @@ QPushButton:pressed {
                       <string notr="true">QPushButton {
 	border: 2px solid rgb(52, 59, 72);
 	border-radius: 5px;	
-	background-color: rgb(52, 59, 72);
+	background-color: rgb(0, 0, 98);
 	color: rgb(255, 255, 255);
 }
 QPushButton:hover {
@@ -312,157 +338,131 @@ QPushButton:pressed {
                   <property name="frameShadow">
                    <enum>QFrame::Raised</enum>
                   </property>
-                  <widget class="QPushButton" name="but_reset">
-                   <property name="geometry">
-                    <rect>
-                     <x>90</x>
-                     <y>610</y>
-                     <width>60</width>
-                     <height>24</height>
-                    </rect>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>60</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">QPushButton {
-	border: 2px solid rgb(52, 59, 72);
-	border-radius: 5px;	
-	background-color: rgb(52, 59, 72);
-	color: rgb(255, 255, 255);
+                  <layout class="QVBoxLayout" name="verticalLayout_13">
+                   <item>
+                    <widget class="QFrame" name="frame_25">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>100</height>
+                      </size>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <layout class="QHBoxLayout" name="horizontalLayout_15">
+                      <item>
+                       <widget class="QComboBox" name="AGV_select">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>100</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <strikeout>false</strikeout>
+                         </font>
+                        </property>
+                        <property name="mouseTracking">
+                         <bool>false</bool>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QComboBox{
+	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
+	border-radius: 5px;
+	border: 2px solid rgb(27, 29, 35);
+	padding: 5px;
+	padding-left: 10px;
 }
-QPushButton:hover {
-	background-color: rgb(57, 65, 80);
-	border: 2px solid rgb(61, 70, 86);
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
 }
-QPushButton:pressed {	
-	background-color: rgb(35, 40, 49);
-	border: 2px solid rgb(43, 50, 61);
+QComboBox QAbstractItemView {
+	color:  rgb(255, 255, 255);
+	background-color: rgb(27, 29, 35);
+	padding: 10px;
+	selection-background-color: rgb(255, 255, 255);
 }</string>
-                   </property>
-                   <property name="text">
-                    <string>Reset</string>
-                   </property>
-                   <property name="icon">
-                    <iconset>
-                     <normaloff>icons/16x16/cil-power-standby.png</normaloff>icons/16x16/cil-power-standby.png</iconset>
-                   </property>
-                  </widget>
-                  <widget class="QPushButton" name="but_pause_or_continue">
-                   <property name="geometry">
-                    <rect>
-                     <x>60</x>
-                     <y>110</y>
-                     <width>121</width>
-                     <height>24</height>
-                    </rect>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">QPushButton {
+                        </property>
+                        <property name="currentText">
+                         <string>AGV1</string>
+                        </property>
+                        <property name="currentIndex">
+                         <number>1</number>
+                        </property>
+                        <property name="maxVisibleItems">
+                         <number>4</number>
+                        </property>
+                        <property name="frame">
+                         <bool>true</bool>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>None</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>AGV1</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_3">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="frame_27">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>100</height>
+                      </size>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_14">
+                      <item>
+                       <widget class="QPushButton" name="but_abort_mission">
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>24</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QPushButton {
 	border: 2px solid rgb(52, 59, 72);
 	border-radius: 5px;	
-	background-color: rgb(52, 59, 72);
-	color: rgb(255, 255, 255);
-}
-QPushButton:hover {
-	background-color: rgb(57, 65, 80);
-	border: 2px solid rgb(61, 70, 86);
-}
-QPushButton:pressed {	
-	background-color: rgb(35, 40, 49);
-	border: 2px solid rgb(43, 50, 61);
-}
-QPushButton:disabled {
-	background-color: rgb(179, 179, 179);
-	border: 2px solid rgb(179, 179, 179);
-}</string>
-                   </property>
-                   <property name="text">
-                    <string>Pause mission</string>
-                   </property>
-                   <property name="icon">
-                    <iconset>
-                     <normaloff>icons/16x16/cil-media-pause.png</normaloff>icons/16x16/cil-media-pause.png</iconset>
-                   </property>
-                  </widget>
-                  <widget class="QPushButton" name="but_new_mission">
-                   <property name="geometry">
-                    <rect>
-                     <x>50</x>
-                     <y>40</y>
-                     <width>141</width>
-                     <height>21</height>
-                    </rect>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">QPushButton {
-	border: 2px solid rgb(52, 59, 72);
-	border-radius: 5px;	
-	background-color: rgb(52, 59, 72);
-	color: rgb(255, 255, 255);
-}
-QPushButton:hover {
-	background-color: rgb(57, 65, 80);
-	border: 2px solid rgb(61, 70, 86);
-}
-QPushButton:pressed {	
-	background-color: rgb(35, 40, 49);
-	border: 2px solid rgb(43, 50, 61);
-}
-QPushButton:disabled {
-	background-color: rgb(179, 179, 179);
-	border: 2px solid rgb(179, 179, 179);
-}</string>
-                   </property>
-                   <property name="text">
-                    <string>Start new mission</string>
-                   </property>
-                   <property name="icon">
-                    <iconset>
-                     <normaloff>icons/16x16/cil-media-play.png</normaloff>icons/16x16/cil-media-play.png</iconset>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </widget>
-                  <widget class="QPushButton" name="but_abort_mission">
-                   <property name="geometry">
-                    <rect>
-                     <x>60</x>
-                     <y>180</y>
-                     <width>121</width>
-                     <height>24</height>
-                    </rect>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">QPushButton {
-	border: 2px solid rgb(52, 59, 72);
-	border-radius: 5px;	
-	background-color: rgb(52, 59, 72);
+	background-color: rgb(0, 0, 98);
 	color: rgb(255, 255, 255);
 }
 QPushButton:hover {
@@ -477,15 +477,146 @@ QPushButton:disabled {
 	background-color: rgb(179, 179, 179);
 	border: 2px solid rgb(179, 179, 179);
 }</string>
-                   </property>
-                   <property name="text">
-                    <string>Abort mission</string>
-                   </property>
-                   <property name="icon">
-                    <iconset>
-                     <normaloff>icons/16x16/cil-media-stop.png</normaloff>icons/16x16/cil-media-stop.png</iconset>
-                   </property>
-                  </widget>
+                        </property>
+                        <property name="text">
+                         <string>Abort mission</string>
+                        </property>
+                        <property name="icon">
+                         <iconset>
+                          <normaloff>icons/16x16/cil-media-stop.png</normaloff>icons/16x16/cil-media-stop.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="but_pause_or_continue">
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(0, 0, 98);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}
+QPushButton:disabled {
+	background-color: rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
+}</string>
+                        </property>
+                        <property name="text">
+                         <string>Pause mission</string>
+                        </property>
+                        <property name="icon">
+                         <iconset>
+                          <normaloff>icons/16x16/cil-media-pause.png</normaloff>icons/16x16/cil-media-pause.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="but_new_mission">
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(0, 0, 98);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}
+QPushButton:disabled {
+	background-color: rgb(179, 179, 179);
+	border: 2px solid rgb(179, 179, 179);
+}</string>
+                        </property>
+                        <property name="text">
+                         <string>Start new mission</string>
+                        </property>
+                        <property name="icon">
+                         <iconset>
+                          <normaloff>icons/16x16/cil-media-play.png</normaloff>icons/16x16/cil-media-play.png</iconset>
+                        </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>20</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_2">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="but_reset">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>24</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(0, 0, 98);
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>Reset</string>
+                     </property>
+                     <property name="icon">
+                      <iconset>
+                       <normaloff>icons/16x16/cil-power-standby.png</normaloff>icons/16x16/cil-power-standby.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                </layout>
@@ -501,6 +632,10 @@ QPushButton:disabled {
                  <height>731</height>
                 </rect>
                </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(80, 80, 80);
+border-radius: 10px;	</string>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -515,6 +650,10 @@ QPushButton:disabled {
                     <width>16777215</width>
                     <height>50</height>
                    </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(70, 70, 70);
+border-radius: 10px;	</string>
                   </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
@@ -594,6 +733,10 @@ QPushButton:disabled {
                           <height>50</height>
                          </size>
                         </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(60, 60, 60);
+border-radius: 10px;</string>
+                        </property>
                         <property name="frameShape">
                          <enum>QFrame::StyledPanel</enum>
                         </property>
@@ -603,6 +746,9 @@ QPushButton:disabled {
                         <layout class="QHBoxLayout" name="horizontalLayout_3">
                          <item>
                           <widget class="QLabel" name="label">
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(255, 255, 255);</string>
+                           </property>
                            <property name="text">
                             <string>Initial IBE</string>
                            </property>
@@ -619,11 +765,12 @@ QPushButton:disabled {
                             <bool>false</bool>
                            </property>
                            <property name="autoFillBackground">
-                            <bool>true</bool>
+                            <bool>false</bool>
                            </property>
                            <property name="styleSheet">
                             <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -633,10 +780,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                            </property>
                            <property name="currentText">
@@ -688,6 +835,10 @@ QComboBox QAbstractItemView {
                              <height>50</height>
                             </size>
                            </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(60, 60, 60);
+border-radius: 10px;</string>
+                           </property>
                            <property name="frameShape">
                             <enum>QFrame::StyledPanel</enum>
                            </property>
@@ -702,6 +853,9 @@ QComboBox QAbstractItemView {
                               <width>55</width>
                               <height>16</height>
                              </rect>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">color: rgb(255, 255, 255);</string>
                             </property>
                             <property name="text">
                              <string>Blocks</string>
@@ -726,7 +880,7 @@ QComboBox QAbstractItemView {
                              <string notr="true">QPushButton {
 	border: 2px solid rgb(52, 59, 72);
 	border-radius: 5px;	
-	background-color: rgb(52, 59, 72);
+	background-color: rgb(0, 0, 98);
 	color: rgb(255, 255, 255);
 }
 QPushButton:hover {
@@ -769,7 +923,7 @@ QPushButton:disabled {
                              <string notr="true">QPushButton {
 	border: 2px solid rgb(52, 59, 72);
 	border-radius: 5px;	
-	background-color: rgb(52, 59, 72);
+	background-color: rgb(0, 0, 98);
 	color: rgb(255, 255, 255);
 }
 QPushButton:hover {
@@ -817,6 +971,9 @@ QPushButton:disabled {
                                <height>16</height>
                               </rect>
                              </property>
+                             <property name="styleSheet">
+                              <string notr="true">color: rgb(255, 255, 255);</string>
+                             </property>
                              <property name="text">
                               <string>To node:</string>
                              </property>
@@ -835,6 +992,9 @@ QPushButton:disabled {
                                <width>16777215</width>
                                <height>20</height>
                               </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">color: rgb(255, 255, 255);</string>
                              </property>
                              <property name="text">
                               <string>IBE:</string>
@@ -860,6 +1020,7 @@ QPushButton:disabled {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -869,10 +1030,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -908,6 +1069,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -917,10 +1079,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -971,6 +1133,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -980,10 +1143,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1019,6 +1182,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1028,10 +1192,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1082,6 +1246,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1091,10 +1256,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1130,6 +1295,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1139,10 +1305,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1193,6 +1359,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1202,10 +1369,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1241,6 +1408,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1250,10 +1418,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1304,6 +1472,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1313,10 +1482,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1352,6 +1521,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1361,10 +1531,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1415,6 +1585,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1424,10 +1595,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1463,6 +1634,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1472,10 +1644,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1526,6 +1698,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1535,10 +1708,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1574,6 +1747,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1583,10 +1757,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1637,6 +1811,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1646,10 +1821,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1685,6 +1860,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1694,10 +1870,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1748,6 +1924,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1757,10 +1934,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1796,6 +1973,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1805,10 +1983,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1859,6 +2037,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1868,10 +2047,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1907,6 +2086,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1916,10 +2096,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -1970,6 +2150,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -1979,10 +2160,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -2018,6 +2199,7 @@ QComboBox QAbstractItemView {
                              <property name="styleSheet">
                               <string notr="true">QComboBox{
 	background-color: rgb(27, 29, 35);
+	color:  rgb(255, 255, 255);
 	border-radius: 5px;
 	border: 2px solid rgb(27, 29, 35);
 	padding: 5px;
@@ -2027,10 +2209,10 @@ QComboBox:hover{
 	border: 2px solid rgb(64, 71, 88);
 }
 QComboBox QAbstractItemView {
-	color: rgb(85, 170, 255);	
+	color:  rgb(255, 255, 255);
 	background-color: rgb(27, 29, 35);
 	padding: 10px;
-	selection-background-color: rgb(39, 44, 54);
+	selection-background-color: rgb(255, 255, 255);
 }</string>
                              </property>
                              <property name="currentText">
@@ -2081,6 +2263,10 @@ QComboBox QAbstractItemView {
                           <height>80</height>
                          </size>
                         </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(60, 60, 60);
+border-radius: 10px;</string>
+                        </property>
                         <property name="frameShape">
                          <enum>QFrame::StyledPanel</enum>
                         </property>
@@ -2098,9 +2284,9 @@ QComboBox QAbstractItemView {
                            </property>
                            <property name="styleSheet">
                             <string notr="true">QPushButton {
+	background-color: rgb(0, 0, 98);
 	border: 2px solid rgb(52, 59, 72);
 	border-radius: 5px;	
-	background-color: rgb(52, 59, 72);
 	color: rgb(255, 255, 255);
 }
 QPushButton:hover {
@@ -2143,7 +2329,7 @@ QPushButton:disabled {
                             <string notr="true">QPushButton {
 	border: 2px solid rgb(52, 59, 72);
 	border-radius: 5px;	
-	background-color: rgb(52, 59, 72);
+	background-color: rgb(0, 0, 98);
 	color: rgb(255, 255, 255);
 }
 QPushButton:hover {
@@ -2189,6 +2375,10 @@ QPushButton:pressed {
             <height>0</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(80, 80, 80);
+border-radius: 10px;	</string>
+          </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
           </property>
@@ -2203,6 +2393,10 @@ QPushButton:pressed {
                <width>16777215</width>
                <height>50</height>
               </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(70, 70, 70);
+border-radius: 10px;	</string>
              </property>
              <property name="frameShape">
               <enum>QFrame::StyledPanel</enum>
@@ -2267,9 +2461,19 @@ QPushButton:pressed {
          <widget class="QFrame" name="frame_flags">
           <property name="minimumSize">
            <size>
-            <width>200</width>
+            <width>150</width>
             <height>0</height>
            </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(80, 80, 80);
+border-radius: 10px;	</string>
           </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
@@ -2291,6 +2495,10 @@ QPushButton:pressed {
                <width>16777215</width>
                <height>50</height>
               </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(70, 70, 70);
+border-radius: 10px;	</string>
              </property>
              <property name="frameShape">
               <enum>QFrame::StyledPanel</enum>
@@ -2340,6 +2548,10 @@ QPushButton:pressed {
            </item>
            <item>
             <widget class="QFrame" name="frame_6">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(60, 60, 60);
+border-radius: 10px;	</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::StyledPanel</enum>
              </property>
@@ -2664,7 +2876,7 @@ QPushButton:pressed {
                     <string notr="true">color: rgb(255, 255, 255);</string>
                    </property>
                    <property name="text">
-                    <string>Wait for continue</string>
+                    <string>Waiting for continue</string>
                    </property>
                   </widget>
                  </item>
@@ -2672,20 +2884,74 @@ QPushButton:pressed {
                </widget>
               </item>
               <item>
-               <spacer name="verticalSpacer">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
+               <widget class="QFrame" name="frame_23">
+                <property name="maximumSize">
                  <size>
-                  <width>20</width>
-                  <height>20</height>
+                  <width>16777215</width>
+                  <height>40</height>
                  </size>
                 </property>
-               </spacer>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_14">
+                 <item>
+                  <widget class="QLabel" name="agv_data_flag_low_battery">
+                   <property name="maximumSize">
+                    <size>
+                     <width>12</width>
+                     <height>12</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap>icons/led-red-on.png</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="title_log_13">
+                   <property name="font">
+                    <font>
+                     <pointsize>8</pointsize>
+                     <weight>50</weight>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(255, 255, 255);</string>
+                   </property>
+                   <property name="text">
+                    <string>Low battery</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
               </item>
              </layout>
             </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
            <item>
             <widget class="QFrame" name="frame_8">
@@ -2700,6 +2966,10 @@ QPushButton:pressed {
                <width>16777215</width>
                <height>150</height>
               </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(60, 60, 60);
+border-radius: 10px;	</string>
              </property>
              <property name="frameShape">
               <enum>QFrame::StyledPanel</enum>

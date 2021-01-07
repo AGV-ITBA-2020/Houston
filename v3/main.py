@@ -93,6 +93,11 @@ class MainWindow(QMainWindow):#Si crashea cambiar el tiempo de refresco
         elif (index == 5):
             retVal = self.backend.agv_status_dict[1].is_waiting_for_houston_continue()
         return retVal;
+    def send_cmd(self,cmd):
+        err_msg=self.backend.parse_cmd(cmd);
+        if err_msg:
+            self.backend.error=1
+            self.ui.log.append(err_msg)
     def gen_mission_command(self):
         command="Lm "+ self.backend.IBEStringToChar(self.ui.IBE_1.currentText())
         for i in range(self.ui.block_count):
@@ -110,6 +115,10 @@ class MainWindow(QMainWindow):#Si crashea cambiar el tiempo de refresco
                 self.gui_light_map[key].setPixmap(QPixmap("icons/green-led-on.png"))
             else:
                 self.gui_light_map[key].setPixmap(QPixmap("icons/led-red-on.png"))
+        if self.ui.battery.state=="Ok":
+            self.ui.agv_data_flag_low_battery.setPixmap(QPixmap("icons/led-red-on.png"))
+        else:
+            self.ui.agv_data_flag_low_battery.setPixmap(QPixmap("icons/green-led-on.png"))
         self.update_ui_inputs()
     def update_ui_inputs(self): ##Update de cosas que no son ni las imágenes de los leds ni el mapa.
         if(self.ui.stackedWidget.currentWidget()==self.ui.mission_page):
@@ -144,9 +153,9 @@ class MainWindow(QMainWindow):#Si crashea cambiar el tiempo de refresco
                         self.ui.but_pause_or_continue.setIcon(self.ui.pause_icon)
                         self.ui.but_pause_or_continue.setEnabled(True)  ##Solo deshabilitado cuando espera por IBE
     def set_button_callbacks(self):
-        self.ui.but_reset.clicked.connect(lambda : self.backend.parse_cmd("R"))
-        self.ui.but_abort_mission.clicked.connect(lambda: self.backend.parse_cmd("A"))
-        self.ui.but_pause_or_continue.clicked.connect(lambda: self.backend.parse_cmd("P" if self.ui.but_pause_or_continue.text()=="Pause" else "C"))
+        self.ui.but_reset.clicked.connect(lambda : self.send_cmd("R"))
+        self.ui.but_abort_mission.clicked.connect(lambda: self.send_cmd("A"))
+        self.ui.but_pause_or_continue.clicked.connect(lambda: self.send_cmd("P" if self.ui.but_pause_or_continue.text()=="Pause" else "C"))
         self.ui.but_select_log.clicked.connect(lambda :self.page_changed("log_page"))
         self.ui.but_back_to_missions.clicked.connect(lambda :self.page_changed("main_buttons_page"))
         self.ui.but_cancel_new_mission.clicked.connect(lambda :self.page_changed("main_buttons_page"))
@@ -175,7 +184,7 @@ class MainWindow(QMainWindow):#Si crashea cambiar el tiempo de refresco
             self.ui.stackedWidget.setCurrentWidget(self.ui.mission_page)
         self.update_ui_inputs();
     def send_new_mission(self): ##Solo se permite llamar a esta función cuando ya se validó que es una misión posible
-        self.backend.parse_cmd(self.gen_mission_command())
+        self.send_cmd(self.gen_mission_command())
         self.ui.stackedWidget.setCurrentWidget(self.ui.main_buttons_page)
         self.update_ui_inputs()
 

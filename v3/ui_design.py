@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'designrRtyKo.ui'
+## Form generated from reading UI file 'designrNHkpY.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1284, 809)
+        MainWindow.resize(1280, 799)
         MainWindow.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -41,6 +41,8 @@ class Ui_MainWindow(object):
         self.frame_log.setObjectName(u"frame_log")
         self.frame_log.setMinimumSize(QSize(0, 0))
         self.frame_log.setMaximumSize(QSize(300, 16777215))
+        self.frame_log.setStyleSheet(u"background-color: rgb(80, 80, 80);\n"
+"border-radius: 10px;	")
         self.frame_log.setFrameShape(QFrame.StyledPanel)
         self.frame_log.setFrameShadow(QFrame.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.frame_log)
@@ -51,7 +53,9 @@ class Ui_MainWindow(object):
         self.log_page.setObjectName(u"log_page")
         self.frame_2 = QFrame(self.log_page)
         self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setGeometry(QRect(0, -10, 280, 391))
+        self.frame_2.setGeometry(QRect(0, -10, 280, 751))
+        self.frame_2.setStyleSheet(u"background-color: rgb(80, 80, 80);\n"
+"border-radius: 10px;	")
         self.frame_2.setFrameShape(QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.frame_2)
@@ -60,6 +64,8 @@ class Ui_MainWindow(object):
         self.frame_9.setObjectName(u"frame_9")
         self.frame_9.setMinimumSize(QSize(0, 50))
         self.frame_9.setMaximumSize(QSize(16777215, 50))
+        self.frame_9.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
+"border-radius: 10px;	")
         self.frame_9.setFrameShape(QFrame.StyledPanel)
         self.frame_9.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.frame_9)
@@ -89,7 +95,7 @@ class Ui_MainWindow(object):
         self.but_back_to_missions.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
+"	background-color: rgb(0, 0, 98);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "QPushButton:hover {\n"
@@ -111,6 +117,10 @@ class Ui_MainWindow(object):
 
         self.log = QTextEdit(self.frame_2)
         self.log.setObjectName(u"log")
+        self.log.setStyleSheet(u"color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 0);\n"
+"border: 2px solid rgb(127, 127, 127);\n"
+"border-radius: 5px;	")
         self.log.setReadOnly(True)
 
         self.verticalLayout_2.addWidget(self.log)
@@ -121,6 +131,8 @@ class Ui_MainWindow(object):
         self.frame_3 = QFrame(self.main_buttons_page)
         self.frame_3.setObjectName(u"frame_3")
         self.frame_3.setGeometry(QRect(-10, -10, 291, 741))
+        self.frame_3.setStyleSheet(u"background-color: rgb(80, 80, 80);\n"
+"border-radius: 10px;	")
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.verticalLayout_7 = QVBoxLayout(self.frame_3)
@@ -128,6 +140,8 @@ class Ui_MainWindow(object):
         self.frame_20 = QFrame(self.frame_3)
         self.frame_20.setObjectName(u"frame_20")
         self.frame_20.setMaximumSize(QSize(16777215, 50))
+        self.frame_20.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
+"border-radius: 10px;	")
         self.frame_20.setFrameShape(QFrame.StyledPanel)
         self.frame_20.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_12 = QHBoxLayout(self.frame_20)
@@ -153,7 +167,7 @@ class Ui_MainWindow(object):
         self.but_select_log.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
+"	background-color: rgb(0, 0, 98);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "QPushButton:hover {\n"
@@ -177,14 +191,72 @@ class Ui_MainWindow(object):
         self.frame_4.setObjectName(u"frame_4")
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
-        self.but_reset = QPushButton(self.frame_4)
-        self.but_reset.setObjectName(u"but_reset")
-        self.but_reset.setGeometry(QRect(90, 610, 60, 24))
-        self.but_reset.setMaximumSize(QSize(60, 16777215))
-        self.but_reset.setStyleSheet(u"QPushButton {\n"
+        self.verticalLayout_13 = QVBoxLayout(self.frame_4)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.frame_25 = QFrame(self.frame_4)
+        self.frame_25.setObjectName(u"frame_25")
+        self.frame_25.setMinimumSize(QSize(0, 100))
+        self.frame_25.setFrameShape(QFrame.StyledPanel)
+        self.frame_25.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_15 = QHBoxLayout(self.frame_25)
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.AGV_select = QComboBox(self.frame_25)
+        self.AGV_select.addItem("")
+        self.AGV_select.addItem("")
+        self.AGV_select.setObjectName(u"AGV_select")
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.AGV_select.sizePolicy().hasHeightForWidth())
+        self.AGV_select.setSizePolicy(sizePolicy)
+        self.AGV_select.setMaximumSize(QSize(100, 16777215))
+        font1 = QFont()
+        font1.setStrikeOut(False)
+        self.AGV_select.setFont(font1)
+        self.AGV_select.setMouseTracking(False)
+        self.AGV_select.setStyleSheet(u"QComboBox{\n"
+"	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
+"	border-radius: 5px;\n"
+"	border: 2px solid rgb(27, 29, 35);\n"
+"	padding: 5px;\n"
+"	padding-left: 10px;\n"
+"}\n"
+"QComboBox:hover{\n"
+"	border: 2px solid rgb(64, 71, 88);\n"
+"}\n"
+"QComboBox QAbstractItemView {\n"
+"	color:  rgb(255, 255, 255);\n"
+"	background-color: rgb(27, 29, 35);\n"
+"	padding: 10px;\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
+"}")
+        self.AGV_select.setMaxVisibleItems(4)
+        self.AGV_select.setFrame(True)
+
+        self.horizontalLayout_15.addWidget(self.AGV_select)
+
+
+        self.verticalLayout_13.addWidget(self.frame_25)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_13.addItem(self.verticalSpacer_3)
+
+        self.frame_27 = QFrame(self.frame_4)
+        self.frame_27.setObjectName(u"frame_27")
+        self.frame_27.setMinimumSize(QSize(0, 100))
+        self.frame_27.setFrameShape(QFrame.StyledPanel)
+        self.frame_27.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_14 = QVBoxLayout(self.frame_27)
+        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
+        self.but_abort_mission = QPushButton(self.frame_27)
+        self.but_abort_mission.setObjectName(u"but_abort_mission")
+        self.but_abort_mission.setMaximumSize(QSize(16777215, 24))
+        self.but_abort_mission.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
+"	background-color: rgb(0, 0, 98);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "QPushButton:hover {\n"
@@ -194,18 +266,24 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgb(35, 40, 49);\n"
 "	border: 2px solid rgb(43, 50, 61);\n"
+"}\n"
+"QPushButton:disabled {\n"
+"	background-color: rgb(179, 179, 179);\n"
+"	border: 2px solid rgb(179, 179, 179);\n"
 "}")
         icon2 = QIcon()
-        icon2.addFile(u"icons/16x16/cil-power-standby.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.but_reset.setIcon(icon2)
-        self.but_pause_or_continue = QPushButton(self.frame_4)
+        icon2.addFile(u"icons/16x16/cil-media-stop.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.but_abort_mission.setIcon(icon2)
+
+        self.verticalLayout_14.addWidget(self.but_abort_mission)
+
+        self.but_pause_or_continue = QPushButton(self.frame_27)
         self.but_pause_or_continue.setObjectName(u"but_pause_or_continue")
-        self.but_pause_or_continue.setGeometry(QRect(60, 110, 121, 24))
         self.but_pause_or_continue.setMaximumSize(QSize(16777215, 16777215))
         self.but_pause_or_continue.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
+"	background-color: rgb(0, 0, 98);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "QPushButton:hover {\n"
@@ -223,14 +301,16 @@ class Ui_MainWindow(object):
         icon3 = QIcon()
         icon3.addFile(u"icons/16x16/cil-media-pause.png", QSize(), QIcon.Normal, QIcon.Off)
         self.but_pause_or_continue.setIcon(icon3)
-        self.but_new_mission = QPushButton(self.frame_4)
+
+        self.verticalLayout_14.addWidget(self.but_pause_or_continue)
+
+        self.but_new_mission = QPushButton(self.frame_27)
         self.but_new_mission.setObjectName(u"but_new_mission")
-        self.but_new_mission.setGeometry(QRect(50, 40, 141, 21))
         self.but_new_mission.setMaximumSize(QSize(16777215, 16777215))
         self.but_new_mission.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
+"	background-color: rgb(0, 0, 98);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "QPushButton:hover {\n"
@@ -249,14 +329,23 @@ class Ui_MainWindow(object):
         icon4.addFile(u"icons/16x16/cil-media-play.png", QSize(), QIcon.Normal, QIcon.Off)
         self.but_new_mission.setIcon(icon4)
         self.but_new_mission.setIconSize(QSize(20, 20))
-        self.but_abort_mission = QPushButton(self.frame_4)
-        self.but_abort_mission.setObjectName(u"but_abort_mission")
-        self.but_abort_mission.setGeometry(QRect(60, 180, 121, 24))
-        self.but_abort_mission.setMaximumSize(QSize(16777215, 16777215))
-        self.but_abort_mission.setStyleSheet(u"QPushButton {\n"
+
+        self.verticalLayout_14.addWidget(self.but_new_mission)
+
+
+        self.verticalLayout_13.addWidget(self.frame_27)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_13.addItem(self.verticalSpacer_2)
+
+        self.but_reset = QPushButton(self.frame_4)
+        self.but_reset.setObjectName(u"but_reset")
+        self.but_reset.setMaximumSize(QSize(16777215, 24))
+        self.but_reset.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
+"	background-color: rgb(0, 0, 98);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "QPushButton:hover {\n"
@@ -266,14 +355,13 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {	\n"
 "	background-color: rgb(35, 40, 49);\n"
 "	border: 2px solid rgb(43, 50, 61);\n"
-"}\n"
-"QPushButton:disabled {\n"
-"	background-color: rgb(179, 179, 179);\n"
-"	border: 2px solid rgb(179, 179, 179);\n"
 "}")
         icon5 = QIcon()
-        icon5.addFile(u"icons/16x16/cil-media-stop.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.but_abort_mission.setIcon(icon5)
+        icon5.addFile(u"icons/16x16/cil-power-standby.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.but_reset.setIcon(icon5)
+
+        self.verticalLayout_13.addWidget(self.but_reset)
+
 
         self.verticalLayout_7.addWidget(self.frame_4)
 
@@ -283,6 +371,8 @@ class Ui_MainWindow(object):
         self.frame_5 = QFrame(self.mission_page)
         self.frame_5.setObjectName(u"frame_5")
         self.frame_5.setGeometry(QRect(0, -10, 274, 731))
+        self.frame_5.setStyleSheet(u"background-color: rgb(80, 80, 80);\n"
+"border-radius: 10px;	")
         self.frame_5.setFrameShape(QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QFrame.Raised)
         self.verticalLayout_8 = QVBoxLayout(self.frame_5)
@@ -290,6 +380,8 @@ class Ui_MainWindow(object):
         self.frame_21 = QFrame(self.frame_5)
         self.frame_21.setObjectName(u"frame_21")
         self.frame_21.setMaximumSize(QSize(16777215, 50))
+        self.frame_21.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
+"border-radius: 10px;	")
         self.frame_21.setFrameShape(QFrame.StyledPanel)
         self.frame_21.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_13 = QHBoxLayout(self.frame_21)
@@ -328,12 +420,15 @@ class Ui_MainWindow(object):
         self.frame_11 = QFrame(self.frame_10)
         self.frame_11.setObjectName(u"frame_11")
         self.frame_11.setMaximumSize(QSize(16777215, 50))
+        self.frame_11.setStyleSheet(u"background-color: rgb(60, 60, 60);\n"
+"border-radius: 10px;")
         self.frame_11.setFrameShape(QFrame.StyledPanel)
         self.frame_11.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.frame_11)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.label = QLabel(self.frame_11)
         self.label.setObjectName(u"label")
+        self.label.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_3.addWidget(self.label)
 
@@ -342,13 +437,12 @@ class Ui_MainWindow(object):
         self.IBE_1.addItem("")
         self.IBE_1.addItem("")
         self.IBE_1.setObjectName(u"IBE_1")
-        font1 = QFont()
-        font1.setStrikeOut(False)
         self.IBE_1.setFont(font1)
         self.IBE_1.setMouseTracking(False)
-        self.IBE_1.setAutoFillBackground(True)
+        self.IBE_1.setAutoFillBackground(False)
         self.IBE_1.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -358,10 +452,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.IBE_1.setMaxVisibleItems(4)
         self.IBE_1.setFrame(True)
@@ -380,11 +474,14 @@ class Ui_MainWindow(object):
         self.frame_24 = QFrame(self.frame_22)
         self.frame_24.setObjectName(u"frame_24")
         self.frame_24.setMinimumSize(QSize(0, 50))
+        self.frame_24.setStyleSheet(u"background-color: rgb(60, 60, 60);\n"
+"border-radius: 10px;")
         self.frame_24.setFrameShape(QFrame.StyledPanel)
         self.frame_24.setFrameShadow(QFrame.Raised)
         self.label_3 = QLabel(self.frame_24)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setGeometry(QRect(10, 20, 55, 16))
+        self.label_3.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.but_new_mission_steps = QPushButton(self.frame_24)
         self.but_new_mission_steps.setObjectName(u"but_new_mission_steps")
         self.but_new_mission_steps.setGeometry(QRect(110, 10, 25, 24))
@@ -392,7 +489,7 @@ class Ui_MainWindow(object):
         self.but_new_mission_steps.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
+"	background-color: rgb(0, 0, 98);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "QPushButton:hover {\n"
@@ -417,7 +514,7 @@ class Ui_MainWindow(object):
         self.but_rmv_mission_block.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
+"	background-color: rgb(0, 0, 98);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "QPushButton:hover {\n"
@@ -443,10 +540,12 @@ class Ui_MainWindow(object):
         self.label_8 = QLabel(self.frame_26)
         self.label_8.setObjectName(u"label_8")
         self.label_8.setGeometry(QRect(12, 12, 52, 16))
+        self.label_8.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_9 = QLabel(self.frame_26)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setGeometry(QRect(71, 12, 23, 16))
         self.label_9.setMaximumSize(QSize(16777215, 20))
+        self.label_9.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.dest_1 = QComboBox(self.frame_26)
         self.dest_1.setObjectName(u"dest_1")
         self.dest_1.setGeometry(QRect(12, 35, 52, 23))
@@ -454,6 +553,7 @@ class Ui_MainWindow(object):
         self.dest_1.setMouseTracking(False)
         self.dest_1.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -463,10 +563,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.dest_1.setMaxVisibleItems(4)
         self.dest_1.setFrame(True)
@@ -480,6 +580,7 @@ class Ui_MainWindow(object):
         self.IBE_2.setMouseTracking(False)
         self.IBE_2.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -489,10 +590,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.IBE_2.setMaxVisibleItems(4)
         self.IBE_2.setFrame(True)
@@ -503,6 +604,7 @@ class Ui_MainWindow(object):
         self.dest_2.setMouseTracking(False)
         self.dest_2.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -512,10 +614,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.dest_2.setMaxVisibleItems(4)
         self.dest_2.setFrame(True)
@@ -529,6 +631,7 @@ class Ui_MainWindow(object):
         self.IBE_3.setMouseTracking(False)
         self.IBE_3.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -538,10 +641,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.IBE_3.setMaxVisibleItems(4)
         self.IBE_3.setFrame(True)
@@ -552,6 +655,7 @@ class Ui_MainWindow(object):
         self.dest_3.setMouseTracking(False)
         self.dest_3.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -561,10 +665,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.dest_3.setMaxVisibleItems(4)
         self.dest_3.setFrame(True)
@@ -578,6 +682,7 @@ class Ui_MainWindow(object):
         self.IBE_4.setMouseTracking(False)
         self.IBE_4.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -587,10 +692,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.IBE_4.setMaxVisibleItems(4)
         self.IBE_4.setFrame(True)
@@ -601,6 +706,7 @@ class Ui_MainWindow(object):
         self.dest_4.setMouseTracking(False)
         self.dest_4.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -610,10 +716,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.dest_4.setMaxVisibleItems(4)
         self.dest_4.setFrame(True)
@@ -627,6 +733,7 @@ class Ui_MainWindow(object):
         self.IBE_5.setMouseTracking(False)
         self.IBE_5.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -636,10 +743,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.IBE_5.setMaxVisibleItems(4)
         self.IBE_5.setFrame(True)
@@ -650,6 +757,7 @@ class Ui_MainWindow(object):
         self.dest_5.setMouseTracking(False)
         self.dest_5.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -659,10 +767,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.dest_5.setMaxVisibleItems(4)
         self.dest_5.setFrame(True)
@@ -676,6 +784,7 @@ class Ui_MainWindow(object):
         self.IBE_6.setMouseTracking(False)
         self.IBE_6.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -685,10 +794,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.IBE_6.setMaxVisibleItems(4)
         self.IBE_6.setFrame(True)
@@ -699,6 +808,7 @@ class Ui_MainWindow(object):
         self.dest_6.setMouseTracking(False)
         self.dest_6.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -708,10 +818,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.dest_6.setMaxVisibleItems(4)
         self.dest_6.setFrame(True)
@@ -725,6 +835,7 @@ class Ui_MainWindow(object):
         self.IBE_7.setMouseTracking(False)
         self.IBE_7.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -734,10 +845,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.IBE_7.setMaxVisibleItems(4)
         self.IBE_7.setFrame(True)
@@ -748,6 +859,7 @@ class Ui_MainWindow(object):
         self.dest_7.setMouseTracking(False)
         self.dest_7.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -757,10 +869,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.dest_7.setMaxVisibleItems(4)
         self.dest_7.setFrame(True)
@@ -774,6 +886,7 @@ class Ui_MainWindow(object):
         self.IBE_8.setMouseTracking(False)
         self.IBE_8.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -783,10 +896,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.IBE_8.setMaxVisibleItems(4)
         self.IBE_8.setFrame(True)
@@ -797,6 +910,7 @@ class Ui_MainWindow(object):
         self.dest_8.setMouseTracking(False)
         self.dest_8.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -806,10 +920,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.dest_8.setMaxVisibleItems(4)
         self.dest_8.setFrame(True)
@@ -823,6 +937,7 @@ class Ui_MainWindow(object):
         self.IBE_9.setMouseTracking(False)
         self.IBE_9.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -832,10 +947,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.IBE_9.setMaxVisibleItems(4)
         self.IBE_9.setFrame(True)
@@ -846,6 +961,7 @@ class Ui_MainWindow(object):
         self.dest_9.setMouseTracking(False)
         self.dest_9.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -855,10 +971,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.dest_9.setMaxVisibleItems(4)
         self.dest_9.setFrame(True)
@@ -872,6 +988,7 @@ class Ui_MainWindow(object):
         self.IBE_10.setMouseTracking(False)
         self.IBE_10.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -881,10 +998,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.IBE_10.setMaxVisibleItems(4)
         self.IBE_10.setFrame(True)
@@ -895,6 +1012,7 @@ class Ui_MainWindow(object):
         self.dest_10.setMouseTracking(False)
         self.dest_10.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -904,10 +1022,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.dest_10.setMaxVisibleItems(4)
         self.dest_10.setFrame(True)
@@ -921,6 +1039,7 @@ class Ui_MainWindow(object):
         self.IBE_11.setMouseTracking(False)
         self.IBE_11.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -930,10 +1049,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.IBE_11.setMaxVisibleItems(4)
         self.IBE_11.setFrame(True)
@@ -944,6 +1063,7 @@ class Ui_MainWindow(object):
         self.dest_11.setMouseTracking(False)
         self.dest_11.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -953,10 +1073,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.dest_11.setMaxVisibleItems(4)
         self.dest_11.setFrame(True)
@@ -970,6 +1090,7 @@ class Ui_MainWindow(object):
         self.IBE_12.setMouseTracking(False)
         self.IBE_12.setStyleSheet(u"QComboBox{\n"
 "	background-color: rgb(27, 29, 35);\n"
+"	color:  rgb(255, 255, 255);\n"
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding: 5px;\n"
@@ -979,10 +1100,10 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color:  rgb(255, 255, 255);\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
+"	selection-background-color: rgb(255, 255, 255);\n"
 "}")
         self.IBE_12.setMaxVisibleItems(4)
         self.IBE_12.setFrame(True)
@@ -996,6 +1117,8 @@ class Ui_MainWindow(object):
         self.new_mission_button_frame.setObjectName(u"new_mission_button_frame")
         self.new_mission_button_frame.setMinimumSize(QSize(0, 60))
         self.new_mission_button_frame.setMaximumSize(QSize(16777215, 80))
+        self.new_mission_button_frame.setStyleSheet(u"background-color: rgb(60, 60, 60);\n"
+"border-radius: 10px;")
         self.new_mission_button_frame.setFrameShape(QFrame.StyledPanel)
         self.new_mission_button_frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_12 = QVBoxLayout(self.new_mission_button_frame)
@@ -1004,9 +1127,9 @@ class Ui_MainWindow(object):
         self.but_send_mission.setObjectName(u"but_send_mission")
         self.but_send_mission.setMaximumSize(QSize(16777215, 16777215))
         self.but_send_mission.setStyleSheet(u"QPushButton {\n"
+"	background-color: rgb(0, 0, 98);\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "QPushButton:hover {\n"
@@ -1032,7 +1155,7 @@ class Ui_MainWindow(object):
         self.but_cancel_new_mission.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
+"	background-color: rgb(0, 0, 98);\n"
 "	color: rgb(255, 255, 255);\n"
 "}\n"
 "QPushButton:hover {\n"
@@ -1068,6 +1191,8 @@ class Ui_MainWindow(object):
         self.frame_navigator = QFrame(self.frame_info)
         self.frame_navigator.setObjectName(u"frame_navigator")
         self.frame_navigator.setMinimumSize(QSize(600, 0))
+        self.frame_navigator.setStyleSheet(u"background-color: rgb(80, 80, 80);\n"
+"border-radius: 10px;	")
         self.frame_navigator.setFrameShape(QFrame.StyledPanel)
         self.frame_navigator.setFrameShadow(QFrame.Raised)
         self.verticalLayout_4 = QVBoxLayout(self.frame_navigator)
@@ -1075,6 +1200,8 @@ class Ui_MainWindow(object):
         self.frame_13 = QFrame(self.frame_navigator)
         self.frame_13.setObjectName(u"frame_13")
         self.frame_13.setMaximumSize(QSize(16777215, 50))
+        self.frame_13.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
+"border-radius: 10px;	")
         self.frame_13.setFrameShape(QFrame.StyledPanel)
         self.frame_13.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_5 = QHBoxLayout(self.frame_13)
@@ -1109,7 +1236,10 @@ class Ui_MainWindow(object):
 
         self.frame_flags = QFrame(self.frame_info)
         self.frame_flags.setObjectName(u"frame_flags")
-        self.frame_flags.setMinimumSize(QSize(200, 0))
+        self.frame_flags.setMinimumSize(QSize(150, 0))
+        self.frame_flags.setMaximumSize(QSize(200, 16777215))
+        self.frame_flags.setStyleSheet(u"background-color: rgb(80, 80, 80);\n"
+"border-radius: 10px;	")
         self.frame_flags.setFrameShape(QFrame.StyledPanel)
         self.frame_flags.setFrameShadow(QFrame.Raised)
         self.verticalLayout_5 = QVBoxLayout(self.frame_flags)
@@ -1118,6 +1248,8 @@ class Ui_MainWindow(object):
         self.frame_12.setObjectName(u"frame_12")
         self.frame_12.setMinimumSize(QSize(0, 50))
         self.frame_12.setMaximumSize(QSize(16777215, 50))
+        self.frame_12.setStyleSheet(u"background-color: rgb(70, 70, 70);\n"
+"border-radius: 10px;	")
         self.frame_12.setFrameShape(QFrame.StyledPanel)
         self.frame_12.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_4 = QHBoxLayout(self.frame_12)
@@ -1142,6 +1274,8 @@ class Ui_MainWindow(object):
 
         self.frame_6 = QFrame(self.frame_flags)
         self.frame_6.setObjectName(u"frame_6")
+        self.frame_6.setStyleSheet(u"background-color: rgb(60, 60, 60);\n"
+"border-radius: 10px;	")
         self.frame_6.setFrameShape(QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QFrame.Raised)
         self.verticalLayout_6 = QVBoxLayout(self.frame_6)
@@ -1300,17 +1434,44 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.frame_19)
 
-        self.verticalSpacer = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.frame_23 = QFrame(self.frame_6)
+        self.frame_23.setObjectName(u"frame_23")
+        self.frame_23.setMaximumSize(QSize(16777215, 40))
+        self.frame_23.setFrameShape(QFrame.StyledPanel)
+        self.frame_23.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_14 = QHBoxLayout(self.frame_23)
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.agv_data_flag_low_battery = QLabel(self.frame_23)
+        self.agv_data_flag_low_battery.setObjectName(u"agv_data_flag_low_battery")
+        self.agv_data_flag_low_battery.setMaximumSize(QSize(12, 12))
+        self.agv_data_flag_low_battery.setPixmap(QPixmap(u"icons/led-red-on.png"))
+        self.agv_data_flag_low_battery.setScaledContents(True)
 
-        self.verticalLayout_6.addItem(self.verticalSpacer)
+        self.horizontalLayout_14.addWidget(self.agv_data_flag_low_battery)
+
+        self.title_log_13 = QLabel(self.frame_23)
+        self.title_log_13.setObjectName(u"title_log_13")
+        self.title_log_13.setFont(font2)
+        self.title_log_13.setStyleSheet(u"color: rgb(255, 255, 255);")
+
+        self.horizontalLayout_14.addWidget(self.title_log_13)
+
+
+        self.verticalLayout_6.addWidget(self.frame_23)
 
 
         self.verticalLayout_5.addWidget(self.frame_6)
+
+        self.verticalSpacer = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_5.addItem(self.verticalSpacer)
 
         self.frame_8 = QFrame(self.frame_flags)
         self.frame_8.setObjectName(u"frame_8")
         self.frame_8.setMinimumSize(QSize(0, 120))
         self.frame_8.setMaximumSize(QSize(16777215, 150))
+        self.frame_8.setStyleSheet(u"background-color: rgb(60, 60, 60);\n"
+"border-radius: 10px;	")
         self.frame_8.setFrameShape(QFrame.StyledPanel)
         self.frame_8.setFrameShadow(QFrame.Raised)
         self.layout_plot_battery = QVBoxLayout(self.frame_8)
@@ -1328,7 +1489,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(1)
+        self.AGV_select.setCurrentIndex(1)
         self.IBE_1.setCurrentIndex(0)
         self.dest_1.setCurrentIndex(-1)
         self.IBE_2.setCurrentIndex(0)
@@ -1365,10 +1527,14 @@ class Ui_MainWindow(object):
         self.icon_log_5.setText("")
         self.title_log_11.setText(QCoreApplication.translate("MainWindow", u"Houston actions", None))
         self.but_select_log.setText("")
-        self.but_reset.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
+        self.AGV_select.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
+        self.AGV_select.setItemText(1, QCoreApplication.translate("MainWindow", u"AGV1", None))
+
+        self.AGV_select.setCurrentText(QCoreApplication.translate("MainWindow", u"AGV1", None))
+        self.but_abort_mission.setText(QCoreApplication.translate("MainWindow", u"Abort mission", None))
         self.but_pause_or_continue.setText(QCoreApplication.translate("MainWindow", u"Pause mission", None))
         self.but_new_mission.setText(QCoreApplication.translate("MainWindow", u"Start new mission", None))
-        self.but_abort_mission.setText(QCoreApplication.translate("MainWindow", u"Abort mission", None))
+        self.but_reset.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
         self.icon_log_6.setText("")
         self.title_log_12.setText(QCoreApplication.translate("MainWindow", u"New mission", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Initial IBE", None))
@@ -1465,6 +1631,8 @@ class Ui_MainWindow(object):
         self.agv_data_flag_error.setText("")
         self.title_log_9.setText(QCoreApplication.translate("MainWindow", u"Error", None))
         self.agv_data_flag_waiting_for_continue.setText("")
-        self.title_log_10.setText(QCoreApplication.translate("MainWindow", u"Wait for continue", None))
+        self.title_log_10.setText(QCoreApplication.translate("MainWindow", u"Waiting for continue", None))
+        self.agv_data_flag_low_battery.setText("")
+        self.title_log_13.setText(QCoreApplication.translate("MainWindow", u"Low battery", None))
     # retranslateUi
 
