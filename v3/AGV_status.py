@@ -3,11 +3,12 @@ class AGV_status:
         self.n=number;
         self.mission_sent = False;
         self.in_mission = False;
+        self.but_em_pressed=False;
         self.paused = False;
         self.emergency = False;
         self.waiting_for_IBE=False;
-        self.in_node = 1;
-        self.going_to_node = 1;
+        self.in_node = 3;
+        self.going_to_node = 3;
         self.distanceTravelled = 0;
     def set_pos(self,pos): #Lo ubica en un nodo en especifico
         self.in_node=pos;
@@ -23,7 +24,7 @@ class AGV_status:
         if self.mission_IBE[self.currBlock] == "None": #En el caso que no necesite evento para arrancar misión
             self.waiting_for_IBE = False;
     def is_waiting_for_houston_continue(self):
-        return (self.waiting_for_IBE and self.mission_IBE[self.currBlock] == "Houston") or self.paused or (self.emergency ) #En lo de emergencia estaría bueno meter que sea solo cuando liberaron el boton de emergencia
+        return (self.waiting_for_IBE and self.mission_IBE[self.currBlock] == "Houston") or self.paused or (self.emergency and  not self.but_em_pressed) #En lo de emergencia estaría bueno meter que sea solo cuando liberaron el boton de emergencia
     def curr_block_len(self):
         return len(self.mission_block_nodes[self.currBlock]) #Longitud del bloque de ahora
     def n_of_blocks(self):

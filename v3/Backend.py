@@ -28,7 +28,6 @@ class Backend:
         self.mqttClient.on_message = self.parse_mqtt_msg
         self.mqttClient.connect("localhost")  # connect to broker
         self.mqttClient.subscribe("Houston")
-        self.mqttClient.loop_start()
         self.agv_status_dict = {};  # Status de los AGVs que se conecten
         self.agv_status_dict[1] = AGV_status(1)  # Para debuggear ya lo dejamos creado al agv1
         self.map.update_agv_pos(1, 1, 1, 0)
@@ -38,6 +37,8 @@ class Backend:
         aux=copy.deepcopy(self.log)
         self.log=""
         return aux
+    def sync_mqtt_msg_check(self):
+        self.mqttClient.loop()
     def parse_cmd(self,cmd):
         self.last_command=cmd
         cmdValid=False;
@@ -56,9 +57,9 @@ class Backend:
     def parse_mqtt_msg(self,client, userdata, message): ##Parseo de mensajes de MQTT
         msg=str(message.payload.decode("utf-8"))
         self.header_to_parse_func = {"Online": self.mqtt_rec_online,"Quest step reached":self.mqtt_rec_step_reached,"Status":self.mqtt_rec_status,
-                                     "Quest" : self.mqtt_rec_quest_answer,"Mission paused":self.mqtt_rec_pause_mission,"Resumed":self.mqtt_rec_continue,
-                                     "Mission aborted": self.mqtt_rec_abort,"Emergency": self.mqtt_rec_emergency,"Error":self.mqtt_rec_error,
-                                     "Interblock Event": self.mqtt_rec_IBE, "HB": self.mqtt_rec_hb
+                                     "Quest\n" : self.mqtt_rec_quest_answer,"Quest paused":self.mqtt_rec_pause_mission,"Resumed":self.mqtt_rec_continue,
+                                     "Quest abort": self.mqtt_rec_abort,"Emergency stop": self.mqtt_rec_emergency,"Error":self.mqtt_rec_error,
+                                     "Interblock event": self.mqtt_rec_IBE, "HB": self.mqtt_rec_hb,"Emergency button freed": self.mqtt_rec_emergency_but
                                      } #Mapa de headers con su respectiva función de parseo
         try: ##Para que no estalle en caso de ser un mensaje fuera del protocolo
             header_known=False;
@@ -179,6 +180,9 @@ class Backend:
             return "Recieved abort when AGV was not in mission"
     def mqtt_rec_emergency(self):
         self.agv_status_dict[self.AGVn_rec].emergency= True;
+        self.agv_status_dict[self.AGVn_rec].but_em_pressed = True;
+    def mqtt_rec_emergency_but(self):
+        self.agv_status_dict[self.AGVn_rec].but_em_pressed = False;
     def mqtt_rec_IBE(self):
         if self.agv_status_dict[1].waiting_for_IBE:
             if self.agv_status_dict[1].mission_IBE[self.agv_status_dict[1].currBlock] == "Button" or self.agv_status_dict[1].mission_IBE[self.agv_status_dict[1].currBlock] == "Delay":
@@ -247,6 +251,8 @@ class Backend:
             self.agv_status_dict[1].resume_mission()
         elif self.agv_status_dict[1].waiting_for_IBE and self.agv_status_dict[1].mission_IBE[self.agv_status_dict[1].currBlock] == "Houston":
             self.agv_status_dict[1].continue_mission()
+        elif self.agv_status_dict[1].emergency and (not self.agv_status_dict[1].but_em_pressed):
+            self.agv_status_dict[1].emergency=False
         else:
             return "Continue ignored: there was not anything to continue";
         self.mqttClient.publish("AGV1", "Continue")
@@ -268,5 +274,5 @@ class Backend:
             self.agv_status_dict[self.AGVn_rec].abort_mission()
         else:
             return "Recieved abort when AGV was not in mission"
-        self.mqttClient.publish("AGV1", "QuestAbort")
+        self.mqttClient.publish("AGV1", "Quest abort")
         self.log+="Houston Abort"

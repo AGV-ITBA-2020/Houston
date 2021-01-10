@@ -33,6 +33,6 @@ while(1):
     if data == "Continue":
         client.publish("AGV1", data)
     elif data == "m1":
-        client.publish("AGV1","Quest?\n"+"NoBs80Fr80Me80Fl100StBeNo" )
+        client.publish("AGV1","Quest?\n"+"NoBs80Fl80Me80Fr80Me100StBeNo" )
     #client.publish("AGV1","Quest?\n"+"NoBs10Me20Fr10Me10Fl10Me20StBeNo" )
     i=i+1

@@ -67,6 +67,11 @@ class MainWindow(QMainWindow):#Si crashea cambiar el tiempo de refresco
         self.flags_poll_timer = QTimer()
         self.flags_poll_timer.timeout.connect(self.periodic_update_interface)
         self.flags_poll_timer.start(1000)  ##Si se crashea, al ponerle un timer más alto parece ser menos probable que crashee-> puede ser que matplotlib tarde mucho en plotear el grafo y si hay que plotear de vuelta no le gusta?
+        # self.mqtt_routine = QTimer()
+        # self.mqtt_routine.timeout.connect(self.mqtt_sync)
+        # self.mqtt_routine.start(1000)  ##mqtt sincrónico
+    def mqtt_sync(self):
+        self.backend.sync_mqtt_msg_check()
     def configure_mission_blocks_page(self):
         self.ui.block_count = 1;
         self.ui.max_blocks = 11;
@@ -107,6 +112,7 @@ class MainWindow(QMainWindow):#Si crashea cambiar el tiempo de refresco
         cmd=self.gen_mission_command()
         return self.backend.is_mission_cmd_valid(cmd)
     def periodic_update_interface(self):
+        self.backend.sync_mqtt_msg_check()
         self.log_str=self.backend.get_log()
         if self.log_str:
             self.ui.log.append(self.log_str)
