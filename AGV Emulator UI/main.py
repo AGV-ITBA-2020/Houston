@@ -30,7 +30,7 @@ class MainWindow(QMainWindow):
         self.destination="Houston"
         self.mqttClient.loop_start()
 
-        self.ui.but_accept_mission.clicked.connect(lambda : self.send_mqtt_msg("Quest?\nYes"))
+        self.ui.but_accept_mission.clicked.connect(lambda : self.send_mqtt_msg("Quest\nYes"))
         self.ui.but_emergency.clicked.connect(lambda: self.send_mqtt_msg("Emergency"))
         self.ui.but_step_reached.clicked.connect(lambda: self.send_mqtt_msg("Quest step reached"))
         self.ui.but_IBE.clicked.connect(lambda: self.send_mqtt_msg("Interblock Event"))
