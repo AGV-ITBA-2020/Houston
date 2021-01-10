@@ -78,7 +78,9 @@ class Battery(QProgressBar):
         self.color= QtCore.Qt.white
         self.setValue(100)
         self.setStyleSheet(OK_STYLE)
-
+    def reset(self):
+        self.state = "Ok"
+        self.setValue(100)
     def level_to_volt(self,level):
         voltage=11.4;
         for key in self.voltOfCharge:
@@ -87,7 +89,7 @@ class Battery(QProgressBar):
         return voltage
     def volt_to_level(self,volt):
         level=0;
-        res = 1 ##Si la resolución de la batería es de 10
+        res = 10 ##Si la resolución de la batería es de 10
 
         for key in self.voltOfCharge:
             if(self.voltOfCharge[key]<=volt):
@@ -108,6 +110,7 @@ class Battery(QProgressBar):
         self.setValue(100)
     def setBatLevel(self, voltage):
         b_level=self.volt_to_level(voltage)
+        #if b_level <= self.value():
         self.setValue(b_level)
         if (b_level >= 50 and not self.state == "Ok"):
             self.state="Ok"

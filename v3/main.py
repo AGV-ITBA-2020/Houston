@@ -37,7 +37,7 @@ class MainWindow(QMainWindow):#Si crashea cambiar el tiempo de refresco
         self.add_map_plot()
         self.ui.battery = Battery();
         self.ui.layout_plot_battery.addWidget(self.ui.battery)
-        self.backend = Backend(self.ui.log, self.ui.battery)
+        self.backend = Backend(self.ui.battery)
 
         self.configure_mission_blocks_page();
         self.gui_light_map = {0: self.ui.agv_data_flag_in_mission,
@@ -107,6 +107,10 @@ class MainWindow(QMainWindow):#Si crashea cambiar el tiempo de refresco
         cmd=self.gen_mission_command()
         return self.backend.is_mission_cmd_valid(cmd)
     def periodic_update_interface(self):
+        self.log_str=self.backend.get_log()
+        if self.log_str:
+            self.ui.log.append(self.log_str)
+            self.log_str=""
         if self.backend.check_for_map_updates():
             self.backend.map.draw_system();
             self.m.update_plot()

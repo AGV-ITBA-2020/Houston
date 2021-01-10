@@ -32,6 +32,7 @@ while(1):
     data = input()
     if data == "Continue":
         client.publish("AGV1", data)
-    client.publish("AGV1","Quest?\n"+"NoBs50StBeBpBs10StBeHcBs10StBeNo" )
+    elif data == "m1":
+        client.publish("AGV1","Quest?\n"+"NoBs80Fr80Me80Fl100StBeNo" )
     #client.publish("AGV1","Quest?\n"+"NoBs10Me20Fr10Me10Fl10Me20StBeNo" )
     i=i+1

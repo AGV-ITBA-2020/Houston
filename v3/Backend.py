@@ -4,12 +4,13 @@ import paho.mqtt.client as mqtt
 from Battery import Battery
 from AGV_status import AGV_status
 from parse import *
-
+import datetime
+import copy
 
 class Backend:
-    def __init__(self,log,battery):
+    def __init__(self,battery):
         self.map = MapManager()
-        self.log = log;
+        self.log = "";
         self.battery = battery;
         self.error=False;
         # Estructura de comandos aceptados por consola
@@ -33,6 +34,10 @@ class Backend:
         self.map.update_agv_pos(1, 1, 1, 0)
 
         self.map_changed= 1;
+    def get_log(self):
+        aux=copy.deepcopy(self.log)
+        self.log=""
+        return aux
     def parse_cmd(self,cmd):
         self.last_command=cmd
         cmdValid=False;
@@ -51,24 +56,26 @@ class Backend:
     def parse_mqtt_msg(self,client, userdata, message): ##Parseo de mensajes de MQTT
         msg=str(message.payload.decode("utf-8"))
         self.header_to_parse_func = {"Online": self.mqtt_rec_online,"Quest step reached":self.mqtt_rec_step_reached,"Status":self.mqtt_rec_status,
-                                     "Quest?" : self.mqtt_rec_quest_answer,"Mission paused":self.mqtt_rec_pause_mission,"Resumed":self.mqtt_rec_continue,
+                                     "Quest" : self.mqtt_rec_quest_answer,"Mission paused":self.mqtt_rec_pause_mission,"Resumed":self.mqtt_rec_continue,
                                      "Mission aborted": self.mqtt_rec_abort,"Emergency": self.mqtt_rec_emergency,"Error":self.mqtt_rec_error,
-                                     "Interblock Event": self.mqtt_rec_IBE
+                                     "Interblock Event": self.mqtt_rec_IBE, "HB": self.mqtt_rec_hb
                                      } #Mapa de headers con su respectiva función de parseo
         try: ##Para que no estalle en caso de ser un mensaje fuera del protocolo
             header_known=False;
+            msg_error=""
             #print(msg)
             self.AGVn_rec = int((msg.split('\n', 1)[0]).split('V',1)[1])
             self.msg_rec = msg.split('\n', 1)[1]  # Me quedo con los datos del agv
             for key in self.header_to_parse_func:  # Me fijo si es alguno de los headers esperados, lo parsea con su respectiva función
                 if self.msg_rec.startswith(key) and not self.error:
+                    self.log+=(datetime.datetime.now().strftime("%H:%M:%S -"))
                     msg_error = self.header_to_parse_func[key]() #Devuelve un string del error si hubo
                     header_known=True;
-            if not header_known:
-                self.log.append("Recieved a msg with an unknown header" + self.msg_rec);
+            if (not header_known) and (not self.error): #Si estoy en error no voy a tomar ningún header.
+                self.log+=("Recieved a msg with an unknown header" + self.msg_rec);
             elif msg_error: #Si hubo un error lógico del mensaje, se pone al backend en estado error
                 self.error=True;
-                self.log.append(msg_error)
+                self.log+=(msg_error)
         except Exception as e:
             print(e)
 
@@ -109,16 +116,18 @@ class Backend:
             prev_node=node_obj[i]
         return retVal
     #### Funciones de parseo de comandos ###
+    def mqtt_rec_hb(self):
+        self.log+=("AGV " + str(self.AGVn_rec) + ": " + "HB")
     def mqtt_rec_online(self):
         self.agv_status_dict[self.AGVn_rec] = AGV_status(self.AGVn_rec)
-        self.log.append("AGV " + str(self.AGVn_rec) + ": " + "Online")
+        self.log+=("AGV " + str(self.AGVn_rec) + ": " + "Online")
         self.update_map();
     def mqtt_rec_step_reached(self):
         if self.agv_status_dict[self.AGVn_rec].in_mission:
             if not self.agv_status_dict[self.AGVn_rec].waiting_for_IBE and not self.agv_status_dict[self.AGVn_rec].paused:
                 self.agv_status_dict[self.AGVn_rec].mission_step_reached()
                 self.update_map();
-                self.log.append("AGV " + str(self.AGVn_rec) + ": " + "Step reached")
+                self.log+=("AGV " + str(self.AGVn_rec) + ": " + "Step reached")
             else:
                 return "Recieved step reached when agv was in pause or emergency"
         else:
@@ -132,16 +141,16 @@ class Backend:
         if bat_lev_rec: #Si se recibió una tensión
             batLevel = float(bat_lev_rec[0]) / 100.0;
             self.battery.setBatLevel(batLevel)
-        self.log.append("AGV " + str(self.AGVn_rec) + ": " + "Status update")
+        self.log+=("AGV " + str(self.AGVn_rec) + ": " + "Status update")
     def mqtt_rec_quest_answer(self):
         if self.agv_status_dict[1].mission_sent == True: #Si se le había enviado una quest
             self.agv_status_dict[1].mission_sent = False;
             if "Yes" in self.msg_rec:
                 self.agv_status_dict[self.AGVn_rec].in_mission = True;
-                self.log.append("AGV " + str(self.AGVn_rec) + ": " + "Mission accepted")
+                self.log+=("AGV " + str(self.AGVn_rec) + ": " + "Mission accepted")
             elif "No" in self.msg_rec:
                 self.agv_status_dict[self.AGVn_rec].in_mission = False;
-                self.log.append("AGV " + str(self.AGVn_rec) + ": " + "Mission denied")
+                self.log+=("AGV " + str(self.AGVn_rec) + ": " + "Mission denied")
             else:
                 return "Expected Yes or No after the header -Quest?-"
         else:
@@ -179,16 +188,16 @@ class Backend:
         else:
             return "Recieved an IBE without being waiting for it"
     def mqtt_rec_error(self):
-        self.log.append("AGV " + str(self.AGVn_rec) + ": " + "Error")
+        self.log+="AGV " + str(self.AGVn_rec) + ": " + self.msg_rec
         self.error=1;
     #### Funciones llamadas por comandos ###
     def restart(self):
         self.agv_status_dict[1] = AGV_status(1)  # Para debuggear ya lo dejamos creado al agv1
         self.map.update_agv_pos(1, 1, 1, 0)
-        self.battery.setBatLevel(1000)  # Pa que tenga 100%
+        self.battery.reset()  # Pa que tenga 100%
         self.map_changed = 1;
         self.error = False;
-        self.log.append("System reset")
+        self.log+="System reset"
     def setBat(self):
         res = parse("B {:d}", self.last_command)
         bvolt= res[0] / 100;
@@ -201,7 +210,7 @@ class Backend:
         res = parse("SetPos {:d}", self.last_command)
         self.agv_status_dict[1].set_pos( res[0])
         self.update_map()
-        self.log.append("Position set")
+        self.log+=("Position set")
     def start_mission(self):
         final_node = search("SM {:d}", self.last_command)[0]
         if self.map.is_node_station(final_node) and not(final_node==self.agv_status_dict[1].in_node):
@@ -210,7 +219,7 @@ class Backend:
             self.agv_status_dict[1].new_mission([node_path],[dist_list], ["None", "None"]) #Las IBE son none por ser una misión simple
             self.mqttClient.publish("AGV1", msg_to_send)
             self.agv_status_dict[1].mission_sent = True;
-            self.log.append("New mission:" + steps_str)
+            self.log+=("New mission:" + steps_str)
         else:
             return "Final station for simple mission was not valid"
     def start_long_mission(self):
@@ -231,7 +240,7 @@ class Backend:
         self.agv_status_dict[1].new_mission(node_path_list, path_dists_list,IBE_list)  # Las IBE son none por ser una misión simple
         self.mqttClient.publish("AGV1", "Quest?\n" +msg_to_send)
         self.agv_status_dict[1].mission_sent = True;
-        self.log.append("New mission: " + msg_to_send)
+        self.log+="New mission: " + msg_to_send
     def continueMission(self):
 
         if self.agv_status_dict[1].paused:
@@ -241,7 +250,7 @@ class Backend:
         else:
             return "Continue ignored: there was not anything to continue";
         self.mqttClient.publish("AGV1", "Continue")
-        self.log.append("Houston Continue")
+        self.log+=("Houston Continue")
 
     def pauseMission(self):
         if self.agv_status_dict[self.AGVn_rec].in_mission:
@@ -252,7 +261,7 @@ class Backend:
         else:
             return "Recieved pause mission, but AGV was not in a mission"
         self.mqttClient.publish("AGV1", "Pause")
-        self.log.append("Houston Pause")
+        self.log+=("Houston Pause")
 
     def abortMission(self):
         if self.agv_status_dict[self.AGVn_rec].in_mission:
@@ -260,4 +269,4 @@ class Backend:
         else:
             return "Recieved abort when AGV was not in mission"
         self.mqttClient.publish("AGV1", "QuestAbort")
-        self.log.append("Houston Abort")
+        self.log+="Houston Abort"
